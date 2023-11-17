@@ -35,7 +35,7 @@
 
 | مصحف المدينة مع تميز كلمة بكلمة عند الاستماع                           | كافة الأنشطة المتاحة حالياََ                                     |
 | -------------------------------------------- | -------------------------------------------- |
-| ![Description 1](screenshots/2.png)         | ![Description 2](screenshots/4.png)         |
+| ![Description 1](screenshots/4.png)         | ![Description 2](screenshots/2.png)         |
 <p align="center">
   صنع بشغف ❤️ بواسطة مصطفى مصري ( Mostafa Masri )
 </p>
