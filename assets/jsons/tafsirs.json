@@ -1,0 +1,53 @@
+[
+    {
+        "identifier": "ar.muyassar",
+        "language": "ar",
+        "name": "تفسير المیسر",
+        "englishName": "King Fahad Quran Complex",
+        "url": "https://gitea.com/mostafamasri/tafsir-json/raw/branch/main/json/ar.muyassar.json"
+    },
+    {
+        "identifier": "ar.jalalayn",
+        "language": "ar",
+        "name": "تفسير الجلالين",
+        "englishName": "Jalal ad-Din al-Mahalli and Jalal ad-Din as-Suyuti",
+        "url": "https://gitea.com/mostafamasri/tafsir-json/raw/branch/main/json/ar.jalalayn.json"
+    },
+    {
+        "identifier": "ar.waseet",
+        "language": "ar",
+        "name": "الـتـفـسـيـر الـوسـيـط",
+        "englishName": "Tafsir Al Waseet",
+        "url": "https://gitea.com/mostafamasri/tafsir-json/raw/branch/main/json/ar.waseet.json"
+    },
+    {
+        "identifier": "ar.baghawi",
+        "language": "ar",
+        "name": "تفسير البغوي",
+        "englishName": "Tafsir Al Baghawi",
+        "url": "https://gitea.com/mostafamasri/tafsir-json/raw/branch/main/json/ar.baghawi.json"
+    },
+    {
+        "identifier": "ar.qurtubi",
+        "language": "ar",
+        "name": "تفسير القرطبي",
+        "englishName": "Tafsir Al Qurtubi",
+        "url": "https://gitea.com/mostafamasri/tafsir-json/raw/branch/main/json/ar.qurtubi.json"
+    }
+    ,
+    {
+        "identifier": "ar.tanweer",
+        "language": "ar",
+        "name": "تفسير التحرير والتنوير",
+        "englishName": "Tafsir Al Altahrir & Tanweer",
+        "url": "https://gitea.com/mostafamasri/tafsir-json/raw/branch/main/json/ar.tanweer.json"
+    }
+    ,
+    {
+        "identifier": "ar.saddi",
+        "language": "ar",
+        "name": "تفسير السعدي",
+        "englishName": "Tafsir Al Saddi",
+        "url": "https://gitea.com/mostafamasri/tafsir-json/raw/branch/main/json/ar.saddi.json"
+    }
+]

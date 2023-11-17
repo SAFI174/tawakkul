@@ -1,0 +1,1888 @@
+name: tawakkal
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies: 
+  get: 4.6.6
+  adhan_dart: ^1.0.8
+  auto_size_text: ^3.0.0
+  flex_color_scheme: ^7.2.0
+  google_fonts: ^5.1.0
+  flutter_svg: ^2.0.7
+  fluentui_system_icons: ^1.1.210
+  flutter_islamic_icons: ^1.0.2
+  jiffy: ^6.2.1
+  quran: ^1.2.2
+  intl: ^0.18.0
+  jhijri: ^1.0.0
+  arabic_numbers: ^1.0.0
+  flutter: 
+    sdk: flutter
+  just_audio: ^0.9.35
+  status_bar_control: ^3.2.1
+  search_highlight_text: ^1.0.0+2
+  modal_bottom_sheet: ^2.1.2
+  share_plus: ^6.0.1
+  connectivity: ^3.0.6
+  expandable: ^5.0.1
+  iconsax: ^0.0.8
+  dio: ^5.3.3
+  audio_service: ^0.18.12
+  audio_session: ^0.1.16
+  get_it: ^7.6.4
+  get_storage: ^2.1.1
+  responsive_sizer: ^3.2.0
+  choice: ^2.3.0
+  flutter_toggle_tab: ^1.4.1
+  easy_rich_text: ^2.0.0
+  enum_to_string: ^2.0.1
+  scroll_to_index: ^3.0.1
+  pinch_zoom_release_unzoom: ^1.0.1
+  flutter_localizations:
+    sdk: flutter
+  geolocator: ^9.0.1
+  flutter_qiblah_update: ^2.0.3
+  lottie: ^2.7.0
+  internet_connection_checker_plus: ^2.1.0
+  permission_handler: ^11.0.1
+  device_info_plus: ^8.2.2
+dev_dependencies: 
+  flutter_test: 
+    sdk: flutter
+flutter: 
+  assets: 
+    - assets/svg/
+    - assets/databases/
+    - assets/jsons/quran/
+    - assets/jsons/
+    - assets/jsons/audio_segments/
+    - assets/jsons/lottie/
+    - assets/jsons/azkar/
+    - assets/jsons/quran/pages/
+    - assets/images/
+  uses-material-design: true
+  fonts: 
+    - family: MeQuran
+      fonts: 
+        - asset: assets/fonts/quran/me_quran.ttf
+    - family: QCFBSML
+      fonts: 
+        - asset: assets/fonts/quran/QCF_BSML.TTF
+    - family: SURAHNAMES
+      fonts: 
+        - asset: assets/fonts/quran/sura_names.TTF
+    - family: QCF_P001
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P001.ttf
+    - family: QCF_P002
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P002.ttf
+    - family: QCF_P003
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P003.ttf
+    - family: QCF_P004
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P004.ttf
+    - family: QCF_P005
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P005.ttf
+    - family: QCF_P006
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P006.ttf
+    - family: QCF_P007
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P007.ttf
+    - family: QCF_P008
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P008.ttf
+    - family: QCF_P009
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P009.ttf
+    - family: QCF_P010
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P010.ttf
+    - family: QCF_P011
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P011.ttf
+    - family: QCF_P012
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P012.ttf
+    - family: QCF_P013
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P013.ttf
+    - family: QCF_P014
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P014.ttf
+    - family: QCF_P015
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P015.ttf
+    - family: QCF_P016
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P016.ttf
+    - family: QCF_P017
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P017.ttf
+    - family: QCF_P018
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P018.ttf
+    - family: QCF_P019
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P019.ttf
+    - family: QCF_P020
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P020.ttf
+    - family: QCF_P021
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P021.ttf
+    - family: QCF_P022
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P022.ttf
+    - family: QCF_P023
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P023.ttf
+    - family: QCF_P024
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P024.ttf
+    - family: QCF_P025
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P025.ttf
+    - family: QCF_P026
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P026.ttf
+    - family: QCF_P027
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P027.ttf
+    - family: QCF_P028
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P028.ttf
+    - family: QCF_P029
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P029.ttf
+    - family: QCF_P030
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P030.ttf
+    - family: QCF_P031
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P031.ttf
+    - family: QCF_P032
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P032.ttf
+    - family: QCF_P033
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P033.ttf
+    - family: QCF_P034
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P034.ttf
+    - family: QCF_P035
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P035.ttf
+    - family: QCF_P036
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P036.ttf
+    - family: QCF_P037
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P037.ttf
+    - family: QCF_P038
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P038.ttf
+    - family: QCF_P039
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P039.ttf
+    - family: QCF_P040
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P040.ttf
+    - family: QCF_P041
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P041.ttf
+    - family: QCF_P042
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P042.ttf
+    - family: QCF_P043
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P043.ttf
+    - family: QCF_P044
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P044.ttf
+    - family: QCF_P045
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P045.ttf
+    - family: QCF_P046
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P046.ttf
+    - family: QCF_P047
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P047.ttf
+    - family: QCF_P048
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P048.ttf
+    - family: QCF_P049
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P049.ttf
+    - family: QCF_P050
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P050.ttf
+    - family: QCF_P051
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P051.ttf
+    - family: QCF_P052
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P052.ttf
+    - family: QCF_P053
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P053.ttf
+    - family: QCF_P054
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P054.ttf
+    - family: QCF_P055
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P055.ttf
+    - family: QCF_P056
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P056.ttf
+    - family: QCF_P057
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P057.ttf
+    - family: QCF_P058
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P058.ttf
+    - family: QCF_P059
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P059.ttf
+    - family: QCF_P060
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P060.ttf
+    - family: QCF_P061
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P061.ttf
+    - family: QCF_P062
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P062.ttf
+    - family: QCF_P063
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P063.ttf
+    - family: QCF_P064
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P064.ttf
+    - family: QCF_P065
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P065.ttf
+    - family: QCF_P066
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P066.ttf
+    - family: QCF_P067
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P067.ttf
+    - family: QCF_P068
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P068.ttf
+    - family: QCF_P069
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P069.ttf
+    - family: QCF_P070
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P070.ttf
+    - family: QCF_P071
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P071.ttf
+    - family: QCF_P072
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P072.ttf
+    - family: QCF_P073
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P073.ttf
+    - family: QCF_P074
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P074.ttf
+    - family: QCF_P075
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P075.ttf
+    - family: QCF_P076
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P076.ttf
+    - family: QCF_P077
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P077.ttf
+    - family: QCF_P078
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P078.ttf
+    - family: QCF_P079
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P079.ttf
+    - family: QCF_P080
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P080.ttf
+    - family: QCF_P081
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P081.ttf
+    - family: QCF_P082
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P082.ttf
+    - family: QCF_P083
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P083.ttf
+    - family: QCF_P084
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P084.ttf
+    - family: QCF_P085
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P085.ttf
+    - family: QCF_P086
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P086.ttf
+    - family: QCF_P087
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P087.ttf
+    - family: QCF_P088
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P088.ttf
+    - family: QCF_P089
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P089.ttf
+    - family: QCF_P090
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P090.ttf
+    - family: QCF_P091
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P091.ttf
+    - family: QCF_P092
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P092.ttf
+    - family: QCF_P093
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P093.ttf
+    - family: QCF_P094
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P094.ttf
+    - family: QCF_P095
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P095.ttf
+    - family: QCF_P096
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P096.ttf
+    - family: QCF_P097
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P097.ttf
+    - family: QCF_P098
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P098.ttf
+    - family: QCF_P099
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P099.ttf
+    - family: QCF_P100
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P100.ttf
+    - family: QCF_P101
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P101.ttf
+    - family: QCF_P102
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P102.ttf
+    - family: QCF_P103
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P103.ttf
+    - family: QCF_P104
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P104.ttf
+    - family: QCF_P105
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P105.ttf
+    - family: QCF_P106
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P106.ttf
+    - family: QCF_P107
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P107.ttf
+    - family: QCF_P108
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P108.ttf
+    - family: QCF_P109
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P109.ttf
+    - family: QCF_P110
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P110.ttf
+    - family: QCF_P111
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P111.ttf
+    - family: QCF_P112
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P112.ttf
+    - family: QCF_P113
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P113.ttf
+    - family: QCF_P114
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P114.ttf
+    - family: QCF_P115
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P115.ttf
+    - family: QCF_P116
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P116.ttf
+    - family: QCF_P117
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P117.ttf
+    - family: QCF_P118
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P118.ttf
+    - family: QCF_P119
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P119.ttf
+    - family: QCF_P120
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P120.ttf
+    - family: QCF_P121
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P121.ttf
+    - family: QCF_P122
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P122.ttf
+    - family: QCF_P123
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P123.ttf
+    - family: QCF_P124
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P124.ttf
+    - family: QCF_P125
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P125.ttf
+    - family: QCF_P126
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P126.ttf
+    - family: QCF_P127
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P127.ttf
+    - family: QCF_P128
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P128.ttf
+    - family: QCF_P129
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P129.ttf
+    - family: QCF_P130
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P130.ttf
+    - family: QCF_P131
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P131.ttf
+    - family: QCF_P132
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P132.ttf
+    - family: QCF_P133
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P133.ttf
+    - family: QCF_P134
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P134.ttf
+    - family: QCF_P135
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P135.ttf
+    - family: QCF_P136
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P136.ttf
+    - family: QCF_P137
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P137.ttf
+    - family: QCF_P138
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P138.ttf
+    - family: QCF_P139
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P139.ttf
+    - family: QCF_P140
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P140.ttf
+    - family: QCF_P141
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P141.ttf
+    - family: QCF_P142
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P142.ttf
+    - family: QCF_P143
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P143.ttf
+    - family: QCF_P144
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P144.ttf
+    - family: QCF_P145
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P145.ttf
+    - family: QCF_P146
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P146.ttf
+    - family: QCF_P147
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P147.ttf
+    - family: QCF_P148
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P148.ttf
+    - family: QCF_P149
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P149.ttf
+    - family: QCF_P150
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P150.ttf
+    - family: QCF_P151
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P151.ttf
+    - family: QCF_P152
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P152.ttf
+    - family: QCF_P153
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P153.ttf
+    - family: QCF_P154
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P154.ttf
+    - family: QCF_P155
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P155.ttf
+    - family: QCF_P156
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P156.ttf
+    - family: QCF_P157
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P157.ttf
+    - family: QCF_P158
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P158.ttf
+    - family: QCF_P159
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P159.ttf
+    - family: QCF_P160
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P160.ttf
+    - family: QCF_P161
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P161.ttf
+    - family: QCF_P162
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P162.ttf
+    - family: QCF_P163
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P163.ttf
+    - family: QCF_P164
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P164.ttf
+    - family: QCF_P165
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P165.ttf
+    - family: QCF_P166
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P166.ttf
+    - family: QCF_P167
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P167.ttf
+    - family: QCF_P168
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P168.ttf
+    - family: QCF_P169
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P169.ttf
+    - family: QCF_P170
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P170.ttf
+    - family: QCF_P171
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P171.ttf
+    - family: QCF_P172
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P172.ttf
+    - family: QCF_P173
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P173.ttf
+    - family: QCF_P174
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P174.ttf
+    - family: QCF_P175
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P175.ttf
+    - family: QCF_P176
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P176.ttf
+    - family: QCF_P177
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P177.ttf
+    - family: QCF_P178
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P178.ttf
+    - family: QCF_P179
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P179.ttf
+    - family: QCF_P180
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P180.ttf
+    - family: QCF_P181
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P181.ttf
+    - family: QCF_P182
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P182.ttf
+    - family: QCF_P183
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P183.ttf
+    - family: QCF_P184
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P184.ttf
+    - family: QCF_P185
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P185.ttf
+    - family: QCF_P186
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P186.ttf
+    - family: QCF_P187
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P187.ttf
+    - family: QCF_P188
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P188.ttf
+    - family: QCF_P189
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P189.ttf
+    - family: QCF_P190
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P190.ttf
+    - family: QCF_P191
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P191.ttf
+    - family: QCF_P192
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P192.ttf
+    - family: QCF_P193
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P193.ttf
+    - family: QCF_P194
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P194.ttf
+    - family: QCF_P195
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P195.ttf
+    - family: QCF_P196
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P196.ttf
+    - family: QCF_P197
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P197.ttf
+    - family: QCF_P198
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P198.ttf
+    - family: QCF_P199
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P199.ttf
+    - family: QCF_P200
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P200.ttf
+    - family: QCF_P201
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P201.ttf
+    - family: QCF_P202
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P202.ttf
+    - family: QCF_P203
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P203.ttf
+    - family: QCF_P204
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P204.ttf
+    - family: QCF_P205
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P205.ttf
+    - family: QCF_P206
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P206.ttf
+    - family: QCF_P207
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P207.ttf
+    - family: QCF_P208
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P208.ttf
+    - family: QCF_P209
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P209.ttf
+    - family: QCF_P210
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P210.ttf
+    - family: QCF_P211
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P211.ttf
+    - family: QCF_P212
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P212.ttf
+    - family: QCF_P213
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P213.ttf
+    - family: QCF_P214
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P214.ttf
+    - family: QCF_P215
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P215.ttf
+    - family: QCF_P216
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P216.ttf
+    - family: QCF_P217
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P217.ttf
+    - family: QCF_P218
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P218.ttf
+    - family: QCF_P219
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P219.ttf
+    - family: QCF_P220
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P220.ttf
+    - family: QCF_P221
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P221.ttf
+    - family: QCF_P222
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P222.ttf
+    - family: QCF_P223
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P223.ttf
+    - family: QCF_P224
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P224.ttf
+    - family: QCF_P225
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P225.ttf
+    - family: QCF_P226
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P226.ttf
+    - family: QCF_P227
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P227.ttf
+    - family: QCF_P228
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P228.ttf
+    - family: QCF_P229
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P229.ttf
+    - family: QCF_P230
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P230.ttf
+    - family: QCF_P231
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P231.ttf
+    - family: QCF_P232
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P232.ttf
+    - family: QCF_P233
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P233.ttf
+    - family: QCF_P234
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P234.ttf
+    - family: QCF_P235
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P235.ttf
+    - family: QCF_P236
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P236.ttf
+    - family: QCF_P237
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P237.ttf
+    - family: QCF_P238
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P238.ttf
+    - family: QCF_P239
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P239.ttf
+    - family: QCF_P240
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P240.ttf
+    - family: QCF_P241
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P241.ttf
+    - family: QCF_P242
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P242.ttf
+    - family: QCF_P243
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P243.ttf
+    - family: QCF_P244
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P244.ttf
+    - family: QCF_P245
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P245.ttf
+    - family: QCF_P246
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P246.ttf
+    - family: QCF_P247
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P247.ttf
+    - family: QCF_P248
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P248.ttf
+    - family: QCF_P249
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P249.ttf
+    - family: QCF_P250
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P250.ttf
+    - family: QCF_P251
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P251.ttf
+    - family: QCF_P252
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P252.ttf
+    - family: QCF_P253
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P253.ttf
+    - family: QCF_P254
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P254.ttf
+    - family: QCF_P255
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P255.ttf
+    - family: QCF_P256
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P256.ttf
+    - family: QCF_P257
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P257.ttf
+    - family: QCF_P258
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P258.ttf
+    - family: QCF_P259
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P259.ttf
+    - family: QCF_P260
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P260.ttf
+    - family: QCF_P261
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P261.ttf
+    - family: QCF_P262
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P262.ttf
+    - family: QCF_P263
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P263.ttf
+    - family: QCF_P264
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P264.ttf
+    - family: QCF_P265
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P265.ttf
+    - family: QCF_P266
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P266.ttf
+    - family: QCF_P267
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P267.ttf
+    - family: QCF_P268
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P268.ttf
+    - family: QCF_P269
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P269.ttf
+    - family: QCF_P270
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P270.ttf
+    - family: QCF_P271
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P271.ttf
+    - family: QCF_P272
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P272.ttf
+    - family: QCF_P273
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P273.ttf
+    - family: QCF_P274
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P274.ttf
+    - family: QCF_P275
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P275.ttf
+    - family: QCF_P276
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P276.ttf
+    - family: QCF_P277
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P277.ttf
+    - family: QCF_P278
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P278.ttf
+    - family: QCF_P279
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P279.ttf
+    - family: QCF_P280
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P280.ttf
+    - family: QCF_P281
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P281.ttf
+    - family: QCF_P282
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P282.ttf
+    - family: QCF_P283
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P283.ttf
+    - family: QCF_P284
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P284.ttf
+    - family: QCF_P285
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P285.ttf
+    - family: QCF_P286
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P286.ttf
+    - family: QCF_P287
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P287.ttf
+    - family: QCF_P288
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P288.ttf
+    - family: QCF_P289
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P289.ttf
+    - family: QCF_P290
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P290.ttf
+    - family: QCF_P291
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P291.ttf
+    - family: QCF_P292
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P292.ttf
+    - family: QCF_P293
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P293.ttf
+    - family: QCF_P294
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P294.ttf
+    - family: QCF_P295
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P295.ttf
+    - family: QCF_P296
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P296.ttf
+    - family: QCF_P297
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P297.ttf
+    - family: QCF_P298
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P298.ttf
+    - family: QCF_P299
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P299.ttf
+    - family: QCF_P300
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P300.ttf
+    - family: QCF_P301
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P301.ttf
+    - family: QCF_P302
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P302.ttf
+    - family: QCF_P303
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P303.ttf
+    - family: QCF_P304
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P304.ttf
+    - family: QCF_P305
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P305.ttf
+    - family: QCF_P306
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P306.ttf
+    - family: QCF_P307
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P307.ttf
+    - family: QCF_P308
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P308.ttf
+    - family: QCF_P309
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P309.ttf
+    - family: QCF_P310
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P310.ttf
+    - family: QCF_P311
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P311.ttf
+    - family: QCF_P312
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P312.ttf
+    - family: QCF_P313
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P313.ttf
+    - family: QCF_P314
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P314.ttf
+    - family: QCF_P315
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P315.ttf
+    - family: QCF_P316
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P316.ttf
+    - family: QCF_P317
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P317.ttf
+    - family: QCF_P318
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P318.ttf
+    - family: QCF_P319
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P319.ttf
+    - family: QCF_P320
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P320.ttf
+    - family: QCF_P321
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P321.ttf
+    - family: QCF_P322
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P322.ttf
+    - family: QCF_P323
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P323.ttf
+    - family: QCF_P324
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P324.ttf
+    - family: QCF_P325
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P325.ttf
+    - family: QCF_P326
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P326.ttf
+    - family: QCF_P327
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P327.ttf
+    - family: QCF_P328
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P328.ttf
+    - family: QCF_P329
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P329.ttf
+    - family: QCF_P330
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P330.ttf
+    - family: QCF_P331
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P331.ttf
+    - family: QCF_P332
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P332.ttf
+    - family: QCF_P333
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P333.ttf
+    - family: QCF_P334
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P334.ttf
+    - family: QCF_P335
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P335.ttf
+    - family: QCF_P336
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P336.ttf
+    - family: QCF_P337
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P337.ttf
+    - family: QCF_P338
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P338.ttf
+    - family: QCF_P339
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P339.ttf
+    - family: QCF_P340
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P340.ttf
+    - family: QCF_P341
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P341.ttf
+    - family: QCF_P342
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P342.ttf
+    - family: QCF_P343
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P343.ttf
+    - family: QCF_P344
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P344.ttf
+    - family: QCF_P345
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P345.ttf
+    - family: QCF_P346
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P346.ttf
+    - family: QCF_P347
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P347.ttf
+    - family: QCF_P348
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P348.ttf
+    - family: QCF_P349
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P349.ttf
+    - family: QCF_P350
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P350.ttf
+    - family: QCF_P351
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P351.ttf
+    - family: QCF_P352
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P352.ttf
+    - family: QCF_P353
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P353.ttf
+    - family: QCF_P354
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P354.ttf
+    - family: QCF_P355
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P355.ttf
+    - family: QCF_P356
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P356.ttf
+    - family: QCF_P357
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P357.ttf
+    - family: QCF_P358
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P358.ttf
+    - family: QCF_P359
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P359.ttf
+    - family: QCF_P360
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P360.ttf
+    - family: QCF_P361
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P361.ttf
+    - family: QCF_P362
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P362.ttf
+    - family: QCF_P363
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P363.ttf
+    - family: QCF_P364
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P364.ttf
+    - family: QCF_P365
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P365.ttf
+    - family: QCF_P366
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P366.ttf
+    - family: QCF_P367
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P367.ttf
+    - family: QCF_P368
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P368.ttf
+    - family: QCF_P369
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P369.ttf
+    - family: QCF_P370
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P370.ttf
+    - family: QCF_P371
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P371.ttf
+    - family: QCF_P372
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P372.ttf
+    - family: QCF_P373
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P373.ttf
+    - family: QCF_P374
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P374.ttf
+    - family: QCF_P375
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P375.ttf
+    - family: QCF_P376
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P376.ttf
+    - family: QCF_P377
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P377.ttf
+    - family: QCF_P378
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P378.ttf
+    - family: QCF_P379
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P379.ttf
+    - family: QCF_P380
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P380.ttf
+    - family: QCF_P381
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P381.ttf
+    - family: QCF_P382
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P382.ttf
+    - family: QCF_P383
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P383.ttf
+    - family: QCF_P384
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P384.ttf
+    - family: QCF_P385
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P385.ttf
+    - family: QCF_P386
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P386.ttf
+    - family: QCF_P387
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P387.ttf
+    - family: QCF_P388
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P388.ttf
+    - family: QCF_P389
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P389.ttf
+    - family: QCF_P390
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P390.ttf
+    - family: QCF_P391
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P391.ttf
+    - family: QCF_P392
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P392.ttf
+    - family: QCF_P393
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P393.ttf
+    - family: QCF_P394
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P394.ttf
+    - family: QCF_P395
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P395.ttf
+    - family: QCF_P396
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P396.ttf
+    - family: QCF_P397
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P397.ttf
+    - family: QCF_P398
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P398.ttf
+    - family: QCF_P399
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P399.ttf
+    - family: QCF_P400
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P400.ttf
+    - family: QCF_P401
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P401.ttf
+    - family: QCF_P402
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P402.ttf
+    - family: QCF_P403
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P403.ttf
+    - family: QCF_P404
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P404.ttf
+    - family: QCF_P405
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P405.ttf
+    - family: QCF_P406
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P406.ttf
+    - family: QCF_P407
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P407.ttf
+    - family: QCF_P408
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P408.ttf
+    - family: QCF_P409
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P409.ttf
+    - family: QCF_P410
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P410.ttf
+    - family: QCF_P411
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P411.ttf
+    - family: QCF_P412
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P412.ttf
+    - family: QCF_P413
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P413.ttf
+    - family: QCF_P414
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P414.ttf
+    - family: QCF_P415
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P415.ttf
+    - family: QCF_P416
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P416.ttf
+    - family: QCF_P417
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P417.ttf
+    - family: QCF_P418
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P418.ttf
+    - family: QCF_P419
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P419.ttf
+    - family: QCF_P420
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P420.ttf
+    - family: QCF_P421
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P421.ttf
+    - family: QCF_P422
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P422.ttf
+    - family: QCF_P423
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P423.ttf
+    - family: QCF_P424
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P424.ttf
+    - family: QCF_P425
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P425.ttf
+    - family: QCF_P426
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P426.ttf
+    - family: QCF_P427
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P427.ttf
+    - family: QCF_P428
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P428.ttf
+    - family: QCF_P429
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P429.ttf
+    - family: QCF_P430
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P430.ttf
+    - family: QCF_P431
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P431.ttf
+    - family: QCF_P432
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P432.ttf
+    - family: QCF_P433
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P433.ttf
+    - family: QCF_P434
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P434.ttf
+    - family: QCF_P435
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P435.ttf
+    - family: QCF_P436
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P436.ttf
+    - family: QCF_P437
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P437.ttf
+    - family: QCF_P438
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P438.ttf
+    - family: QCF_P439
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P439.ttf
+    - family: QCF_P440
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P440.ttf
+    - family: QCF_P441
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P441.ttf
+    - family: QCF_P442
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P442.ttf
+    - family: QCF_P443
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P443.ttf
+    - family: QCF_P444
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P444.ttf
+    - family: QCF_P445
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P445.ttf
+    - family: QCF_P446
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P446.ttf
+    - family: QCF_P447
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P447.ttf
+    - family: QCF_P448
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P448.ttf
+    - family: QCF_P449
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P449.ttf
+    - family: QCF_P450
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P450.ttf
+    - family: QCF_P451
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P451.ttf
+    - family: QCF_P452
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P452.ttf
+    - family: QCF_P453
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P453.ttf
+    - family: QCF_P454
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P454.ttf
+    - family: QCF_P455
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P455.ttf
+    - family: QCF_P456
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P456.ttf
+    - family: QCF_P457
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P457.ttf
+    - family: QCF_P458
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P458.ttf
+    - family: QCF_P459
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P459.ttf
+    - family: QCF_P460
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P460.ttf
+    - family: QCF_P461
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P461.ttf
+    - family: QCF_P462
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P462.ttf
+    - family: QCF_P463
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P463.ttf
+    - family: QCF_P464
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P464.ttf
+    - family: QCF_P465
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P465.ttf
+    - family: QCF_P466
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P466.ttf
+    - family: QCF_P467
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P467.ttf
+    - family: QCF_P468
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P468.ttf
+    - family: QCF_P469
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P469.ttf
+    - family: QCF_P470
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P470.ttf
+    - family: QCF_P471
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P471.ttf
+    - family: QCF_P472
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P472.ttf
+    - family: QCF_P473
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P473.ttf
+    - family: QCF_P474
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P474.ttf
+    - family: QCF_P475
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P475.ttf
+    - family: QCF_P476
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P476.ttf
+    - family: QCF_P477
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P477.ttf
+    - family: QCF_P478
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P478.ttf
+    - family: QCF_P479
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P479.ttf
+    - family: QCF_P480
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P480.ttf
+    - family: QCF_P481
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P481.ttf
+    - family: QCF_P482
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P482.ttf
+    - family: QCF_P483
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P483.ttf
+    - family: QCF_P484
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P484.ttf
+    - family: QCF_P485
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P485.ttf
+    - family: QCF_P486
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P486.ttf
+    - family: QCF_P487
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P487.ttf
+    - family: QCF_P488
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P488.ttf
+    - family: QCF_P489
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P489.ttf
+    - family: QCF_P490
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P490.ttf
+    - family: QCF_P491
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P491.ttf
+    - family: QCF_P492
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P492.ttf
+    - family: QCF_P493
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P493.ttf
+    - family: QCF_P494
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P494.ttf
+    - family: QCF_P495
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P495.ttf
+    - family: QCF_P496
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P496.ttf
+    - family: QCF_P497
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P497.ttf
+    - family: QCF_P498
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P498.ttf
+    - family: QCF_P499
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P499.ttf
+    - family: QCF_P500
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P500.ttf
+    - family: QCF_P501
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P501.ttf
+    - family: QCF_P502
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P502.ttf
+    - family: QCF_P503
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P503.ttf
+    - family: QCF_P504
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P504.ttf
+    - family: QCF_P505
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P505.ttf
+    - family: QCF_P506
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P506.ttf
+    - family: QCF_P507
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P507.ttf
+    - family: QCF_P508
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P508.ttf
+    - family: QCF_P509
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P509.ttf
+    - family: QCF_P510
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P510.ttf
+    - family: QCF_P511
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P511.ttf
+    - family: QCF_P512
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P512.ttf
+    - family: QCF_P513
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P513.ttf
+    - family: QCF_P514
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P514.ttf
+    - family: QCF_P515
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P515.ttf
+    - family: QCF_P516
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P516.ttf
+    - family: QCF_P517
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P517.ttf
+    - family: QCF_P518
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P518.ttf
+    - family: QCF_P519
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P519.ttf
+    - family: QCF_P520
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P520.ttf
+    - family: QCF_P521
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P521.ttf
+    - family: QCF_P522
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P522.ttf
+    - family: QCF_P523
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P523.ttf
+    - family: QCF_P524
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P524.ttf
+    - family: QCF_P525
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P525.ttf
+    - family: QCF_P526
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P526.ttf
+    - family: QCF_P527
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P527.ttf
+    - family: QCF_P528
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P528.ttf
+    - family: QCF_P529
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P529.ttf
+    - family: QCF_P530
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P530.ttf
+    - family: QCF_P531
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P531.ttf
+    - family: QCF_P532
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P532.ttf
+    - family: QCF_P533
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P533.ttf
+    - family: QCF_P534
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P534.ttf
+    - family: QCF_P535
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P535.ttf
+    - family: QCF_P536
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P536.ttf
+    - family: QCF_P537
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P537.ttf
+    - family: QCF_P538
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P538.ttf
+    - family: QCF_P539
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P539.ttf
+    - family: QCF_P540
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P540.ttf
+    - family: QCF_P541
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P541.ttf
+    - family: QCF_P542
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P542.ttf
+    - family: QCF_P543
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P543.ttf
+    - family: QCF_P544
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P544.ttf
+    - family: QCF_P545
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P545.ttf
+    - family: QCF_P546
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P546.ttf
+    - family: QCF_P547
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P547.ttf
+    - family: QCF_P548
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P548.ttf
+    - family: QCF_P549
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P549.ttf
+    - family: QCF_P550
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P550.ttf
+    - family: QCF_P551
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P551.ttf
+    - family: QCF_P552
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P552.ttf
+    - family: QCF_P553
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P553.ttf
+    - family: QCF_P554
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P554.ttf
+    - family: QCF_P555
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P555.ttf
+    - family: QCF_P556
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P556.ttf
+    - family: QCF_P557
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P557.ttf
+    - family: QCF_P558
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P558.ttf
+    - family: QCF_P559
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P559.ttf
+    - family: QCF_P560
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P560.ttf
+    - family: QCF_P561
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P561.ttf
+    - family: QCF_P562
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P562.ttf
+    - family: QCF_P563
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P563.ttf
+    - family: QCF_P564
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P564.ttf
+    - family: QCF_P565
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P565.ttf
+    - family: QCF_P566
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P566.ttf
+    - family: QCF_P567
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P567.ttf
+    - family: QCF_P568
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P568.ttf
+    - family: QCF_P569
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P569.ttf
+    - family: QCF_P570
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P570.ttf
+    - family: QCF_P571
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P571.ttf
+    - family: QCF_P572
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P572.ttf
+    - family: QCF_P573
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P573.ttf
+    - family: QCF_P574
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P574.ttf
+    - family: QCF_P575
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P575.ttf
+    - family: QCF_P576
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P576.ttf
+    - family: QCF_P577
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P577.ttf
+    - family: QCF_P578
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P578.ttf
+    - family: QCF_P579
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P579.ttf
+    - family: QCF_P580
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P580.ttf
+    - family: QCF_P581
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P581.ttf
+    - family: QCF_P582
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P582.ttf
+    - family: QCF_P583
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P583.ttf
+    - family: QCF_P584
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P584.ttf
+    - family: QCF_P585
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P585.ttf
+    - family: QCF_P586
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P586.ttf
+    - family: QCF_P587
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P587.ttf
+    - family: QCF_P588
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P588.ttf
+    - family: QCF_P589
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P589.ttf
+    - family: QCF_P590
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P590.ttf
+    - family: QCF_P591
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P591.ttf
+    - family: QCF_P592
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P592.ttf
+    - family: QCF_P593
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P593.ttf
+    - family: QCF_P594
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P594.ttf
+    - family: QCF_P595
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P595.ttf
+    - family: QCF_P596
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P596.ttf
+    - family: QCF_P597
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P597.ttf
+    - family: QCF_P598
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P598.ttf
+    - family: QCF_P599
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P599.ttf
+    - family: QCF_P600
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P600.ttf
+    - family: QCF_P601
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P601.ttf
+    - family: QCF_P602
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P602.ttf
+    - family: QCF_P603
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P603.ttf
+    - family: QCF_P604
+      fonts:
+        - asset: assets/fonts/quran_fonts/QCF_P604.ttf
