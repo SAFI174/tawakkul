@@ -50,7 +50,7 @@ class QuranReadingPage extends GetView<QuranReadingController> {
       appBar: buildAppBar(context),
       body: WillPopScope(
           onWillPop: () async {
-            controller.onCloseView();
+            await controller.onCloseView();
 
             return Future.value(true);
           },
@@ -195,7 +195,8 @@ class QuranReadingPage extends GetView<QuranReadingController> {
         icon: const Icon(FluentIcons.settings_16_regular),
       ),
       IconButton(
-        onPressed: () {
+        onPressed: () async {
+          await controller.onCloseView();
           Get.back();
         },
         icon: const Icon(Icons.arrow_forward_rounded),
@@ -264,7 +265,7 @@ class QuranReadingPage extends GetView<QuranReadingController> {
                           page, pageIndex, isEvenPage, context);
                     }
                     return OrientationBuilder(builder: (context, orientation) {
-                      if (MediaQuery.of(context).size.height < 700) {
+                      if (MediaQuery.of(context).size.height < 600) {
                         return buildQuranPageFittedOnScreenWidth(
                             page, pageIndex, isEvenPage, context);
                       }
@@ -545,7 +546,7 @@ double calculateLineHeight(BuildContext context) {
   }
   y = y > 1.88
       ? 1.88
-      : y < 1.6
+      : y < 1.7
           ? 1.75
           : y;
   return y;

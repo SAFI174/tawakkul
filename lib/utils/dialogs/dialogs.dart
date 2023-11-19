@@ -215,6 +215,60 @@ Future<dynamic> showCongratulationsAzkarDialog() {
   );
 }
 
+Future<bool> showResetTasbihCountersDialog() async {
+  return await Get.dialog(
+    AlertDialog(
+      title: const Text(
+        'إعادة الصفر',
+      ),
+      content: const Text(
+        'هل أنت متأكد أنك تريد إعادة تصفير العدادات؟',
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back(result: false);
+          },
+          child: const Text(
+            'إلغاء',
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.back(result: true);
+          },
+          child: const Text('إعادة تصفير'),
+        ),
+      ],
+    ),
+  );
+}
+
+Future<bool> showDeleteItemDialog() async {
+  return await Get.dialog(
+    AlertDialog(
+      title: const Text('تأكيد الحذف'),
+      content: const Text('هل أنت متأكد أنك تريد حذف هذا العنصر؟'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back(result: false); // Close the dialog
+          },
+          child: const Text('إلغاء'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.back(result: true); // Close the dialog
+          },
+          child: const Text(
+            'حذف',
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 // show Zkr Progress is found
 Future<dynamic> showZkrProgressFoundForContinue() async {
   return Get.dialog(

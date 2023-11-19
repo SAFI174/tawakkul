@@ -39,7 +39,6 @@ class SegmentsRepository extends GetxController {
 
     for (var element in currentVerseSegmet) {
       if (element[2] < currentPosition && element[3] > currentPosition) {
-        print(element[1]);
         return element[0];
       }
     }

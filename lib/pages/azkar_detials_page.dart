@@ -14,6 +14,7 @@ class AzkarDetailsPage extends GetView<AzkarDetailsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        shadowColor: Theme.of(context).colorScheme.shadow,
         title: Text(Get.arguments['pageTitle']),
         titleTextStyle: Theme.of(context).primaryTextTheme.titleMedium,
         actions: [

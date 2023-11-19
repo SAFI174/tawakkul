@@ -9,7 +9,7 @@ import '../../constants/enum.dart';
 class MoreActivitiesController extends GetxController {
   List<Map<String, dynamic>> activities = [
     {
-      'icon': FluentIcons.clock_alarm_16_regular,
+      'icon': FluentIcons.settings_16_regular,
       'onTap': () {},
       'text': 'الإعدادات',
     },
@@ -22,7 +22,9 @@ class MoreActivitiesController extends GetxController {
     },
     {
       'icon': FlutterIslamicIcons.tasbih2,
-      'onTap': () {},
+      'onTap': () {
+        Get.toNamed(Routes.ELECTRONIC_TASBIH);
+      },
       'text': 'المسبحة الإلكترونية',
     },
     {

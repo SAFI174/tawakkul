@@ -49,6 +49,7 @@ dependencies:
   internet_connection_checker_plus: ^2.1.0
   permission_handler: ^11.0.1
   device_info_plus: ^8.2.2
+  vibration: ^1.7.7
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
@@ -60,7 +61,6 @@ flutter:
     - assets/jsons/
     - assets/jsons/audio_segments/
     - assets/jsons/lottie/
-    - assets/jsons/azkar/
     - assets/jsons/quran/pages/
     - assets/images/
   uses-material-design: true

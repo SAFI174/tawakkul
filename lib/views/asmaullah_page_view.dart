@@ -13,7 +13,8 @@ class AsmaullahPageView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        scrolledUnderElevation: 0,
+        shadowColor: Theme.of(context).colorScheme.shadow,
+
         title: const Text('أسماء الله الحسنى'), // App bar title
         titleTextStyle: Theme.of(context).primaryTextTheme.titleMedium,
       ),
@@ -32,7 +33,7 @@ class AsmaullahPageView extends GetView {
               padding: const EdgeInsets.all(8.0),
               itemCount: 99,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 100.w > 100.h ? 80.w / 6 : 80.w / 3,
+                maxCrossAxisExtent: 75.h > 100.w ? 80.w / 3 : 80.h / 6,
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
               ),

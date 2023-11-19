@@ -34,149 +34,147 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
               onPressed: controller.onResetSettingsPressed,
               icon: const Icon(Icons.refresh_rounded),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: FilledButton(
-                style: FilledButton.styleFrom(
-                  visualDensity: VisualDensity.comfortable,
-                  padding: EdgeInsets.zero,
-                ),
-                onPressed: controller.onSaveAllPressed,
-                child: const Text('حفظ'),
-              ),
-            ),
           ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(15),
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SurahAyahRangePickerWidget(),
-                GetBuilder<QuranAudioSettingsController>(
-                  builder: (controller) {
-                    return SelectReaderWidget(
-                      selectedReader: controller.quranReader,
-                    );
-                  },
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'إعدادت التشغيل',
-                  style: theme.textTheme.titleMedium!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'سرعة التلاوة',
-                  style: theme.textTheme.titleSmall,
-                ),
-                GetBuilder<QuranAudioSettingsController>(
-                  builder: (controller) {
-                    return Choice<String>.inline(
-                      value: ChoiceSingle.value(controller.selectedSpeed),
-                      onChanged: ChoiceSingle.onChanged(
-                        (value) => controller.selectedSpeed = value ?? '',
-                      ),
-                      itemCount: controller.speedChoice.length,
-                      itemBuilder: (state, i) {
-                        return ChoiceChip(
-                          visualDensity: VisualDensity.compact,
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          labelPadding: EdgeInsets.zero,
-                          selectedColor: theme.colorScheme.primary,
-                          selected: state.selected(
-                              controller.speedChoice.values.toList()[i]),
-                          onSelected: state.onSelected(
-                            controller.speedChoice.values.toList()[i],
-                          ),
-                          label: ConstrainedBox(
-                            constraints: const BoxConstraints(minWidth: 35),
-                            child: Center(
-                              child: FittedBox(
-                                child: Text(
-                                  controller.speedChoice.values.toList()[i],
-                                  style: state.selected(controller
-                                          .speedChoice.values
-                                          .toList()[i])
-                                      ? const TextStyle(
-                                          color: Colors.white, fontSize: 12)
-                                      : TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ),
-                          ),
-                          showCheckmark: false,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SurahAyahRangePickerWidget(),
+                    GetBuilder<QuranAudioSettingsController>(
+                      builder: (controller) {
+                        return SelectReaderWidget(
+                          selectedReader: controller.quranReader,
                         );
                       },
-                      listBuilder: ChoiceList.createScrollable(
-                        spacing: 5,
-                        alignment: WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        padding:
-                            const EdgeInsets.only(top: 15, bottom: 15, left: 0),
-                      ),
-                    );
-                  },
-                ),
-                Text(
-                  'كرر كل إية',
-                  style: theme.textTheme.titleSmall,
-                ),
-                GetBuilder<QuranAudioSettingsController>(
-                  builder: (controller) {
-                    return Choice<String>.inline(
-                      value: ChoiceSingle.value(controller.selectedRepeat),
-                      onChanged: ChoiceSingle.onChanged(
-                        (value) => controller.selectedRepeat = value ?? '',
-                      ),
-                      itemCount: controller.repeatChoice.length,
-                      itemBuilder: (state, i) {
-                        return ChoiceChip(
-                          visualDensity: VisualDensity.compact,
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          labelPadding: EdgeInsets.zero,
-                          selectedColor: theme.colorScheme.primary,
-                          selected: state.selected(
-                              controller.repeatChoice.values.toList()[i]),
-                          onSelected: state.onSelected(
-                            controller.repeatChoice.values.toList()[i],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'إعدادت التشغيل',
+                      style: theme.textTheme.titleMedium!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'سرعة التلاوة',
+                      style: theme.textTheme.titleSmall,
+                    ),
+                    GetBuilder<QuranAudioSettingsController>(
+                      builder: (controller) {
+                        return Choice<String>.inline(
+                          value: ChoiceSingle.value(controller.selectedSpeed),
+                          onChanged: ChoiceSingle.onChanged(
+                            (value) => controller.selectedSpeed = value ?? '',
                           ),
-                          label: ConstrainedBox(
-                            constraints: const BoxConstraints(minWidth: 50),
-                            child: Center(
-                              child: FittedBox(
-                                child: Text(
-                                  controller.repeatChoice.values.toList()[i],
-                                  style: state.selected(controller
-                                          .repeatChoice.values
-                                          .toList()[i])
-                                      ? const TextStyle(
-                                          color: Colors.white, fontSize: 12)
-                                      : TextStyle(fontSize: 12),
+                          itemCount: controller.speedChoice.length,
+                          itemBuilder: (state, i) {
+                            return ChoiceChip(
+                              visualDensity: VisualDensity.compact,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                              labelPadding: EdgeInsets.zero,
+                              selectedColor: theme.colorScheme.primary,
+                              selected: state.selected(
+                                  controller.speedChoice.values.toList()[i]),
+                              onSelected: state.onSelected(
+                                controller.speedChoice.values.toList()[i],
+                              ),
+                              label: ConstrainedBox(
+                                constraints: const BoxConstraints(minWidth: 35),
+                                child: Center(
+                                  child: FittedBox(
+                                    child: Text(
+                                      controller.speedChoice.values.toList()[i],
+                                      style: state.selected(controller
+                                              .speedChoice.values
+                                              .toList()[i])
+                                          ? const TextStyle(
+                                              color: Colors.white, fontSize: 12)
+                                          : TextStyle(fontSize: 12),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              showCheckmark: false,
+                            );
+                          },
+                          listBuilder: ChoiceList.createScrollable(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            padding: const EdgeInsets.only(
+                                top: 15, bottom: 15, left: 0),
                           ),
-                          showCheckmark: false,
                         );
                       },
-                      listBuilder: ChoiceList.createScrollable(
-                        spacing: 5,
-                        alignment: WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        padding:
-                            const EdgeInsets.only(top: 15, bottom: 15, left: 0),
-                      ),
-                    );
-                  },
+                    ),
+                    Text(
+                      'كرر كل إية',
+                      style: theme.textTheme.titleSmall,
+                    ),
+                    GetBuilder<QuranAudioSettingsController>(
+                      builder: (controller) {
+                        return Choice<String>.inline(
+                          value: ChoiceSingle.value(controller.selectedRepeat),
+                          onChanged: ChoiceSingle.onChanged(
+                            (value) => controller.selectedRepeat = value ?? '',
+                          ),
+                          itemCount: controller.repeatChoice.length,
+                          itemBuilder: (state, i) {
+                            return ChoiceChip(
+                              visualDensity: VisualDensity.compact,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                              labelPadding: EdgeInsets.zero,
+                              selectedColor: theme.colorScheme.primary,
+                              selected: state.selected(
+                                  controller.repeatChoice.values.toList()[i]),
+                              onSelected: state.onSelected(
+                                controller.repeatChoice.values.toList()[i],
+                              ),
+                              label: ConstrainedBox(
+                                constraints: const BoxConstraints(minWidth: 50),
+                                child: Center(
+                                  child: FittedBox(
+                                    child: Text(
+                                      controller.repeatChoice.values
+                                          .toList()[i],
+                                      style: state.selected(controller
+                                              .repeatChoice.values
+                                              .toList()[i])
+                                          ? const TextStyle(
+                                              color: Colors.white, fontSize: 12)
+                                          : TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              showCheckmark: false,
+                            );
+                          },
+                          listBuilder: ChoiceList.createScrollable(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            padding: const EdgeInsets.only(
+                                top: 15, bottom: 15, left: 0),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              FilledButton(
+                  onPressed: controller.onSaveAllPressed, child: Text('حفظ'))
+            ],
           ),
         ),
       ),

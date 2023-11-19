@@ -40,7 +40,7 @@ class JuzItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            width: 1,
+            width: 0.8,
             color: Theme.of(context).dividerColor,
           ),
         ),

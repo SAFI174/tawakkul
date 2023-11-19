@@ -21,6 +21,7 @@ abstract class Routes {
   static const ASMAULLAH_PAGE = _Paths.ASMAULLAH_PAGE;
   static const AZKAR_DETAILS = _Paths.AZKAR_DETAILS;
   static const AZKAR_CATEGORIES = _Paths.AZKAR_CATEGORIES;
+  static const ELECTRONIC_TASBIH = _Paths.ELECTRONIC_TASBIH;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const ASMAULLAH_PAGE = '/asmaullah-page';
   static const AZKAR_DETAILS = '/azkar-details';
   static const AZKAR_CATEGORIES = '/azkar-categories';
+  static const ELECTRONIC_TASBIH = '/electronic-tasbih';
 }

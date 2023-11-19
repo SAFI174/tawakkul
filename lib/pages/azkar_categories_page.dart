@@ -17,6 +17,7 @@ class AzkarCategoriesPage extends GetView<AzkarCategoriesController> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        shadowColor: Theme.of(context).colorScheme.shadow,
         title: const Text('أذكار المسلم'),
         titleTextStyle: Theme.of(context).primaryTextTheme.titleMedium,
       ),
@@ -31,7 +32,7 @@ class AzkarCategoriesPage extends GetView<AzkarCategoriesController> {
                 itemCount: snapshot.data!.length,
                 padding: const EdgeInsets.all(8),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 100.w > 100.h ? 100.w / 6 : 100.w / 3,
+                  maxCrossAxisExtent: 75.h > 100.w ? 80.w / 2 : 80.h / 6,
                   mainAxisSpacing: 8,
                   childAspectRatio: 16 / 12,
                   crossAxisSpacing: 8,

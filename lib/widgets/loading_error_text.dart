@@ -7,6 +7,6 @@ class LoadingErrorText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('حدث خطأ ما. يرجى المحاولة لاحقاََ');
+    return const Center(child:  Text('حدث خطأ ما. يرجى المحاولة لاحقاََ'));
   }
 }

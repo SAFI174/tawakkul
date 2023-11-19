@@ -4,6 +4,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ZkrWidget extends StatelessWidget {
@@ -28,19 +29,33 @@ class ZkrWidget extends StatelessWidget {
   final Function() onResetButtonPressed;
   final bool isDone;
 
+  // Helper method for building text with icon buttons
+  Widget buildTextIconButton(IconData icon, String text, Function() onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 12),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 22,
+            ),
+            const SizedBox(width: 5),
+            Text(
+              text,
+              style: Theme.of(Get.context!).textTheme.labelSmall,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var sharetext = '$description\n التكرار: $count';
-    Widget buildIcon(IconData icon, Function() onTap) {
-      return InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(11.0),
-          child: Icon(icon),
-        ),
-      );
-    }
 
     return Container(
       decoration: BoxDecoration(
@@ -54,6 +69,7 @@ class ZkrWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Top row with action buttons
           Material(
             borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(9), topLeft: Radius.circular(9)),
@@ -61,10 +77,12 @@ class ZkrWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Copy, Share, Reset buttons
                 Row(
                   children: [
-                    buildIcon(
+                    buildTextIconButton(
                       FluentIcons.copy_16_regular,
+                      'نسخ',
                       () async {
                         await Clipboard.setData(
                           ClipboardData(text: sharetext),
@@ -73,22 +91,25 @@ class ZkrWidget extends StatelessWidget {
                     ),
                     const SizedBox(
                         height: 45, child: VerticalDivider(width: 1)),
-                    buildIcon(
+                    buildTextIconButton(
                       FluentIcons.share_16_regular,
+                      'مشاركة',
                       () async {
                         await Share.share(sharetext);
                       },
                     ),
                     const SizedBox(
                         height: 45, child: VerticalDivider(width: 1)),
-                    buildIcon(
+                    buildTextIconButton(
                       Icons.refresh_rounded,
+                      'إعادة',
                       onResetButtonPressed,
                     ),
                     const SizedBox(
                         height: 45, child: VerticalDivider(width: 1)),
                   ],
                 ),
+                // Display the count
                 Row(
                   children: [
                     const SizedBox(
@@ -106,6 +127,8 @@ class ZkrWidget extends StatelessWidget {
             ),
           ),
           const Divider(height: 1),
+
+          // Main content
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -136,6 +159,8 @@ class ZkrWidget extends StatelessWidget {
             ),
           ),
           const Divider(height: 1),
+
+          // Bottom row with the counter button
           Material(
             type: MaterialType.card,
             borderRadius: const BorderRadius.only(

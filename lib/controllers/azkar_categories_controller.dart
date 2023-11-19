@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:tawakkal/data/models/azkar_muslim_category_mode.dart';
+import 'package:tawakkal/data/models/azkar_category_mode.dart';
 import 'package:tawakkal/data/repository/azkar_repository.dart';
 
 class AzkarCategoriesController extends GetxController {

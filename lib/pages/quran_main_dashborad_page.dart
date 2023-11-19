@@ -23,6 +23,7 @@ class QuranMainDashboradPage extends GetView<QuranMainDashboradController> {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: AppBar(
+            shadowColor: Theme.of(context).colorScheme.shadow,
             toolbarHeight: 100,
             title: CustomSearchBar(
               onChanged: (value) {

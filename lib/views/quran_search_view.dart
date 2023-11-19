@@ -54,7 +54,6 @@ class QuranSearchView extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          scrolledUnderElevation: 1,
           shadowColor: Theme.of(context).shadowColor,
           elevation: 1,
           titleTextStyle: Theme.of(context).textTheme.titleMedium,

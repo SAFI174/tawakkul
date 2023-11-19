@@ -73,7 +73,7 @@ class QuranReadingController extends GetxController {
     await loadQuranPages(currentPage.value - 1);
     currentPageData.value = pages[currentPage.value - 1]!;
     setPlayerPlayRange();
-    
+
     isPageLoaded.value = true;
     pageController = PageController(
       viewportFraction: 1,
@@ -196,7 +196,7 @@ class QuranReadingController extends GetxController {
     }
   }
 
-  void onCloseView() async {
+  Future<void> onCloseView() async {
     await QuranSettingsCache().setLastPage(pageIndex: currentPage.value);
     await StatusBarControl.setHidden(false);
   }

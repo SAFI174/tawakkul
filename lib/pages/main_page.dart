@@ -7,14 +7,13 @@ import 'package:get/get.dart';
 import '../../../widgets/custom_button_big_icon.dart';
 import '../controllers/main_controller.dart';
 
-
 class MainPage extends GetView<MainController> {
   const MainPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        shadowColor: Colors.black,
+        shadowColor: Theme.of(context).colorScheme.shadow,
         elevation: 0,
         centerTitle: true,
         title: FittedBox(

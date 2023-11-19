@@ -12,6 +12,7 @@ final lightTheme = FlexThemeData.light(
   tabBarStyle: FlexTabBarStyle.forAppBar,
   subThemesData: const FlexSubThemesData(
     blendOnLevel: 10,
+    appBarScrolledUnderElevation: 1,
     useTextTheme: true,
     useM2StyleDividerInM3: true,
     alignedDropdown: true,

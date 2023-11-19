@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:tawakkal/bindings/e_tasbih_binding.dart';
 import 'package:tawakkal/pages/azkar_categories_page.dart';
+import 'package:tawakkal/pages/e_tasbih_page.dart';
 import 'package:tawakkal/views/quran_bookmarks_view.dart';
 
 import '../bindings/azkar_categories_binding.dart';
@@ -106,7 +108,7 @@ class AppPages {
     GetPage(
       name: _Paths.AZKAR_DETAILS,
       page: () => const AzkarDetailsPage(),
-      binding: DuaTasbihMultiBinding(),
+      binding: AzkarDetailsBinding(),
     ),
     GetPage(
       name: _Paths.AZKAR_CATEGORIES,
@@ -116,6 +118,11 @@ class AppPages {
     GetPage(
       name: _Paths.QURAN_BOOKMARKS,
       page: () => QuranBookmarksView(),
+    ),
+    GetPage(
+      name: _Paths.ELECTRONIC_TASBIH,
+      page: () => const ElectronicTashbihPage(),
+      binding: ElectronicTasbihBinding(),
     ),
   ];
 }

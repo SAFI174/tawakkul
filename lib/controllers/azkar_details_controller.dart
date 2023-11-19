@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tawakkal/data/models/azkar_muslim_detail_model.dart';
+import 'package:tawakkal/data/models/azkar_detail_model.dart';
 import 'package:tawakkal/data/repository/azkar_repository.dart';
 
 import '../../constants/enum.dart';

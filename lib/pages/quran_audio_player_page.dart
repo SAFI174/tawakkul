@@ -43,9 +43,7 @@ class QuranAudioPlayerBottomBar
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           FilledButton.icon(
-                            onPressed: () {
-                              controller.onMainPlayPressed();
-                            },
+                            onPressed: controller.onMainPlayPressed,
                             icon: controller.isControlsVisible.value
                                 ? CustomCircularProgressIndicator()
                                 : const Icon(
