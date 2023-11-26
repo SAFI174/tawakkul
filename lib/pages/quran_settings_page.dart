@@ -5,6 +5,7 @@ import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 
 import 'package:get/get.dart';
 import 'package:quran/quran.dart';
+import 'package:tawakkal/constants/enum.dart';
 import '../../../../widgets/settings_section.dart';
 import '../controllers/quran_settings_controller.dart';
 
@@ -39,29 +40,6 @@ class QuranSettingsPage extends GetView<QuranSettingsController> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 10),
-                    GetBuilder<QuranSettingsController>(
-                      builder: (controller) {
-                        return SwitchListTile(
-                          dense: true,
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 10),
-                          title: const Row(
-                            children: [
-                              Icon(Icons.dark_mode_outlined),
-                              SizedBox(width: 5),
-                              Text('الوضع الليلي'),
-                            ],
-                          ),
-                          value: controller.settingsModel.isDarkMode,
-                          onChanged: (value) =>
-                              controller.onThemeSwitched(value),
-                        );
-                      },
-                    ),
-                    const Divider(
-                      endIndent: 15,
-                      indent: 15,
-                    ),
                     GetBuilder<QuranSettingsController>(
                       builder: (controller) {
                         return SwitchListTile(
@@ -115,18 +93,19 @@ class QuranSettingsPage extends GetView<QuranSettingsController> {
                                     EasyRichTextPattern(
                                         targetString: 'ﭔ',
                                         style: TextStyle(
-                                            color: controller
-                                                    .settingsModel.isMarkerColored
+                                            color: controller.settingsModel
+                                                    .isMarkerColored
                                                 ? theme.primaryColor
-                                                : theme.colorScheme
-                                                    .onBackground)),
+                                                : theme
+                                                    .colorScheme.onBackground)),
                                     EasyRichTextPattern(
                                         targetString: 'ﭗ',
                                         style: TextStyle(
-                                            color: controller
-                                                    .settingsModel.isMarkerColored
+                                            color: controller.settingsModel
+                                                    .isMarkerColored
                                                 ? theme.primaryColor
-                                                : theme.colorScheme.onBackground))
+                                                : theme
+                                                    .colorScheme.onBackground))
                                   ],
                                   defaultStyle: const TextStyle(
                                       fontFamily: 'QCF_P590', fontSize: 23),
@@ -168,7 +147,7 @@ class QuranSettingsPage extends GetView<QuranSettingsController> {
                             height: 50,
                             isShadowEnable: false,
                             selectedIndex:
-                                controller.settingsModel.pageDisplayOption,
+                                controller.settingsModel.displayOption.index,
                             selectedTextStyle: const TextStyle(
                               color: Colors.white,
                             ),
@@ -196,7 +175,7 @@ class QuranSettingsPage extends GetView<QuranSettingsController> {
                     ),
                     GetBuilder<QuranSettingsController>(
                       builder: (controller) {
-                        return controller.settingsModel.pageDisplayOption == 0
+                        return controller.settingsModel.displayOption == QuranDisplayOption.mushaf
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
@@ -295,14 +274,14 @@ class QuranSettingsPage extends GetView<QuranSettingsController> {
                                     child: GetBuilder<QuranSettingsController>(
                                       builder: (controller) {
                                         return Slider(
-                                          value:
-                                              controller.settingsModel.displayFontSize,
+                                          value: controller
+                                              .settingsModel.displayFontSize,
                                           min: 25,
                                           max: 45,
                                           label: ArabicNumbers().convert(
                                               '${controller.settingsModel.displayFontSize}'),
-                                          onChanged: (value) =>
-                                              controller.onDisplayFontSizeChanged(value),
+                                          onChanged: (value) => controller
+                                              .onDisplayFontSizeChanged(value),
                                           divisions: 4,
                                         );
                                       },
@@ -328,13 +307,16 @@ class QuranSettingsPage extends GetView<QuranSettingsController> {
                                               .withAlpha(40),
                                         ),
                                       ),
-                                      child: GetBuilder<QuranSettingsController>(
+                                      child:
+                                          GetBuilder<QuranSettingsController>(
                                         builder: (controller) {
                                           return Text(
                                             "ﯜ ﯝ ﯞ ﯟ ﯠ",
                                             style: TextStyle(
                                                 fontFamily: 'QCF_P596',
-                                                fontSize: controller.settingsModel.displayFontSize),
+                                                fontSize: controller
+                                                    .settingsModel
+                                                    .displayFontSize),
                                           );
                                         },
                                       ),

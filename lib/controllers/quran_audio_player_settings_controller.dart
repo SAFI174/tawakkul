@@ -9,7 +9,7 @@ import '../data/models/quran_play_range_model.dart';
 
 class QuranAudioSettingsController extends GetxController {
   late final AudioSettingsCache cacheManager;
-  late final QuranPage currentPageData;
+  late final QuranPageModel currentPageData;
   late QuranReader quranReader;
   late QuranPlayRangeModel playRange;
 
@@ -132,10 +132,10 @@ class QuranAudioSettingsController extends GetxController {
 
 // Set the play range for a specific page
   void setQuranPlayRangeForPage() {
-    final startVerse = currentPageData.verses!.first.verseNumber!;
-    final lastVerse = currentPageData.verses!.last.verseNumber!;
-    final startSurah = currentPageData.verses!.first.surahNumber!;
-    final lastSurah = currentPageData.verses!.last.surahNumber!;
+    final startVerse = currentPageData.verses.first.verseNumber;
+    final lastVerse = currentPageData.verses.last.verseNumber;
+    final startSurah = currentPageData.verses.first.surahNumber;
+    final lastSurah = currentPageData.verses.last.surahNumber;
 
     setQuranPlayRange(
         playRange: QuranPlayRangeModel(
@@ -149,11 +149,11 @@ class QuranAudioSettingsController extends GetxController {
 
 // Set the play range for a specific surah
   void setQuranPlayRangeForSurah() {
-    final startSurah = currentPageData.verses!.first.surahNumber;
+    final startSurah = currentPageData.verses.first.surahNumber;
 
     setQuranPlayRange(
         playRange: QuranPlayRangeModel(
-      startSurah: startSurah!,
+      startSurah: startSurah,
       startVerse: 1,
       endsSurah: startSurah,
       endsVerse: getVerseCount(startSurah),
@@ -163,7 +163,7 @@ class QuranAudioSettingsController extends GetxController {
 // Set the play range for a specific juz
   void setQuranPlayRangeForJuz() {
     final juzNumber = currentPageData.verses!.first.juzNumber;
-    final juzData = getSurahAndVersesFromJuz(juzNumber!);
+    final juzData = getSurahAndVersesFromJuz(juzNumber);
     final startSurah = juzData.keys.first;
     final startVerse = juzData.values.first[0];
     final lastVerse = juzData.values.last[1];

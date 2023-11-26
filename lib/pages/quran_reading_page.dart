@@ -1,535 +1,361 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:quran/quran.dart';
+import 'package:tawakkal/constants/enum.dart';
+import 'package:tawakkal/constants/strings.dart';
+import 'package:tawakkal/utils/quran_utils.dart';
+import 'package:tawakkal/utils/sheets/sheet_methods.dart';
+import 'package:tawakkal/widgets/custom_pop_menu_item.dart';
+import 'package:tawakkal/widgets/custom_scroll_behavior.dart';
 import '../../../../data/models/quran_page.dart';
-
-import '../../Views/quran_bookmarks_view.dart';
 import '../../Views/quran_search_view.dart';
-import '../../Widgets/quran_view_widgets.dart';
 import '../../../../routes/app_pages.dart';
-
-import '../../../../widgets/custom_scroll_behavior.dart';
 import 'package:iconsax/iconsax.dart';
-
-import '../../constants/enum.dart';
-import '../../utils/sheets/sheet_methods.dart';
 import '../controllers/quran_reading_controller.dart';
+import '../data/models/quran_verse_model.dart';
+import '../views/quran_bookmarks_view.dart';
+import '../widgets/quran_reading_page_widgets.dart';
 import 'quran_audio_player_page.dart';
 
 class QuranReadingPage extends GetView<QuranReadingController> {
   const QuranReadingPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        return !controller.isPageLoaded.value
-            ? const Scaffold(
-                body: Center(
-                  child: Text(
-                    '... جاري التحميل',
-                    textDirection: TextDirection.ltr,
+    var theme = Theme.of(context);
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      bottomNavigationBar: buildQuranAudioPlayer(),
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      appBar: buildAppBar(theme: theme),
+      // toggle fullscreen when tap on body
+      body: WillPopScope(
+        // save the last page and exit fullscreen mode
+        onWillPop: controller.onCloseView,
+        child: GestureDetector(
+          onTap: () => QuranUtils.toggleFullscreen(
+              isFullScreen: controller.isFullScreenMode),
+          child: GetBuilder<QuranReadingController>(
+            // PageView for handling the 604 Quran Page
+            builder: (controller) => PageView.builder(
+              controller: controller.quranPageController,
+              itemCount: 604,
+              onPageChanged: controller.onPageChanged,
+              itemBuilder: (context, index) {
+                // current page data might be null
+                QuranPageModel? currentPage = controller.quranPages[index];
+                // if null return loading text
+                if (currentPage == null) {
+                  return const Center(child: Text(loadingText));
+                }
+                // return the page data of requseted page
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // if page is odd view page strokes
+                    if (currentPage.pageNumber.isOdd) buildPageStrokes(false),
+                    // the page view handler
+                    Expanded(child: QuranPageView(currentPage)),
+                    // if page is even view page strokes
+                    if (currentPage.pageNumber.isEven) buildPageStrokes(true),
+                  ],
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // build the appbar
+  PreferredSize buildAppBar({required ThemeData theme}) {
+    return PreferredSize(
+      preferredSize: const Size(0, kToolbarHeight),
+      child: Obx(
+        () {
+          return IgnorePointer(
+            ignoring: controller.isFullScreenMode.value ? true : false,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 200),
+              opacity: controller.isFullScreenMode.value ? 0 : 1,
+              child: AppBar(
+                shadowColor: theme.colorScheme.shadow,
+                titleSpacing: 0,
+                elevation: 1,
+                leading: buildAppBarMenuButton(),
+                actions: buildAppBarActions(),
+                title: buildAppBarTitle(),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  // build the app bar that contains the current surah,juz,pageNumber
+  GetBuilder<QuranReadingController> buildAppBarTitle() {
+    var theme = Theme.of(Get.context!);
+    return GetBuilder<QuranReadingController>(
+      builder: (context) {
+        if (controller.currentPageData != null) {
+          var page = controller.currentPageData!;
+          var textStyle = theme.primaryTextTheme.labelSmall;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // surah name of code qcf
+              surahNameInQcf(
+                surahNumber: page.surahNumber,
+                fontSize: 25,
+              ),
+              // current page juz, pagenumber
+              Row(
+                children: [
+                  Text('الجزء ${ArabicNumbers().convert(page.juzNumber)}',
+                      style: textStyle),
+                  Text(
+                    ' | ',
+                    style: textStyle,
                   ),
-                ),
+                  Text(
+                    'الصفحة ${ArabicNumbers().convert(page.pageNumber)}',
+                    style: textStyle,
+                  ),
+                ],
               )
-            : buildQuranScaffold(context);
+            ],
+          );
+        } else {
+          // if page is not loaded yet view empty size box
+          return const SizedBox();
+        }
       },
     );
   }
 
-  Widget buildQuranScaffold(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      bottomNavigationBar: buildBottomNavigationBar(),
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      appBar: buildAppBar(context),
-      body: WillPopScope(
-          onWillPop: () async {
-            await controller.onCloseView();
-
-            return Future.value(true);
-          },
-          child: buildQuranPageView(context)),
-    );
-  }
-
-  Widget buildBottomNavigationBar() {
-    return Obx(() {
-      return IgnorePointer(
-        ignoring: controller.isFullScreen.value ? true : false,
-        child: AnimatedOpacity(
-          opacity: controller.isFullScreen.value ? 0 : 1,
-          duration: const Duration(milliseconds: 200),
-          child: QuranAudioPlayerBottomBar(),
-        ),
-      );
-    });
-  }
-
-  PreferredSizeWidget buildAppBar(BuildContext context) {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(kToolbarHeight),
-      child: Obx(() {
+  // bottom nav bar that handle the audio controls and audio settings
+  Widget buildQuranAudioPlayer() {
+    return Obx(
+      () {
         return IgnorePointer(
-          ignoring: controller.isFullScreen.value ? true : false,
+          ignoring: controller.isFullScreenMode.value ? true : false,
           child: AnimatedOpacity(
+            opacity: controller.isFullScreenMode.value ? 0 : 1,
             duration: const Duration(milliseconds: 200),
-            opacity: controller.isFullScreen.value ? 0 : 1,
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: Theme.of(context).shadowColor.withAlpha(85),
-                      spreadRadius: 0,
-                      blurRadius: 3,
-                      blurStyle: BlurStyle.outer)
-                ],
-              ),
-              child: AppBar(
-                titleSpacing: 0,
-                leading: PopupMenuButton(
-                  // offset: Offset(0, 0),
-                  itemBuilder: (context) {
-                    return [
-                      customMenuItem(
-                          index: 'search',
-                          iconData: FluentIcons.book_search_24_regular,
-                          text: 'بحث'),
-                      // customMenuItem(
-                      //     index: 'fadl',
-                      //     iconData: FlutterIslamicIcons.quran,
-                      //     text: 'فضل قراءة القرآن'),
-                      // customMenuItem(
-                      //     index: 'dua',
-                      //     iconData: FlutterIslamicIcons.prayer,
-                      //     text: 'دعاء ختم القرآن'),
-                      customMenuItem(
-                          index: 'page',
-                          iconData: FluentIcons.book_number_16_regular,
-                          text: 'إنتقال الى صفحة'),
-                      customMenuItem(
-                          index: 'surah',
-                          iconData: Iconsax.book_1,
-                          text: 'إنتقال الى سورة'),
-                      customMenuItem(
-                          index: 'juz',
-                          iconData: Iconsax.book_square,
-                          text: 'إنتقال الى جزء'),
-                      customMenuItem(
-                          index: 'bookmark',
-                          iconData: FluentIcons.bookmark_search_20_regular,
-                          text: 'العلامات المرجعية'),
-                      customMenuItem(
-                          index: 'audio',
-                          iconData: FluentIcons.play_settings_20_regular,
-                          text: 'إعدادت التشغيل الصوتي'),
-                      customMenuItem(
-                          index: 'screen',
-                          iconData: FluentIcons.settings_16_regular,
-                          text: 'إعدادت القرآن '),
-                    ];
-                  },
-                  onSelected: controller.onMenuItemSelected,
-                ),
-                shadowColor: Theme.of(context).shadowColor,
-                actions: buildAppBarActions(context),
-                elevation: 1,
-                title: buildAppBarTitle(),
-              ),
-            ),
+            child: const QuranAudioPlayerBottomBar(),
           ),
         );
-      }),
+      },
     );
   }
 
-  PopupMenuEntry<dynamic> customMenuItem(
-      {required index, required iconData, required text}) {
-    return PopupMenuItem(
-      value: index,
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: ListTile(
-          contentPadding: const EdgeInsets.all(0),
-          minVerticalPadding: 0,
-          dense: true,
-          visualDensity: VisualDensity.compact,
-          titleAlignment: ListTileTitleAlignment.center,
-          trailing: Icon(
-            iconData,
-            size: 20,
-          ),
-          title: Text(
-            text,
-            textAlign: TextAlign.right,
-          ),
-        ),
-      ),
+  // pop up menu that contains quick actions
+  PopupMenuButton<dynamic> buildAppBarMenuButton() {
+    return PopupMenuButton(
+      itemBuilder: (context) {
+        return [
+          CustomPopupMenuItem.build(
+              index: 'search',
+              iconData: FluentIcons.book_search_24_regular,
+              text: 'بحث'),
+          // customMenuItem(
+          //     index: 'fadl',
+          //     iconData: FlutterIslamicIcons.quran,
+          //     text: 'فضل قراءة القرآن'),
+          // customMenuItem(
+          //     index: 'dua',
+          //     iconData: FlutterIslamicIcons.prayer,
+          //     text: 'دعاء ختم القرآن'),
+          CustomPopupMenuItem.build(
+              index: 'page',
+              iconData: FluentIcons.book_number_16_regular,
+              text: 'إنتقال الى صفحة'),
+          CustomPopupMenuItem.build(
+              index: 'surah',
+              iconData: Iconsax.book_1,
+              text: 'إنتقال الى سورة'),
+          CustomPopupMenuItem.build(
+              index: 'juz',
+              iconData: Iconsax.book_square,
+              text: 'إنتقال الى جزء'),
+          CustomPopupMenuItem.build(
+              index: 'bookmark',
+              iconData: FluentIcons.bookmark_search_20_regular,
+              text: 'العلامات المرجعية'),
+          CustomPopupMenuItem.build(
+              index: 'audio',
+              iconData: FluentIcons.play_settings_20_regular,
+              text: 'إعدادت التشغيل الصوتي'),
+          CustomPopupMenuItem.build(
+              index: 'screen',
+              iconData: FluentIcons.settings_16_regular,
+              text: 'إعدادت القرآن '),
+        ];
+      },
+      onSelected: controller.onMenuItemSelected,
     );
   }
 
-  List<Widget> buildAppBarActions(BuildContext context) {
+  //build the AppBar actions
+  List<Widget> buildAppBarActions() {
     return [
+      // bookmarks
       IconButton(
-        onPressed: () {
-          Get.to(QuranBookmarksView(), fullscreenDialog: true)!
-              .whenComplete(() => controller.bookmarkCache.loadBookmarks());
-        },
+        onPressed: controller.handleBookmarkPage,
         icon: const Icon(FluentIcons.bookmark_search_20_regular),
       ),
+      // search quran
       IconButton(
-        onPressed: () {
-          Get.to(() => QuranSearchView(), fullscreenDialog: true);
-        },
+        onPressed: controller.handleSearchPage,
         icon: const Icon(FluentIcons.book_search_20_regular),
       ),
+      // quran settinigs
       IconButton(
-        onPressed: () {
-          Get.toNamed(Routes.QURAN_DISPLAY_SETTINGS);
-        },
+        onPressed: () => Get.toNamed(Routes.QURAN_DISPLAY_SETTINGS),
         icon: const Icon(FluentIcons.settings_16_regular),
       ),
+      // back button
       IconButton(
         onPressed: () async {
-          await controller.onCloseView();
+          // await controller.onCloseView();
           Get.back();
         },
         icon: const Icon(Icons.arrow_forward_rounded),
       ),
     ];
   }
+}
 
-  Widget buildAppBarTitle() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          children: [
-            Text(
-              controller.getSurahNumPerPage(controller.currentPage.value),
-              style: const TextStyle(
-                fontFamily: 'SURAHNAMES',
-                fontSize: 26,
-                height: 1,
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              controller.getJuzNumberSTR(controller.currentPage.value),
-              style: const TextStyle(fontSize: 11),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              controller.getHizbOfPage(controller.currentPage.value).toString(),
-              style: const TextStyle(fontSize: 11),
-            ),
-          ],
-        )
-      ],
-    );
-  }
+/// The [QuranPageHeader] widget represents the header of a Quranic page.
+/// It displays the names of the Surahs present on the page and information about the Juz, Hizb,
+/// and Rub El Hizb details.
+class QuranPageHeader extends StatelessWidget {
+  const QuranPageHeader({Key? key, required this.page}) : super(key: key);
 
-  Widget buildQuranPageView(BuildContext context) {
-    return GestureDetector(
-        onTap: controller.toggleFullScreenMode,
-        child: GetBuilder<QuranReadingController>(
-          builder: (controller) {
-            return PageView.builder(
-              itemCount: 604,
-              physics: controller.blockScroll.value
-                  ? const NeverScrollableScrollPhysics()
-                  : const ScrollPhysics(),
-              controller: controller.pageController,
-              onPageChanged: controller.onPageChanged,
-              itemBuilder: (context, pageIndex) {
-                if (controller.pages[pageIndex] != null) {
-                  final page = controller.pages[pageIndex]!;
-                  pageIndex++;
-                  bool isEvenPage = pageIndex.isEven;
+  final QuranPageModel page;
 
-                  return Obx(() {
-                    if (controller.quranDisplayEnum.value ==
-                        QuranDisplayEnum.auto) {
-                      return buildQuranPageResponsive(
-                          page, pageIndex, isEvenPage, context);
-                    }
-                    return OrientationBuilder(builder: (context, orientation) {
-                      if (MediaQuery.of(context).size.height < 600) {
-                        return buildQuranPageFittedOnScreenWidth(
-                            page, pageIndex, isEvenPage, context);
-                      }
-                      if (orientation == Orientation.portrait) {
-                        return buildQuranPageFittedOnScreenHeight(
-                            page, pageIndex, isEvenPage, context);
-                      }
-                      return buildQuranPageFittedOnScreenWidth(
-                          page, pageIndex, isEvenPage, context);
-                    });
-                  });
-                }
-                return const Center(
-                  child: Text(
-                    '... جاري التحميل',
-                  ),
-                );
-              },
-            );
-          },
-        ));
-  }
+  @override
+  Widget build(BuildContext context) {
+    var textStyle = Theme.of(context).textTheme.labelSmall;
 
-  Widget buildQuranPageFittedOnScreenHeight(
-      QuranPage page, int pageIndex, bool isEvenPage, BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (!isEvenPage && pageIndex != 1) ...[bookStrokeOdd()],
-        Expanded(
-          child: Column(
-            children: [
-              buildQuranPageHeader(context, pageIndex),
-              Expanded(
-                  child: PinchZoomReleaseUnzoomWidget(
-                      minScale: 0.8,
-                      zoomChild: const Text('data'),
-                      maxScale: 4,
-                      resetDuration: const Duration(seconds: 1),
-                      boundaryMargin: const EdgeInsets.only(bottom: 0),
-                      clipBehavior: Clip.none,
-                      resetCurve: Curves.bounceIn,
-                      useOverlay: false,
-                      twoFingersOn: () {
-                        controller.blockScroll.value = true;
-                        controller.update();
-                      },
-                      twoFingersOff: () => Future.delayed(
-                            PinchZoomReleaseUnzoomWidget.defaultResetDuration,
-                            () {
-                              controller.blockScroll.value = false;
-                              controller.update();
-                            },
-                          ),
-                      maxOverlayOpacity: 0,
-                      overlayColor: Colors.black,
-                      fingersRequiredToPinch: 2,
-                      child: buildQuranPageContent(page, pageIndex, context))),
-              buildQuranPageFooter(pageIndex, 80, context),
-            ],
-          ),
-        ),
-        if (isEvenPage) ...[bookStrokeEven()],
-      ],
-    );
-  }
-
-  Widget buildQuranPageResponsive(
-      QuranPage page, int pageIndex, bool isEvenPage, BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (!isEvenPage && pageIndex != 1) ...[bookStrokeOdd()],
-        Expanded(
+    return FutureBuilder(
+      future: QuranUtils.getQuranPageHeaderHeight(),
+      builder: (context, snapshot) {
+        return SizedBox(
+          height: snapshot.data ?? 79,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ScrollConfiguration(
-                    behavior: CustomScrollBehavior(),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          buildQuranPageHeader(context, pageIndex),
-                          buildQuranPageContentResponsive(
-                              page, context, controller),
-                          buildQuranPageFooter(pageIndex, null, context),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        if (isEvenPage) ...[bookStrokeEven()],
-      ],
-    );
-  }
-
-  Widget buildQuranPageFittedOnScreenWidth(
-      QuranPage page, int pageIndex, bool isEvenPage, BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (!isEvenPage && pageIndex != 1) ...[bookStrokeOdd()],
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ScrollConfiguration(
-                    behavior: CustomScrollBehavior(),
-                    child: SingleChildScrollView(
-                      controller: page.scrollController,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          buildQuranPageHeader(context, pageIndex),
-                          buildQuranPageContent(page, pageIndex, context),
-                          buildQuranPageFooter(pageIndex, null, context),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        if (isEvenPage) ...[bookStrokeEven()],
-      ],
-    );
-  }
-
-  Widget buildQuranPageHeader(BuildContext context, int pageIndex) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      height: kToolbarHeight + controller.statusBarHeight.value,
-      child: Obx(() {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              controller.getSurahNamePerPage(pageIndex),
-              style: Theme.of(context).textTheme.labelSmall,
-            ),
-            Row(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  controller.getJuzNumberSTR(pageIndex),
-                  style: Theme.of(context).textTheme.labelSmall,
+                  // Display Surah names of the page
+                  getPageData(page.pageNumber)
+                      .map((element) =>
+                          getSurahNameOnlyArabicSimple(element['surah']))
+                      .join(' | '),
+                  style: textStyle,
                 ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  controller.getHizbOfPage(pageIndex).toString(),
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
+                // Display Juz number and Hizb details of the page
+                Row(
+                  children: [
+                    Text('الجزء ${ArabicNumbers().convert(page.juzNumber)}',
+                        style: textStyle),
+                    const Gap(8),
+                    Text(
+                      ArabicNumbers().convert(
+                        getHizbText(
+                          hizbNumber: page.hizbNumber,
+                          rubElHizbNumber: page.rubElHizbNumber,
+                        ),
+                      ),
+                      style: textStyle,
+                    ),
+                  ],
+                )
               ],
             ),
-          ],
+          ),
         );
-      }),
+      },
     );
   }
+}
 
-  Widget buildQuranPageContent(
-      QuranPage page, int pageIndex, BuildContext context) {
-    return (pageIndex == 1 || pageIndex == 2)
-        ? buildQuranPageContentFirstTwoPages(page, pageIndex, context)
-        : buildQuranPageContentOtherPages(page, pageIndex, context);
+/// The [QuranPageView] widget to handle the quran page view options.
+/// this will handl all senarios of the view [QuranAdaptiveView], [QuranExpandedPageView], [QuranNormalPageView] d.
+class QuranPageView extends GetView<QuranReadingController> {
+  final QuranPageModel page;
+
+  const QuranPageView(this.page, {super.key});
+  @override
+  Widget build(BuildContext context) {
+    List<Word> allWords = page.verses.expand((verse) => verse.words).toList();
+    controller.currentPageWords = allWords;
+    return GetBuilder<QuranReadingController>(
+      builder: (controller) {
+        if (controller.displaySettings.displayOption ==
+            QuranDisplayOption.adaptive) {
+          return QuranAdaptiveView(
+              words: allWords,
+              page: page,
+              fontSize: controller.displaySettings.displayFontSize);
+        } else {
+          return context.orientation == Orientation.landscape ||
+                  Get.height < 750
+              // enable scroll if the orientation is landscape or screen is small
+              ? QuranExpandedPageView(
+                  page: page,
+                  allWords: allWords,
+                )
+              : QuranNormalPageView(
+                  page: page,
+                  allWords: allWords,
+                );
+        }
+      },
+    );
   }
+}
 
-  Widget buildQuranPageContentFirstTwoPages(
-      QuranPage page, int pageIndex, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: FittedBox(
-        alignment: Alignment.topCenter,
-        child: Column(
-          children: [
-            for (var lineNumber = 1; lineNumber <= 8; lineNumber++) ...[
-              AutoScrollTag(
-                index: lineNumber,
-                key: ValueKey(lineNumber),
-                controller: page.scrollController,
-                child: buildQuranPageLine(
-                    lineNumber, page.verses!, context, pageIndex, controller),
+/// The [QuranExpandedPageView] widget is for displaying the Quranic page with scroll
+/// with an expanded [SingleChildScrollView] this will make page fit on all available width with scroll view.
+/// It displays a Quranic page, including a header
+/// with Surah names, Quranic verses represented by [QuranLines], and a footer for navigation.
+class QuranExpandedPageView extends StatelessWidget {
+  const QuranExpandedPageView({
+    Key? key,
+    required this.page,
+    required this.allWords,
+  }) : super(key: key);
+
+  final QuranPageModel page;
+
+  final List<Word> allWords;
+
+  @override
+  Widget build(BuildContext context) {
+    return ScrollConfiguration(
+      behavior: CustomScrollBehavior(),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              QuranPageHeader(page: page),
+              QuranLines(words: allWords, page: page),
+              PageNumberButtonWidget(
+                pageNumber: page.pageNumber,
+                height: QuranUtils.getQuranPageFooterHeight(),
               ),
             ],
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildQuranPageContentOtherPages(
-      QuranPage page, int pageIndex, BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.fitHeight,
-      child: Column(
-        children: [
-          for (var lineNumber = 1; lineNumber <= 15; lineNumber++) ...[
-            AutoScrollTag(
-              index: lineNumber,
-              key: ValueKey(lineNumber),
-              controller: page.scrollController,
-              child: buildQuranPageLine(
-                  lineNumber, page.verses!, context, pageIndex, controller),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget buildQuranPageFooter(
-      int pageIndex, double? height, BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 5.0),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Tooltip(
-            message: 'أضغط هنا للأنتقال بسرعة بين الصفحات',
-            child: ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(
-                    Theme.of(context).colorScheme.surfaceVariant,
-                  ),
-                  foregroundColor: MaterialStatePropertyAll(
-                      Theme.of(context).colorScheme.onBackground),
-                  padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-                  visualDensity: VisualDensity.compact),
-              onPressed: () {
-                showGoToPageSheet(currentPage: controller.currentPage.value);
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Iconsax.arrow_up_2,
-                    size: 17,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    ArabicNumbers().convert(pageIndex),
-                  ),
-                ],
-              ),
-            ),
           ),
         ),
       ),
@@ -537,161 +363,279 @@ class QuranReadingPage extends GetView<QuranReadingController> {
   }
 }
 
-double calculateLineHeight(BuildContext context) {
-  double xReference = 850.90909090;
-  double yReference = 1.82;
-  double y = ((MediaQuery.of(context).size.height) / xReference) * yReference;
-  if ((MediaQuery.of(context).size.width) < 300) {
-    return 2;
+/// The [QuranNormalPageView] widget is for displaying the Quranic page with normal view
+/// this will make page fit on height - footer_height && - navigation_height.
+/// It displays a Quranic page, including a header
+/// with Surah names, Quranic verses represented by [QuranLines], and a footer for navigation.
+class QuranNormalPageView extends StatelessWidget {
+  const QuranNormalPageView({
+    super.key,
+    required this.page,
+    required this.allWords,
+  });
+
+  final QuranPageModel page;
+  final List<Word> allWords;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        QuranPageHeader(page: page),
+        Expanded(
+          child: QuranLines(
+            words: allWords,
+            page: page,
+          ),
+        ),
+        PageNumberButtonWidget(
+          pageNumber: page.pageNumber,
+          height: QuranUtils.getQuranPageFooterHeight(),
+        ),
+      ],
+    );
   }
-  y = y > 1.88
-      ? 1.88
-      : y < 1.7
-          ? 1.75
-          : y;
-  return y;
 }
 
-Widget buildQuranPageContentResponsive(
-    QuranPage page, BuildContext context, QuranReadingController controller) {
-  return Obx(() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        children: [
-          for (var verse in page.verses!) ...[
-            if (verse.verseNumber == 1) ...[
-              surahTitleSpanResponsive(
-                  context, controller.isMarkerColored.value, verse),
-              const TextSpan(text: '\n'),
-              if (page.verses!.first.pageNumber != 187) ...[
-                bismillahTextSpanResponsive(context),
-                const TextSpan(text: '\n'),
-              ]
-            ],
-            for (var word in verse.words!) ...[
-              TextSpan(
-                recognizer: LongPressGestureRecognizer()
-                  ..onLongPress = () {
-                    onLongPressAyah(verse, word, context, controller);
-                  },
-                text: word.codeV1,
-                style: TextStyle(
-                  fontSize: controller.quranFontSize.value,
-                  letterSpacing: 2,
-                  fontFamily: 'QCF_P${word.v1Page.toString().padLeft(3, '0')}',
-                  color: word.charTypeName == 'end'
-                      ? controller.isMarkerColored.value
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.onBackground
-                      : word.isHighlighted.value
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.onBackground,
-                  backgroundColor:
-                      word.isHighlighted.value || verse.isHighlighted.value
-                          ? Theme.of(context).colorScheme.surfaceVariant
-                          : Colors.transparent,
-                ),
-              ),
-            ]
-          ],
-        ],
+/// The [QuranLines] widget represents a column of 15 [QuranLine] widgets, each displaying a line
+/// of Quranic text. It utilizes a [FittedBox] to maintain the aspect ratio and a [Column] to organize
+/// the lines. The widget generates each line using the [QuranLine] widget, considering line-related
+/// properties such as line number, words, and empty line conditions.
+class QuranLines extends StatelessWidget {
+  // list of all words of this page
+  final List<Word> words;
+  // the page data where we in
+  final QuranPageModel page;
+  const QuranLines({
+    super.key,
+    required this.words,
+    required this.page,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      fit: BoxFit.fitHeight,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: List.generate(
+          15,
+          (index) {
+            int lineNumber = index + 1;
+            // filter the words of this line
+            List<Word> lineWords =
+                QuranUtils.getWordsForLine(words, lineNumber);
+            return QuranLine(
+              lineNumber: lineNumber,
+              words: lineWords,
+              page: page,
+              surahNumber: QuranUtils.getSurahNumberOfLine(words, lineNumber),
+              isNextLineEmpty: QuranUtils.isNextLineEmpty(words, lineNumber),
+              isPrevLineEmpty: QuranUtils.isPrevLineEmpty(words, lineNumber),
+            );
+          },
+        ),
       ),
     );
-  });
+  }
 }
 
-Widget buildQuranPageLine(
-    int lineNumber,
-    RxList<Verse> surahVerseList,
-    BuildContext context,
-    int currentPageIndex,
-    QuranReadingController controller) {
-  return Obx(() {
-    return RichText(
-      textAlign: TextAlign.center,
-      textScaleFactor: 1,
-      text: TextSpan(
-        children: [
-          for (var verse in surahVerseList) ...[
-            if (verse.verseNumber == 1 &&
-                lineNumber == 1 &&
-                verse.verseKey!.split(":")[0] == "1")
-              surahTitleSpan(context, controller.isMarkerColored.value, verse),
-            if (verse.verseNumber == 1 &&
-                    (verse.words![0].lineNumber! - 2) == lineNumber ||
-                (lineNumber == 1 &&
-                    verse.pageNumber == 187 &&
-                    (verse.words!.first.lineNumber! - 1) == 1))
-              surahTitleSpan(context, controller.isMarkerColored.value, verse),
-            if (verse.verseNumber == 1 &&
-                ((verse.words![0].lineNumber! - 1) == lineNumber) &&
-                (verse.pageNumber != 187 && currentPageIndex != 1))
-              bismillahTextSpan(context),
-            for (var word in verse.words!) ...[
-              if (word.lineNumber == lineNumber)
-                TextSpan(
-                  recognizer: LongPressGestureRecognizer()
-                    ..onLongPress = () {
-                      onLongPressAyah(verse, word, context, controller);
-                    },
-                  text: word.codeV1,
-                  style: TextStyle(
-                    height: calculateLineHeight(context),
-                    fontFamily:
-                        'QCF_P${currentPageIndex.toString().padLeft(3, '0')}',
-                    color: word.charTypeName == 'end'
-                        ? controller.isMarkerColored.value
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.onBackground
-                        : word.isHighlighted.value
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.onBackground,
-                    backgroundColor:
-                        word.isHighlighted.value || verse.isHighlighted.value
-                            ? Theme.of(context).colorScheme.surfaceVariant
-                            : Colors.transparent,
-                  ),
-                ),
+/// The [QuranLine] widget displays a line of Quranic text, Surah titles, words, verses
+/// and Bismillah display based on specific conditions based on previous and next lines.
+/// the RichText representation of the Quranic words, applying styles with [QuranUtils] methods for handling the highlights.
+class QuranLine extends StatelessWidget {
+  // the words of the line
+  final List<Word> words;
+  // the line number of which the line is
+  final int lineNumber;
+  // this parameter to check to print the surah box and bismillah
+  final bool isNextLineEmpty;
+  final bool isPrevLineEmpty;
+  // the page where we in
+  final QuranPageModel page;
+  // the surah number of this line
+  final int surahNumber;
+  const QuranLine({
+    Key? key,
+    required this.words,
+    required this.lineNumber,
+    required this.page,
+    required this.surahNumber,
+    required this.isNextLineEmpty,
+    required this.isPrevLineEmpty,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // if words of the line are empty then show surah box and bismillah
+        if (words.isEmpty) ...[
+          // if pageNumber = 1 or pageNumber = 187 skip bismillah
+          if (isNextLineEmpty ||
+              page.pageNumber == 1 ||
+              page.pageNumber == 187) ...[
+            if ((page.pageNumber == 1 || page.pageNumber == 2) &&
+                lineNumber > 8) ...[
+              // first 2 pages has only 7 lines
+              const SizedBox(height: 25),
+            ] else ...[
+              // Display Surah title when the line is empty and specific conditions are met.
+              surahTitleWidget(theme, surahNumber)
             ]
-          ],
-          if (surahVerseList.last.words!.last.lineNumber! != 15 &&
-              lineNumber == 15 &&
-              currentPageIndex != 1 &&
-              currentPageIndex != 2)
-            WidgetSpan(
-              child: Stack(
-                children: [
-                  SvgPicture.asset(
-                    'assets/svg/surah_title.svg',
-                    alignment: Alignment.bottomCenter,
-                    height: 25.5,
-                    // ignore: deprecated_member_use
-                    color: controller.isMarkerColored.value
-                        ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.onBackground,
+          ] else if (page.pageNumber != 1 && page.pageNumber != 187) ...[
+            // Display Bismillah when the line is empty and specific conditions are met.
+            bismillahTextWidget(),
+          ]
+        ] else
+          // Build the line using the buildLine method.
+          buildLine(words, page)
+      ],
+    );
+  }
+
+  Widget buildLine(List<Word> words, QuranPageModel page) {
+    var theme = Theme.of(Get.context!);
+    return Obx(
+      () {
+        return RichText(
+          text: TextSpan(
+            // Set the line height based on the calculated height of a Quranic line.
+            style: TextStyle(height: QuranUtils.calcHeightOfQuranLine()),
+            children: words.map(
+              (word) {
+                // this handle of which verse we are
+                var verse = page.verses
+                    .firstWhere((element) => element.id == word.verseId);
+                // Build the Quranic word TextSpan using the buildQuranWordTextSpan method.
+                return buildQuranWordTextSpan(
+                  onLongPress: () => showVerseInfoBottomSheet(
+                    verse: verse,
+                    word: word,
+                    context: Get.context!,
                   ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    top: 0,
-                    right: 0,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '${(int.parse(surahVerseList[0].verseKey!.split(":")[0]) + 1).toString().padLeft(3, '0')}surah',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'SURAHNAMES',
-                            color: Theme.of(context).colorScheme.onBackground),
+                  text: word.textV1,
+                  // color the word for highlighting
+                  wordColor: QuranUtils.getQuranWordColor(
+                    isHighlighted: word.isHighlighted,
+                    isMarker: word.wordType == 'end',
+                    theme: theme,
+                  ),
+                  // color the verse for highlighting
+                  verseColor: QuranUtils.getVerseBackgroundColor(
+                    isVerseHighlighted: verse.isHighlighted,
+                    isWordHighlighted: word.isHighlighted,
+                    backgroundColor: theme.colorScheme.surfaceVariant,
+                  ),
+                  // fontFamily of the word
+                  fontFamily: QuranUtils.getFontNameOfQuranPage(
+                    pageNumber: page.pageNumber,
+                  ),
+                );
+              },
+            ).toList(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// The [QuranAdaptiveView] widget is responsible for displaying the Quran in adaptive mode,
+/// allowing users to adjust the font size dynamically. It includes a scroll view with rich text
+/// for verses, surah names, and page header information.
+class QuranAdaptiveView extends StatelessWidget {
+  final List<Word> words;
+  final QuranPageModel page;
+  final double fontSize;
+
+  const QuranAdaptiveView({
+    Key? key,
+    required this.words,
+    required this.page,
+    required this.fontSize,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+
+    return ScrollConfiguration(
+      behavior: CustomScrollBehavior(),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            children: [
+              QuranPageHeader(page: page),
+              buildQuranText(theme),
+              PageNumberButtonWidget(
+                height: QuranUtils.getQuranPageFooterHeight(),
+                pageNumber: page.pageNumber,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildQuranText(ThemeData theme) {
+    return Obx(() {
+      return RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          children: page.verses
+              .expand(
+                (verse) => [
+                  if (verse.verseNumber == 1) ...[
+                    const TextSpan(text: '\n'),
+                    WidgetSpan(
+                      child: surahNameInQcf(
+                        surahNumber: verse.surahNumber,
+                        fontSize: 50,
+                        textColor: theme.primaryColor,
                       ),
+                    ),
+                    const TextSpan(text: '\n'),
+                    if ((page.pageNumber != 1 && page.pageNumber != 187)) ...[
+                      TextSpan(
+                        text: '$bismillahText\n',
+                        style: TextStyle(
+                          fontFamily: 'QCFBSML',
+                          fontSize: 30,
+                          color: theme.colorScheme.onBackground,
+                        ),
+                      ),
+                    ]
+                  ],
+                  ...verse.words.map(
+                    (word) => buildQuranWordTextSpan(
+                      onLongPress: () => showVerseInfoBottomSheet(
+                          verse: verse, word: word, context: Get.context!),
+                      text: word.textV1,
+                      fontSize: fontSize,
+                      wordColor: QuranUtils.getQuranWordColor(
+                          isHighlighted: word.isHighlighted,
+                          isMarker: word.wordType == 'end',
+                          theme: theme),
+                      verseColor: QuranUtils.getVerseBackgroundColor(
+                          isVerseHighlighted: verse.isHighlighted,
+                          isWordHighlighted: word.isHighlighted,
+                          backgroundColor: theme.colorScheme.surfaceVariant),
+                      fontFamily: QuranUtils.getFontNameOfQuranPage(
+                          pageNumber: page.pageNumber),
                     ),
                   ),
                 ],
-              ),
-            ),
-        ],
-      ),
-    );
-  });
+              )
+              .toList(),
+        ),
+      );
+    });
+  }
 }

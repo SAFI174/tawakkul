@@ -50,6 +50,9 @@ dependencies:
   permission_handler: ^11.0.1
   device_info_plus: ^8.2.2
   vibration: ^1.7.7
+  sqflite_common_ffi: ^2.3.0+4
+  gap: ^3.0.1
+  shimmer: ^3.0.0
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
@@ -57,11 +60,8 @@ flutter:
   assets: 
     - assets/svg/
     - assets/databases/
-    - assets/jsons/quran/
     - assets/jsons/
-    - assets/jsons/audio_segments/
     - assets/jsons/lottie/
-    - assets/jsons/quran/pages/
     - assets/images/
   uses-material-design: true
   fonts: 

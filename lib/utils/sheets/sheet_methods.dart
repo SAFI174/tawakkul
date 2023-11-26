@@ -1,22 +1,25 @@
-// Import necessary packages
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:quran/quran.dart';
+import 'package:tawakkal/data/models/quran_bookmark.dart';
+import 'package:tawakkal/data/models/quran_verse_model.dart';
 import '../../controllers/quran_reading_controller.dart';
-import '../../data/models/quran_page.dart';
 import 'ayah_bottom_sheet.dart';
 import 'default_go_to_picker_sheet.dart';
 
-// Function to show a bottom sheet for navigating to a specific page in the Quran
+/// Function to show a bottom sheet for navigating to a specific page in the Quran.
+///
+/// Parameters:
+/// - currentPage: The current page number to be set as the initial value in the picker.
 void showGoToPageSheet({required currentPage}) {
   showModalBottomSheet(
     context: Get.context!, // Get the current context
     builder: (context) => DefaultGoToSheet(
       initValue: currentPage, // Initial value for the picker
-      childCount: 604, // Total number of pages
-      title: 'إختر الصفحة', // Title of the sheet
+      childCount: 604, // Total number of pages in the Quran
+      title: 'إختر الصفحة', // Title of the bottom sheet
       itemBuilder: (context, index) {
         return Center(
           child: Text(
@@ -25,29 +28,32 @@ void showGoToPageSheet({required currentPage}) {
           ),
         );
       },
-      onPressed: (selectedValue) {
-        try {
-          // Find the QuranReadingController using Get
-          QuranReadingController controller = Get.find();
-          // Navigate to the selected page
-          controller.goTo(pageIndex: selectedValue);
-        } catch (e) {
-          // Close the sheet in case of an error
-          Get.back();
-        }
+      onPressed: (selectedValue) async {
+        // Find the QuranReadingController using Get
+        QuranReadingController controller = Get.find();
+
+        // Start loading the page and then scroll to the page
+        controller.fetchQuranPageData(
+            pageNumber: selectedValue, scrollToPage: true);
+
+        // Close the bottom sheet
+        Get.back();
       },
     ),
   );
 }
 
-// Function to show a bottom sheet for navigating to a specific surah in the Quran
+/// Function to show a bottom sheet for navigating to a specific surah in the Quran.
+///
+/// Parameters:
+/// - currentSurah: The current surah number to be set as the initial value in the picker.
 void showGoToSurahSheet({required currentSurah}) {
   showModalBottomSheet(
     context: Get.context!, // Get the current context
     builder: (context) => DefaultGoToSheet(
       initValue: currentSurah, // Initial value for the picker
-      childCount: 114, // Total number of surahs
-      title: 'إختر السورة', // Title of the sheet
+      childCount: 114, // Total number of surahs in the Quran
+      title: 'إختر السورة', // Title of the bottom sheet
       itemBuilder: (context, index) {
         return Center(
           child: Text(
@@ -57,28 +63,31 @@ void showGoToSurahSheet({required currentSurah}) {
         );
       },
       onPressed: (selectedValue) {
-        try {
-          // Find the QuranReadingController using Get
-          QuranReadingController controller = Get.find();
-          // Get the page number of the selected surah and navigate to it
-          controller.goTo(pageIndex: getSurahPages(selectedValue)[0]);
-        } catch (e) {
-          // Close the sheet in case of an error
-          Get.back();
-        }
+        // Find the QuranReadingController using Get
+        QuranReadingController controller = Get.find();
+
+        // Start loading the page and then scroll to the page
+        controller.fetchQuranPageData(
+            pageNumber: getSurahPages(selectedValue)[0], scrollToPage: true);
+
+        // Close the bottom sheet
+        Get.back();
       },
     ),
   );
 }
 
-// Function to show a bottom sheet for navigating to a specific juz in the Quran
+/// Function to show a bottom sheet for navigating to a specific juz in the Quran.
+///
+/// Parameters:
+/// - currentJuz: The current juz number to be set as the initial value in the picker.
 void showGoToJuzSheet({required currentJuz}) {
   showModalBottomSheet(
     context: Get.context!, // Get the current context
     builder: (context) => DefaultGoToSheet(
       initValue: currentJuz, // Initial value for the picker
-      childCount: 30, // Total number of juz
-      title: 'إختر الجزء', // Title of the sheet
+      childCount: 30, // Total number of juz in the Quran
+      title: 'إختر الجزء', // Title of the bottom sheet
       itemBuilder: (context, index) {
         return Center(
           child: Text(
@@ -88,36 +97,65 @@ void showGoToJuzSheet({required currentJuz}) {
         );
       },
       onPressed: (selectedValue) {
-        try {
-          // Find the QuranReadingController using Get
-          QuranReadingController controller = Get.find();
-          // Get the surah and verse information from the selected juz
-          final surahAndVerses = getSurahAndVersesFromJuz(selectedValue);
-          // Get the page number and navigate to it
-          final currentPage = getPageNumber(
-              surahAndVerses.keys.first, surahAndVerses.values.first.first);
-          controller.goTo(pageIndex: currentPage);
-        } catch (e) {
-          // Close the sheet in case of an error
-          Get.back();
-        }
+        // Find the QuranReadingController using Get
+        QuranReadingController controller = Get.find();
+
+        // Get the surah and verse information from the selected juz
+        final surahAndVerses = getSurahAndVersesFromJuz(selectedValue);
+
+        // Get the page number and navigate to it
+        final pageNumber = getPageNumber(
+            surahAndVerses.keys.first, surahAndVerses.values.first.first);
+
+        // Start loading the page and then scroll to the page
+        controller.fetchQuranPageData(
+            pageNumber: pageNumber, scrollToPage: true);
+
+        // Close the bottom sheet
+        Get.back();
       },
     ),
   );
 }
 
-void onLongPressAyah(Verse verse, Words words, BuildContext context,
-    QuranReadingController controller) async {
+/// Displays a bottom sheet with information about a Quran verse.
+///
+/// Parameters:
+/// - verse: The QuranVerseModel representing the verse to display information about.
+/// - word: The Word representing the specific word in the verse.
+/// - context: The BuildContext for displaying the bottom sheet.
+void showVerseInfoBottomSheet({
+  required QuranVerseModel verse,
+  required Word word,
+  required BuildContext context,
+}) async {
+  // Highlight the verse and word
   verse.isHighlighted.value = true;
-  words.isHighlighted.value = true;
 
+  // Adjust the word if it is of type 'end'
+  if (word.wordType == 'end') {
+    word = verse.words[verse.words.indexOf(word) - 1];
+  }
+
+  // Highlight the adjusted word
+  word.isHighlighted.value = true;
+
+  // Create and initialize AyahBottomSheetController
+  var controller = Get.put(AyahBottomSheetController());
+  controller.bookmark =
+      Bookmark(surah: verse.surahNumber, verse: verse.verseNumber);
+
+  // Show the material modal bottom sheet
   await showMaterialModalBottomSheet(
     duration: const Duration(milliseconds: 250),
     enableDrag: false,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
     context: context,
-    builder: (context) =>
-        AyahBottomSheet(verse, words, controller.bookmarkCache),
+    builder: (context) => AyahBottomSheet(verse, word),
   );
-  words.isHighlighted.value = false;
+
+  // Reset highlighting and delete the controller after the bottom sheet is closed
+  word.isHighlighted.value = false;
+  verse.isHighlighted.value = false;
+  Get.delete<AyahBottomSheetController>();
 }

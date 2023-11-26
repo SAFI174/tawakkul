@@ -6,8 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tawakkal/constants/json_path.dart';
 
-import '../../widgets/loading_error_text.dart';
-
 // show qibla compass calibration dialog
 void showQiblaCompassCalibrationDialog() {
   Get.dialog(
@@ -141,13 +139,13 @@ Future<void> showLocationDisabledDialog() async {
 }
 
 // Show a dialog indicating no internet connection.
-void showNoInternetDialog() {
-  Get.dialog(
+Future<void> showNoInternetDialog() async {
+  await Get.dialog(
     Directionality(
       textDirection: TextDirection.rtl,
       child: AlertDialog(
         title: const Text('لا يوجد اتصال بالإنترنت'),
-        content: const LoadingErrorText(),
+        content: const Text('حدث خطأ ما. يرجى المحاولة لاحقاََ'),
         actions: [
           TextButton(
             onPressed: () {
@@ -161,9 +159,29 @@ void showNoInternetDialog() {
   );
 }
 
+Future<bool> showAskUserForDownloadTimingData() async {
+  return await Get.dialog(
+    AlertDialog(
+      title: const Text('تنبيه'),
+      content:
+          const Text('يجب تنزيل ملفات التوقيت أولاً. هل تريد التحميل الآن؟'),
+      actions: [
+        TextButton(
+          onPressed: () => Get.back(result: true),
+          child: const Text('تنزيل'),
+        ),
+        TextButton(
+          onPressed: () => Get.back(result: false),
+          child: const Text('إلغاء'),
+        ),
+      ],
+    ),
+  );
+}
+
 // عرض مربع حوار يشير إلى فشل التنزيل.
-void showDownloadFailedDialog() {
-  showDialog(
+Future<void> showDownloadFailedDialog()async {
+  await showDialog(
     context: Get.overlayContext!,
     builder: (context) {
       return AlertDialog(
@@ -219,10 +237,10 @@ Future<bool> showResetTasbihCountersDialog() async {
   return await Get.dialog(
     AlertDialog(
       title: const Text(
-        'إعادة الصفر',
+        'إعادة ضبط',
       ),
       content: const Text(
-        'هل أنت متأكد أنك تريد إعادة تصفير العدادات؟',
+        'هل أنت متأكد أنك تريد تصفير العدادات؟',
       ),
       actions: [
         TextButton(
@@ -237,7 +255,7 @@ Future<bool> showResetTasbihCountersDialog() async {
           onPressed: () {
             Get.back(result: true);
           },
-          child: const Text('إعادة تصفير'),
+          child: const Text('تصفير'),
         ),
       ],
     ),

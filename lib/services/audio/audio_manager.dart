@@ -132,13 +132,12 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
 // Highlight the current word and verse based on the player's position
   void _highlightWordAndVerse() {
     final controller = Get.find<QuranReadingController>();
-    final segmentsRepository = SegmentsRepository();
 
     // Scroll to the current playing page
     _scrollToPlayingPage(controller);
 
     // Load Quran data from the asset
-    segmentsRepository.loadQuranDataFromAsset();
+    SegmentsRepository.readSegmentData();
 
     // Listen to the player's position and highlight the corresponding word
     _player.positionStream.listen((duration) async {
@@ -150,16 +149,16 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
       final currentSurahID = queue.value[currentIndex].extras!['surah'];
 
       // Get the word index based on the player's current position
-      final wordIndex = await segmentsRepository.getCurrentSegmentWord(
+      final wordIndex = await SegmentsRepository.getCurrentSegmentWord(
         surahId: currentSurahID,
         verseID: currentVerseID,
         currentPosition: duration.inMilliseconds,
       );
-
+      print(wordIndex);
       // Highlight the word
-      controller.highlightWordAudio(
-        surahID: currentSurahID,
-        verseId: currentVerseID,
+      controller.highlightWordAudioHandler(
+        surahNumber: currentSurahID,
+        verseNumber: currentVerseID,
         wordIndex: wordIndex,
       );
     });
@@ -180,8 +179,8 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
       final pageNumber = getPageNumber(currentSurahID, currentVerseID);
 
       // Scroll to the page
-      if (pageNumber != controller.currentPage.value) {
-        await controller.pageController!.animateToPage(
+      if (pageNumber != controller.pageNumber) {
+        await controller.quranPageController.animateToPage(
           pageNumber - 1,
           curve: Curves.easeOutCubic,
           duration: const Duration(milliseconds: 800),
@@ -194,7 +193,7 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
   bool _shouldSkipHighlightingAndScrolling() {
     return _player.currentIndex == null ||
         _player.currentIndex! >= queue.value.length ||
-        !Get.currentRoute.contains('quran-view');
+        !Get.currentRoute.contains('quran-reading');
   }
 
   AudioPlayerHandlerImpl() {

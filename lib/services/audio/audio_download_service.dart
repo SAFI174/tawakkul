@@ -4,9 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:quran/quran.dart';
+import 'package:tawakkal/constants/urls.dart';
 
 class AudioDownloadService {
   final Dio _dio = Dio();
+
   Future<void> deleteSurah(
       {required int surahId, required String reader}) async {
     final appDocumentsDirectory = await getApplicationDocumentsDirectory();
@@ -63,7 +65,7 @@ class AudioDownloadService {
 
       for (var verseId = 1; verseId <= totalVerses; verseId++) {
         final url =
-            'https://everyayah.com/data/${readerName}/${chapterId.toString().padLeft(3, '0')}${verseId.toString().padLeft(3, '0')}.mp3';
+            '${Urls.audioUrl}$readerName/${chapterId.toString().padLeft(3, '0')}${verseId.toString().padLeft(3, '0')}.mp3';
         final savePath =
             '$surahFolder${path.basenameWithoutExtension(url)}.mp3';
 
@@ -85,7 +87,6 @@ class AudioDownloadService {
       return true;
     } catch (e) {
       print(e);
-
       return false;
     }
   }

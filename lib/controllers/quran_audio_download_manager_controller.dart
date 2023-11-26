@@ -7,12 +7,12 @@ import '../../../../../data/repository/readers_repository.dart';
 
 class QuranAudioDownloadManagerController extends GetxController {
   List<QuranReader> readers = [];
-  late final QuranAudioDownloadHandler downloadHandler;
   final ExpandableController expandableController = ExpandableController();
 
   // Delete downloaded surah for a specific reader
-  void onDeleteSurah({required DownloadSurahModel surah, required QuranReader reader}) async {
-    downloadHandler.deleteDownloadedSurah(
+  void onDeleteSurah(
+      {required DownloadSurahModel surah, required QuranReader reader}) async {
+    QuranAudioDownloadHandler.deleteDownloadedSurah(
         surahId: surah.id, readerIdentifier: reader.identifier);
     surah.isDownloaded.value = false;
   }
@@ -20,7 +20,8 @@ class QuranAudioDownloadManagerController extends GetxController {
   // Download all surahs for a specific reader
   void onDownloadAllPressed({required QuranReader reader}) async {
     // Retrieve surah download data if not already available
-    reader.surahs ??= await ReadersRepository().getSurahDownloadData(reader: reader);
+    reader.surahs ??=
+        await ReadersRepository().getSurahDownloadData(reader: reader);
 
     // Initialize surah download status for UI
     for (var i = 0; i < 114; i++) {
@@ -28,8 +29,8 @@ class QuranAudioDownloadManagerController extends GetxController {
     }
 
     // Start downloading all surahs
-    downloadHandler.downloadAllSurah(
-      readerIdentifier: reader.identifier,
+    QuranAudioDownloadHandler.downloadAllSurah(
+      reader: reader,
       onSurahStartDownloading: (surah) {
         reader.surahs![surah].downloadProgress.value = 0;
         reader.surahs![surah].isDownloading.value = true;
@@ -48,9 +49,10 @@ class QuranAudioDownloadManagerController extends GetxController {
     surah.isPending.value = false;
 
     // Start downloading the single surah
-    surah.isDownloaded.value = await downloadHandler.downloadSingleSurah(
+    surah.isDownloaded.value =
+        await QuranAudioDownloadHandler.downloadSingleSurah(
       surahId: surah.id - 1,
-      readerIdentifier: readers[readerIndex].identifier,
+      reader: readers[readerIndex],
       surahProgress: (surahId, progress) {
         surah.downloadProgress.value = progress;
       },
@@ -63,6 +65,5 @@ class QuranAudioDownloadManagerController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    downloadHandler = QuranAudioDownloadHandler();
   }
 }

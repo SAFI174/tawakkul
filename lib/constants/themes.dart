@@ -33,6 +33,13 @@ final darkTheme = FlexThemeData.dark(
   scheme: FlexScheme.sanJuanBlue,
   surfaceMode: FlexSurfaceMode.highSurfaceLowScaffold,
   blendLevel: 13,
+  pageTransitionsTheme: PageTransitionsTheme(
+    builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
+      TargetPlatform.values,
+      value: (dynamic _) =>
+          const FadeUpwardsPageTransitionsBuilder(), //applying old animation
+    ),
+  ),
   darkIsTrueBlack: false,
   subThemesData: const FlexSubThemesData(
     blendOnLevel: 18,

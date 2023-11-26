@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:quran/quran.dart' as quran;
 
 import '../../../routes/app_pages.dart';
-import '../controllers/quran_reading_controller.dart';
+import '../data/models/quran_navigation_data_model.dart';
 import 'surah_item.dart';
 
 class JuzItem extends StatelessWidget {
@@ -18,20 +18,16 @@ class JuzItem extends StatelessWidget {
     final currentPage = quran.getPageNumber(
         surahAndVerses.keys.first, surahAndVerses.values.first.first);
 
-    void goToPage(int page) async {
-      try {
-        final quranPageViewController = Get.find<QuranReadingController>();
-        Get.toNamed(
-          Routes.QURAN_VIEW,
-          parameters: {'pageNumber': page.toString()},
-        );
-        quranPageViewController.initPageViewData();
-      } catch (e) {
-        Get.toNamed(
-          Routes.QURAN_VIEW,
-          parameters: {'pageNumber': page.toString()},
-        );
-      }
+    void goToPage(int page, int? surahNumber, int? verseNumber) async {
+      Get.toNamed(
+        Routes.QURAN_READING_PAGE,
+        arguments: QuranNavigationArgumentModel(
+          surahNumber: surahNumber ?? surahAndVerses.keys.first,
+          pageNumber: page,
+          verseNumber: verseNumber ?? surahAndVerses.values.first.first,
+          highlightVerse: true,
+        ),
+      );
     }
 
     return Padding(
@@ -69,7 +65,7 @@ class JuzItem extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () async {
-                        goToPage(currentPage);
+                        goToPage(currentPage, null, null);
                       },
                       child: Text('اقرأ الجزء'),
                     ),
@@ -84,8 +80,11 @@ class JuzItem extends StatelessWidget {
                   SurahItem(
                     surahNumber: surahNumber,
                     onTap: () async {
-                      goToPage(quran.getPageNumber(
-                          surahNumber, surahAndVerses[surahNumber]![0]));
+                      goToPage(
+                          quran.getPageNumber(
+                              surahNumber, surahAndVerses[surahNumber]![0]),
+                          surahNumber,
+                          surahAndVerses[surahNumber]![0]);
                     },
                   ),
                   if (surahAndVerses.keys.last != surahNumber)

@@ -1,4 +1,4 @@
-enum QuranDisplayEnum { mushaf, auto }
+enum QuranDisplayOption { mushaf, adaptive }
 
 enum AzkarPageType {
   hmd,

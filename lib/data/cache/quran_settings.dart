@@ -55,19 +55,19 @@ class QuranSettingsCache {
 
   // Set the Quran display type in the cache.
   Future<void> setQuranDisplayType(
-      {required QuranDisplayEnum quranDisplay}) async {
+      {required QuranDisplayOption quranDisplay}) async {
     final type = EnumToString.convertToString(quranDisplay);
     await _box.write(quranDisplayTypeKey, type);
   }
 
   // Get the Quran display type from the cache, default to Mushaf if not set.
-  Future<QuranDisplayEnum> getQuranDisplayType() async {
+  Future<QuranDisplayOption> getQuranDisplayType() async {
     if (await _box.read(quranDisplayTypeKey) == null) {
-      await setQuranDisplayType(quranDisplay: QuranDisplayEnum.mushaf);
+      await setQuranDisplayType(quranDisplay: QuranDisplayOption.mushaf);
     }
     final type = EnumToString.fromString(
-        QuranDisplayEnum.values, await _box.read(quranDisplayTypeKey));
-    return type ?? QuranDisplayEnum.mushaf;
+        QuranDisplayOption.values, await _box.read(quranDisplayTypeKey));
+    return type ?? QuranDisplayOption.mushaf;
   }
 
   // Get the marker color setting from the cache, default to true if not set.

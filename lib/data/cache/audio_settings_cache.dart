@@ -1,4 +1,5 @@
 import 'package:get_storage/get_storage.dart';
+import 'package:quran/quran.dart';
 
 import '../../constants/cache_keys.dart';
 import '../models/quran_play_range_model.dart';
@@ -87,5 +88,25 @@ class AudioSettingsCache {
   // Method to clear the Quran play range from cache
   Future<void> clearQuranPlayRange() async {
     await _box.remove(quranPlayRangeKey);
+  }
+
+  /// Sets the play range when the page changes and there is no user-selected play range.
+  ///
+  /// This method checks the validity of the play range stored in the cache.
+  /// If the play range is not valid, it sets a default play range based on the [surahNumber].
+  void setPlayerPlayRange({required int surahNumber}) async {
+    // Check if the stored play range is not valid
+    if (!await AudioSettingsCache().getPlayRangeValidState()) {
+      // Set a default play range based on the current surahNumber
+      final startSurah = surahNumber;
+      await AudioSettingsCache().saveQuranPlayRange(
+        playRange: QuranPlayRangeModel(
+          startSurah: startSurah,
+          startVerse: 1,
+          endsSurah: startSurah,
+          endsVerse: getVerseCount(startSurah),
+        ),
+      );
+    }
   }
 }

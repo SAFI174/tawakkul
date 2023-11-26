@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:tawakkal/controllers/quran_audio_player_controller.dart';
-import 'package:tawakkal/routes/app_pages.dart';
 
 import '../data/cache/audio_settings_cache.dart';
 import '../../../../../services/audio/audio_manager.dart';
 import '../../../../../widgets/custom_progress_indicator.dart';
+import '../routes/app_pages.dart';
 
 class QuranAudioPlayerBottomBar
     extends GetView<QuranAudioPlayerBottomBarController> {
@@ -60,7 +60,7 @@ class QuranAudioPlayerBottomBar
                                 ),
                                 Obx(() {
                                   return Text(
-                                    controller.selectedReader.value,
+                                    controller.selectedReader.value.name,
                                     style: const TextStyle(fontSize: 12),
                                   );
                                 }),
@@ -75,8 +75,8 @@ class QuranAudioPlayerBottomBar
                             onPressed: () {
                               Get.toNamed(
                                 Routes.AUDIO_SETTINGS,
-                                arguments: controller.quranPageViewController
-                                    .currentPageData.value,
+                                arguments: controller
+                                    .quranPageViewController.currentPageData,
                               );
                             },
                           )
@@ -212,8 +212,8 @@ class QuranAudioPlayerBottomBar
                           onPressed: () {
                             Get.toNamed(
                               Routes.AUDIO_SETTINGS,
-                              arguments: controller.quranPageViewController
-                                  .currentPageData.value,
+                              arguments: controller
+                                  .quranPageViewController.currentPageData,
                             );
                           },
                         )

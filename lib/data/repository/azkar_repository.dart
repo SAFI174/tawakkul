@@ -1,5 +1,4 @@
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:get/get.dart';
 import 'package:tawakkal/constants/enum.dart';
 import 'package:tawakkal/data/models/azkar_category_mode.dart';
 import 'package:tawakkal/data/models/azkar_detail_model.dart';

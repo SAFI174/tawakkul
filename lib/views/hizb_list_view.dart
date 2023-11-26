@@ -4,7 +4,7 @@ import 'package:quran/quran.dart';
 
 import '../../../routes/app_pages.dart';
 import '../Widgets/hizb_item.dart';
-import '../controllers/quran_reading_controller.dart';
+import '../data/models/quran_navigation_data_model.dart';
 
 class HizbListView extends GetView {
   const HizbListView({Key? key, this.searchText = '', this.currentHizb = -1})
@@ -41,28 +41,20 @@ class HizbListView extends GetView {
 
   Widget buildHizbItem(BuildContext context, int hizbNumber) {
     final hizbData = getHizbData(hizbNumber);
-    final pageIndex =
+    final pageNumber =
         getPageNumber(hizbData['surah']!.toInt(), hizbData['verse']!.toInt());
     return HizbItem(
       hizbNumber: hizbNumber,
       onTap: () async {
-        try {
-          final quranPageViewController = Get.find<QuranReadingController>();
-          Get.toNamed(
-            Routes.QURAN_VIEW,
-            parameters: {
-              'pageNumber': pageIndex.toString(),
-            },
-          );
-          quranPageViewController.initPageViewData();
-        } catch (e) {
-          Get.toNamed(
-            Routes.QURAN_VIEW,
-            parameters: {
-              'pageNumber': pageIndex.toString(),
-            },
-          );
-        }
+        Get.toNamed(
+          Routes.QURAN_READING_PAGE,
+          arguments: QuranNavigationArgumentModel(
+            surahNumber: hizbData['surah']!.toInt(),
+            pageNumber: pageNumber,
+            verseNumber: hizbData['verse']!.toInt(),
+            highlightVerse: true,
+          ),
+        );
       },
     );
   }

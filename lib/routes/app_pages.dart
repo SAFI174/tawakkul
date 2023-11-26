@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:tawakkal/bindings/e_tasbih_binding.dart';
+import 'package:tawakkal/bindings/quran_search_binding.dart';
 import 'package:tawakkal/pages/azkar_categories_page.dart';
 import 'package:tawakkal/pages/e_tasbih_page.dart';
 import 'package:tawakkal/views/quran_bookmarks_view.dart';
+import 'package:tawakkal/views/quran_search_view.dart';
 
 import '../bindings/azkar_categories_binding.dart';
 import '../bindings/azkar_details_binding.dart';
@@ -62,7 +64,7 @@ class AppPages {
       binding: MoreActivitiesBinding(),
     ),
     GetPage(
-      name: _Paths.QURAN_VIEW,
+      name: _Paths.QURAN_READING_PAGE,
       page: () => const QuranReadingPage(),
       binding: QuranReadingPageBinding(),
     ),
@@ -123,6 +125,11 @@ class AppPages {
       name: _Paths.ELECTRONIC_TASBIH,
       page: () => const ElectronicTashbihPage(),
       binding: ElectronicTasbihBinding(),
+    ),
+    GetPage(
+      name: _Paths.QURAN_SEARCH_VIEW,
+      page: () =>  const QuranSearchView(),
+      binding: QuranSearchBinding(),
     ),
   ];
 }

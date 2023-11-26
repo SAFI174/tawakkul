@@ -1,8 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
-import 'package:tawakkal/data/repository/azkar_repository.dart';
-
 import '../../../routes/app_pages.dart';
 import '../../constants/enum.dart';
 
@@ -122,7 +120,9 @@ class MoreActivitiesController extends GetxController {
     },
     {
       'icon': FluentIcons.book_search_20_regular,
-      'onTap': () {},
+      'onTap': () {
+        Get.toNamed(Routes.QURAN_SEARCH_VIEW);
+      },
       'text': 'بحث في القرآن',
     },
     {
@@ -131,18 +131,4 @@ class MoreActivitiesController extends GetxController {
       'text': 'شارك التطبيق',
     },
   ];
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

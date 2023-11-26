@@ -20,4 +20,9 @@ class SaveLocationsPaths {
     final appFolder = await getApplicationDocumentsDirectory();
     return '${appFolder.path}/downloaded_content/tafsirs/';
   }
+
+  static Future<String> getReaderTimingDataLocationUrl() async {
+    final appFolder = await getApplicationDocumentsDirectory();
+    return '${appFolder.path}/downloaded_content/timing/';
+  }
 }

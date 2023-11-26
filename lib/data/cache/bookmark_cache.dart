@@ -9,17 +9,11 @@ import '../models/quran_bookmark.dart';
 class BookmarkCache {
   // Observable list of bookmarks
   final bookmarks = <Bookmark>[].obs;
-  // Observable boolean to track whether the current verse is bookmarked
-  final isBookmarked = false.obs;
 
   final GetStorage _box = GetStorage('bookmarks');
-  BookmarkCache() {
-    loadBookmarks();
-  }
 
   // Load bookmarks from GetStorage
   Future<void> loadBookmarks() async {
-
     // Retrieve bookmarks data from GetStorage
     final bookmarksData = await _box.read(bookmarksKey);
 
@@ -50,7 +44,7 @@ class BookmarkCache {
   Future<void> deleteBookmark(Bookmark bookmark) async {
     // Remove the bookmark from the observable list
     bookmarks.removeWhere(
-        (b) => b.chapter == bookmark.chapter && b.verse == bookmark.verse);
+        (b) => b.surah == bookmark.surah && b.verse == bookmark.verse);
 
     // Save the updated list of bookmarks to GetStorage
     await _saveBookmarks();
@@ -58,7 +52,6 @@ class BookmarkCache {
 
   // Save the current list of bookmarks to GetStorage
   Future<void> _saveBookmarks() async {
-
     // Convert the list of bookmarks to JSON format and store it in GetStorage
     final bookmarksList =
         bookmarks.map((bookmark) => bookmark.toJson()).toList();
@@ -66,9 +59,9 @@ class BookmarkCache {
   }
 
   // Check if a specific verse is bookmarked
-  Future<void> checkBookmark(Bookmark bookmark) async {
+  bool checkBookmark(Bookmark bookmark) {
     // Check if the provided bookmark exists in the list of bookmarks
-    isBookmarked.value = bookmarks
-        .any((b) => b.chapter == bookmark.chapter && b.verse == bookmark.verse);
+    return bookmarks
+        .any((b) => b.surah == bookmark.surah && b.verse == bookmark.verse);
   }
 }

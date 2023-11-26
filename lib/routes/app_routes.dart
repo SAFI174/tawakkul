@@ -9,7 +9,7 @@ abstract class Routes {
   static const QURAN_MAIN = _Paths.QURAN_MAIN;
   static const MORE_ACTIVITIES = _Paths.MORE_ACTIVITIES;
   static const QURAN_PAGE_VIEW = _Paths.QURAN_PAGE_VIEW;
-  static const QURAN_VIEW = _Paths.QURAN_VIEW;
+  static const QURAN_READING_PAGE = _Paths.QURAN_READING_PAGE;
   static const TAFSIR_DOWNLOAD_MANAGER = _Paths.TAFSIR_DOWNLOAD_MANAGER;
   static const AYAH_TAFSIR_DETAILS = _Paths.AYAH_TAFSIR_DETAILS;
   static const QURAN_BOOKMARKS = _Paths.QURAN_BOOKMARKS;
@@ -22,6 +22,7 @@ abstract class Routes {
   static const AZKAR_DETAILS = _Paths.AZKAR_DETAILS;
   static const AZKAR_CATEGORIES = _Paths.AZKAR_CATEGORIES;
   static const ELECTRONIC_TASBIH = _Paths.ELECTRONIC_TASBIH;
+  static const QURAN_SEARCH_VIEW = _Paths.QURAN_SEARCH_VIEW;
 }
 
 abstract class _Paths {
@@ -32,7 +33,7 @@ abstract class _Paths {
   static const QURAN_MAIN = '/quran-main';
   static const MORE_ACTIVITIES = '/more-activities';
   static const QURAN_PAGE_VIEW = '/quran-page-view/';
-  static const QURAN_VIEW = '/quran-view';
+  static const QURAN_READING_PAGE = '/quran-reading-page';
   static const TAFSIR_DOWNLOAD_MANAGER = '/tafsir-download-manager';
   static const AYAH_TAFSIR_DETAILS = '/ayah-tafsir-details';
   static const QURAN_BOOKMARKS = '/quran-bookmarks';
@@ -45,4 +46,5 @@ abstract class _Paths {
   static const AZKAR_DETAILS = '/azkar-details';
   static const AZKAR_CATEGORIES = '/azkar-categories';
   static const ELECTRONIC_TASBIH = '/electronic-tasbih';
+  static const QURAN_SEARCH_VIEW = '/quran-search-view';
 }

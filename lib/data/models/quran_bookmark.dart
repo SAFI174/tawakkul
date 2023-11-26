@@ -1,17 +1,17 @@
 class Bookmark {
-  final int chapter;
+  final int surah;
   final int verse;
   DateTime? addedDate;
 
   Bookmark({
-    required this.chapter,
+    required this.surah,
     required this.verse,
     this.addedDate,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'chapter': chapter,
+      'surah': surah,
       'verse': verse,
       'addedDate': addedDate!.toIso8601String(),
     };
@@ -19,7 +19,7 @@ class Bookmark {
 
   factory Bookmark.fromJson(Map<String, dynamic> json) {
     return Bookmark(
-      chapter: json['chapter'],
+      surah: json['surah'],
       verse: json['verse'],
       addedDate: DateTime.parse(json['addedDate'].toString()),
     );

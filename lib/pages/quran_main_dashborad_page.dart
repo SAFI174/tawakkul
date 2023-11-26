@@ -25,20 +25,22 @@ class QuranMainDashboradPage extends GetView<QuranMainDashboradController> {
           child: AppBar(
             shadowColor: Theme.of(context).colorScheme.shadow,
             toolbarHeight: 100,
-            title: CustomSearchBar(
-              onChanged: (value) {
-                controller.tabController.index == 0
-                    ? controller.surahSearchText.value = value
-                    : null;
-                controller.tabController.index == 1
-                    ? controller.juzSearchText.value = value
-                    : null;
-                controller.tabController.index == 2
-                    ? controller.hizbSearchText.value = value
-                    : null;
-              },
-              hintText: controller.hintTextSearchBar.value,
-            ),
+            title: Obx(() {
+              return CustomSearchBar(
+                onChanged: (value) {
+                  controller.tabController.index == 0
+                      ? controller.surahSearchText.value = value
+                      : null;
+                  controller.tabController.index == 1
+                      ? controller.juzSearchText.value = value
+                      : null;
+                  controller.tabController.index == 2
+                      ? controller.hizbSearchText.value = value
+                      : null;
+                },
+                hintText: controller.hintTextSearchBar.value,
+              );
+            }),
             leadingWidth: 0,
             actions: [
               IconButton(

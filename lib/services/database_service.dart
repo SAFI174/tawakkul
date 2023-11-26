@@ -50,6 +50,11 @@ class DatabaseService extends GetxController {
     update(); // Notify GetX that the data has changed
   }
 
+  Future<List<Map<String, dynamic>>> queryData({required String query}) async {
+    await initDatabase();
+    return await _database.rawQuery(query);
+  }
+
   // Read data from the database
   Future<List<Map<String, dynamic>>> readData(
       {required String tableName,

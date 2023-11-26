@@ -1,53 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:quran/quran.dart';
 import 'package:search_highlight_text/search_highlight_text.dart';
-import 'package:tawakkal/constants/json_path.dart';
-
-import '../../../data/models/quran_simple.dart';
 import '../../../widgets/custom_search_bar.dart';
-import '../controllers/quran_reading_controller.dart';
+import '../controllers/quran_search_controller.dart';
 import '../widgets/surah_verse.dart';
 
-class QuranSearchController extends GetxController {
-  var searchText = ''.obs;
-  var searchResults = <QuranSimple>[].obs;
-
-  void updateSearchText(String text) {
-    searchText.value = text;
-    // Trigger a search when the text changes
-    performSearch(text);
-  }
-
-  void performSearch(String searchText) async {
-    if (searchText.isEmpty) {
-      searchResults.clear();
-      return;
-    }
-
-    final quranData = await readQuranSimpleData();
-
-    final filteredResults = quranData
-        .where((quran) => quran.textUthmaniSimple!.contains(searchText))
-        .toList();
-
-    searchResults.assignAll(filteredResults);
-  }
-
-  Future<List<QuranSimple>> readQuranSimpleData() async {
-    final jsonString = await rootBundle.loadString(JsonPaths.quranSimple);
-    return (json.decode(jsonString) as List<dynamic>)
-        .map((e) => QuranSimple.fromJson(e))
-        .toList();
-  }
-}
-
-// ignore: use_key_in_widget_constructors
-class QuranSearchView extends StatelessWidget {
-  final controller = Get.put(QuranSearchController());
+class QuranSearchView extends GetView<QuranSearchController> {
+  const QuranSearchView({super.key});
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -67,13 +26,13 @@ class QuranSearchView extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
+              // CustomSearchBar for user input
               CustomSearchBar(
-                onChanged: (value) {
-                  controller.updateSearchText(value);
-                },
+                onChanged: controller.onSearchTextChanged,
                 hintText: 'ابحث عن آية ...',
               ),
               const SizedBox(height: 10),
+              // Obx for reacting to changes in the search results
               Obx(() {
                 final searchResults = controller.searchResults;
                 if (searchResults.isEmpty && controller.searchText != '') {
@@ -84,37 +43,27 @@ class QuranSearchView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: searchResults.length,
                       itemBuilder: (context, index) {
-                        int verse = int.parse(controller
-                            .searchResults[index].verseKey
-                            .toString()
-                            .split(':')[1]);
-                        int surah = int.parse(controller
-                            .searchResults[index].verseKey
-                            .toString()
-                            .split(':')[0]);
+                        var quranVerse = searchResults[index];
                         return Column(
                           children: [
+                            // ListTile for each search result
                             ListTile(
-                              onTap: () async {
-                                final quranPageViewController =
-                                    Get.find<QuranReadingController>();
-                                await quranPageViewController.goTo(
-                                    pageIndex: getPageNumber(surah, verse));
-                                quranPageViewController.highlightAyah(
-                                    surah, verse);
-                              },
+                              onTap: () =>
+                                  controller.onVersePressed(quranVerse),
                               title: Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: SearchHighlightText(
-                                  searchResults[index].textUthmaniSimple!,
+                                  searchResults[index].textUthmaniSimple,
                                   searchText: controller.searchText.value,
                                 ),
                               ),
-                              subtitle:
-                                  SurahVerseWidget(surah: surah, verse: verse),
+                              subtitle: SurahVerseWidget(
+                                  surah: quranVerse.surahNumber,
+                                  verse: quranVerse.verseNumber),
                             ),
+                            // Divider between search results
                             if (index < searchResults.length - 1)
-                              Divider(
+                              const Divider(
                                 height: 1,
                               ),
                           ],
