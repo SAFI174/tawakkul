@@ -1,13 +1,16 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah_update/flutter_qiblah.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import '../../utils/dialogs/dialogs.dart';
 import '../../widgets/custom_progress_indicator.dart';
 import '../controllers/qibla_page_controller.dart';
+import '../widgets/custom_message_button_widget.dart';
 import '../widgets/loading_error_text.dart';
 
 class QiblaPage extends GetView<QiblaController> {
@@ -80,60 +83,65 @@ class QiblaPage extends GetView<QiblaController> {
                       return OrientationBuilder(
                           builder: (context, orientation) {
                         if (orientation == Orientation.portrait) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
+                          return Center(
+                            child: SingleChildScrollView(
+                              child: Column(
                                 children: [
-                                  Text('الكعبة',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge),
-                                  Text(
-                                    '$kabba°',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium,
-                                  ),
-                                ],
-                              ),
-                              Transform.flip(
-                                flipX: true,
-                                child: AnimatedRotation(
-                                  duration: const Duration(milliseconds: 400),
-                                  turns: qiblahTurns,
-                                  child: SvgPicture.asset(
-                                    'assets/svg/qibla.svg',
-                                    // ignore: deprecated_member_use
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                      '°${ArabicNumbers().convert(snapshot.data!.offset.toInt().toString())} S من الشمال الحقيقي'),
-                                  const SizedBox(height: 10),
-                                  const Text(
-                                      'قم بماعير البوصلة في كل مرة تستخدمها'),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                  Column(
                                     children: [
+                                      Text('الكعبة',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge),
                                       Text(
-                                        '${ArabicNumbers().convert(snapshot.data!.latitude.toString())}°"N',
-                                        textDirection: TextDirection.ltr,
+                                        '$kabba°',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium,
                                       ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        '${ArabicNumbers().convert(snapshot.data!.longitude.toString())}°"W',
-                                        textDirection: TextDirection.ltr,
+                                    ],
+                                  ),
+                                  Transform.flip(
+                                    flipX: true,
+                                    child: AnimatedRotation(
+                                      duration:
+                                          const Duration(milliseconds: 400),
+                                      turns: qiblahTurns,
+                                      child: SvgPicture.asset(
+                                        'assets/svg/qibla.svg',
+                                        // ignore: deprecated_member_use
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      AutoSizeText(
+                                          '°${ArabicNumbers().convert(snapshot.data!.offset.toInt().toString())} S من الشمال الحقيقي'),
+                                      const Gap(10),
+                                      const AutoSizeText(
+                                          'قم بماعير البوصلة في كل مرة تستخدمها'),
+                                      const Gap(10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          AutoSizeText(
+                                            '${snapshot.data!.latitude.toString()}°"N',
+                                            textDirection: TextDirection.ltr,
+                                          ),
+                                          const Gap(10),
+                                          AutoSizeText(
+                                            '${snapshot.data!.longitude.toString()}°"W',
+                                            textDirection: TextDirection.ltr,
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           );
                         } else {
                           return Row(
@@ -182,12 +190,12 @@ class QiblaPage extends GetView<QiblaController> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            '${ArabicNumbers().convert(snapshot.data!.latitude.toString())}°"N',
+                                            '${snapshot.data!.latitude.toString()}°"N',
                                             textDirection: TextDirection.ltr,
                                           ),
                                           const SizedBox(width: 10),
                                           Text(
-                                            '${ArabicNumbers().convert(snapshot.data!.longitude.toString())}°"W',
+                                            '${snapshot.data!.longitude.toString()}°"W',
                                             textDirection: TextDirection.ltr,
                                           ),
                                         ],
@@ -207,24 +215,21 @@ class QiblaPage extends GetView<QiblaController> {
               case LocationPermission.denied:
               case LocationPermission.deniedForever:
                 // Display widget for denied location permissions
-                return requestLocationWidget(
-                  title:
-                      'الرجاء السماح بصلاحيات الموقع للحصول على اتجاه القبلة',
-                  buttonText: 'إعطاء صلاحية',
-                  onTap: controller.checkLocationStatus,
-                );
+                return MessageWithButtonWidget(
+                    title:
+                        'الرجاء السماح بصلاحيات الموقع للحصول على اتجاه القبلة',
+                    buttonText: 'إعطاء صلاحية',
+                    onTap: controller.checkLocationStatus);
 
               default:
-                return const Center(
-                     child: LoadingErrorText());
+                return const Center(child: LoadingErrorText());
             }
           } else {
             // Display widget when location settings are disabled
-            return requestLocationWidget(
-              title: "تم إيقاف إعدادات الموقع. يرجى تمكينها للمتابعة",
-              buttonText: "تفعيل إعدادات الموقع",
-              onTap: controller.checkLocationStatus,
-            );
+            return MessageWithButtonWidget(
+                title: "تم إيقاف إعدادات الموقع. يرجى تمكينها للمتابعة",
+                buttonText: "تفعيل إعدادات الموقع",
+                onTap: controller.checkLocationStatus);
           }
         },
       ),
@@ -232,26 +237,4 @@ class QiblaPage extends GetView<QiblaController> {
   }
 
   // Widget for requesting location permissions
-  Widget requestLocationWidget(
-      {required String title,
-      required String buttonText,
-      required Function() onTap}) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(title),
-            const SizedBox(height: 10),
-            FilledButton(
-              onPressed: onTap,
-              child: Text(buttonText),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
-

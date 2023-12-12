@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:tawakkal/utils/utils.dart';
 import '../../../../../data/models/tafsir_data.dart';
 
 class TafsirDetailsController extends GetxController {
@@ -15,35 +14,35 @@ class TafsirDetailsController extends GetxController {
   RxList<TafsirData> tafsirsData = RxList<TafsirData>();
   RxBool isDataLoaded = RxBool(false);
 
-  Future<void> getTafsirsUrls() async {
-    tafsirsUrls.value = [];
-    tafsirsData.value = [];
+  Future<void> loadTafsirDate() async {
+    tafsirsUrls.clear();
+    tafsirsData.clear();
     final appDocumentsDirectory = await getApplicationDocumentsDirectory();
     final downloadPath =
         '${appDocumentsDirectory.path}/downloaded_content/tafsirs';
-    try {
-      tafsirsUrls.addAll(
-        Directory("$downloadPath/").listSync().where(
-              (element) => element.path.endsWith(".json"),
-            ),
-      );
-      await Future.delayed(const Duration(milliseconds: 1500));
 
-      tafsirsUrls.forEach((element) async {
-        await loadTafsirData(element);
-      });
+    try {
+      tafsirsUrls.value = Directory("$downloadPath/")
+          .listSync()
+          .where((element) => element.path.endsWith(".json"))
+          .toList();
+
+      await Future.wait(
+          tafsirsUrls.map((element) => loadTafsirDataFromFile(element)));
     } catch (e) {
       print(e);
     }
   }
 
-  Future<void> loadTafsirData(FileSystemEntity tafsirFile) async {
+  Future<void> loadTafsirDataFromFile(FileSystemEntity tafsirFile) async {
     final file = File(tafsirFile.path);
 
-    // Read the JSON data from the file.
-    final jsonString = await file.readAsString();
-    // You can now work with the jsonData, which is a Map<String, dynamic>.
-    tafsirsData.add(TafsirData.fromJson(json.decode(jsonString)));
+    try {
+      final jsonString = await file.readAsString();
+      tafsirsData.add(TafsirData.fromJson(json.decode(jsonString)));
+    } catch (e) {
+      print(e);
+    }
   }
 
   void goToNextAyah() {
@@ -61,14 +60,15 @@ class TafsirDetailsController extends GetxController {
   }
 
   void copyTafsir(TafsirData tafsirData) async {
-    await Clipboard.setData(ClipboardData(
+    Utils.copyToClipboard(
         text:
-            "${getSurahNameArabic(surahNumber.value)} - تفسير الآية ${verseNumber.value} \n${tafsirData.tafsirLists[surahNumber.value - 1][verseNumber.value - 1]} \n ${tafsirData.edition.name}"));
+            "${getSurahNameArabic(surahNumber.value)} - تفسير الآية ${verseNumber.value} \n${tafsirData.tafsirLists[surahNumber.value - 1][verseNumber.value - 1]} \n ${tafsirData.edition.name}");
   }
 
   void shareTafsir(TafsirData tafsirData) async {
-    await Share.share(
-        "${getSurahNameArabic(surahNumber.value)} - تفسير الآية ${verseNumber.value} \n${tafsirData.tafsirLists[surahNumber.value - 1][verseNumber.value - 1]} \n ${tafsirData.edition.name}");
+    Utils.shareText(
+        text:
+            "${getSurahNameArabic(surahNumber.value)} - تفسير الآية ${verseNumber.value} \n${tafsirData.tafsirLists[surahNumber.value - 1][verseNumber.value - 1]} \n ${tafsirData.edition.name}");
   }
 
   void goToPreviousAyah() {
@@ -87,7 +87,7 @@ class TafsirDetailsController extends GetxController {
 
   @override
   void onInit() async {
-    await getTafsirsUrls();
+    await loadTafsirDate();
     super.onInit();
   }
 

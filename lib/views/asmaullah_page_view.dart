@@ -13,7 +13,7 @@ class AsmaullahPageView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        scrolledUnderElevation: 0,
+
         title: const Text('أسماء الله الحسنى'), // App bar title
         titleTextStyle: Theme.of(context).primaryTextTheme.titleMedium,
       ),
@@ -32,7 +32,7 @@ class AsmaullahPageView extends GetView {
               padding: const EdgeInsets.all(8.0),
               itemCount: 99,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 100.w > 100.h ? 80.w / 6 : 80.w / 3,
+                maxCrossAxisExtent: 75.h > 100.w ? 80.w / 3 : 80.h / 6,
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
               ),
@@ -46,32 +46,29 @@ class AsmaullahPageView extends GetView {
                       color: Theme.of(context).disabledColor.withAlpha(40),
                     ),
                   ),
-                  child: Material(
+                  child: InkWell(
                     borderRadius: BorderRadius.circular(9),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(9),
-                      onTap: () {
-                        Get.dialog(
-                          AlertDialog(
-                            title: Text(name.ttl!),
-                            content: Text(name.dsc!),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                child: Text("حسناََ"),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      child: Center(
-                        child: AutoSizeText(
-                          name.ttl!,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.titleMedium,
+                    onTap: () {
+                      Get.dialog(
+                        AlertDialog(
+                          title: Text(name.ttl!),
+                          content: Text(name.dsc!),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: Text("حسناََ"),
+                            ),
+                          ],
                         ),
+                      );
+                    },
+                    child: Center(
+                      child: AutoSizeText(
+                        name.ttl!,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
                   ),

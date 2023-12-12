@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart' as quran;
+import 'package:tawakkal/data/models/quran_navigation_data_model.dart';
 
 import '../../../routes/app_pages.dart';
 import '../Widgets/surah_item.dart';
-import '../controllers/quran_reading_controller.dart';
 
 class SurahListView extends GetView {
   const SurahListView({Key? key, this.searchText = ''}) : super(key: key);
@@ -17,17 +17,15 @@ class SurahListView extends GetView {
         .where((surahNumber) =>
             quran.getSurahNameArabicSimple(surahNumber).contains(searchText))
         .toList();
-    return ListView.builder(
+    return ListView.separated(
+      padding: EdgeInsets.zero,
       itemCount: surahNumbers.length,
-      itemExtent: 70,
+      separatorBuilder: (context, index) {
+        return const Divider(height: 1);
+      },
       itemBuilder: (BuildContext context, int index) {
         final surahNumber = surahNumbers[index];
-        return Column(
-          children: [
-            buildSurahItem(context, surahNumber),
-            const Divider(height: 1)
-          ],
-        );
+        return buildSurahItem(context, surahNumber);
       },
     );
   }
@@ -36,27 +34,15 @@ class SurahListView extends GetView {
     return SurahItem(
       surahNumber: surahNumber,
       onTap: () async {
-        try {
-          final quranPageViewController = Get.find<QuranReadingController>();
-          if (!Get.currentRoute.contains('quran-view')) {
-            Get.toNamed(
-              Routes.QURAN_VIEW,
-              parameters: {
-                'surahNumber': surahNumber.toString(),
-                'invokedFrom': 'surah',
-              },
-            );
-            quranPageViewController.initPageViewData();
-          }
-        } catch (e) {
-          Get.toNamed(
-            Routes.QURAN_VIEW,
-            parameters: {
-              'surahNumber': surahNumber.toString(),
-              'invokedFrom': 'surah',
-            },
-          );
-        }
+        Get.toNamed(
+          Routes.QURAN_READING_PAGE,
+          arguments: QuranNavigationArgumentModel(
+            surahNumber: surahNumber,
+            pageNumber: quran.getPageNumber(surahNumber, 1),
+            verseNumber: 1,
+            highlightVerse: true,
+          ),
+        );
       },
     );
   }

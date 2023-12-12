@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran/quran.dart';
 import 'surah_verse.dart';
+
 class HizbItem extends StatelessWidget {
   const HizbItem({super.key, required this.hizbNumber, required this.onTap});
   final int hizbNumber;
@@ -9,7 +10,7 @@ class HizbItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final hizbData = getHizbData(hizbNumber);
     return SizedBox(
-      height: 68,
+      height: 70,
       child: InkWell(
         borderRadius: BorderRadius.circular(0),
         onTap: onTap,
@@ -50,7 +51,9 @@ class HizbItem extends StatelessWidget {
                         .toList()
                         .join(' ')
                         .replaceAll('۞', ''),
-                    style: TextStyle(fontFamily: 'MeQuran'),
+                    style: const TextStyle(
+                        fontFamily: 'Uthmanic_Script',
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

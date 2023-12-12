@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tawakkal/data/models/quran_navigation_data_model.dart';
 
-import '../data/cache/quran_settings.dart';
+import '../data/cache/quran_settings_cache.dart';
 import '../../../../routes/app_pages.dart';
 import '../../Views/quran_bookmarks_view.dart';
-import 'quran_reading_controller.dart';
 
 class QuranMainDashboradController extends GetxController
     with GetTickerProviderStateMixin {
@@ -27,26 +27,15 @@ class QuranMainDashboradController extends GetxController
   }
 
   void onLastPagePressed() async {
-    try {
-      final quranPageViewController = Get.find<QuranReadingController>();
-      if (!Get.currentRoute.contains('quran-view')) {
-        Get.toNamed(
-          Routes.QURAN_VIEW,
-          parameters: {
-            'pageNumber': (await QuranSettingsCache().getLastPage()).toString(),
-          },
-        );
-        quranPageViewController.initPageViewData();
-      }
-    } catch (e) {
-      final pageIndex = await QuranSettingsCache().getLastPage();
-      Get.toNamed(
-        Routes.QURAN_VIEW,
-        parameters: {
-          'pageNumber': pageIndex.toString(),
-        },
-      );
-    }
+    Get.toNamed(
+      Routes.QURAN_READING_PAGE,
+      arguments: QuranNavigationArgumentModel(
+        surahNumber: 0,
+        pageNumber: await QuranSettingsCache.getLastPage(),
+        verseNumber: 0,
+        highlightVerse: false,
+      ),
+    );
   }
 
   @override

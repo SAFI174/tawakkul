@@ -17,6 +17,7 @@ class ZkrWidget extends StatelessWidget {
     required this.onCounterButtonPressed,
     required this.onResetButtonPressed,
     required this.isDone,
+    this.fontSize,
   }) : super(key: key);
 
   final String? title;
@@ -27,20 +28,34 @@ class ZkrWidget extends StatelessWidget {
   final Function() onCounterButtonPressed;
   final Function() onResetButtonPressed;
   final bool isDone;
+  final double? fontSize;
+  // Helper method for building text with icon buttons
+  Widget buildTextIconButton(IconData icon, String text, Function() onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 12),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 22,
+            ),
+            const SizedBox(width: 5),
+            Text(
+              text,
+              style: Theme.of(Get.context!).textTheme.labelSmall,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var sharetext = '$description\n التكرار: $count';
-    Widget buildIcon(IconData icon, Function() onTap) {
-      return InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(11.0),
-          child: Icon(icon),
-        ),
-      );
-    }
 
     return Container(
       decoration: BoxDecoration(
@@ -54,17 +69,19 @@ class ZkrWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Top row with action buttons
           Material(
             borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(9), topLeft: Radius.circular(9)),
-            type: MaterialType.card,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Copy, Share, Reset buttons
                 Row(
                   children: [
-                    buildIcon(
+                    buildTextIconButton(
                       FluentIcons.copy_16_regular,
+                      'نسخ',
                       () async {
                         await Clipboard.setData(
                           ClipboardData(text: sharetext),
@@ -73,22 +90,25 @@ class ZkrWidget extends StatelessWidget {
                     ),
                     const SizedBox(
                         height: 45, child: VerticalDivider(width: 1)),
-                    buildIcon(
+                    buildTextIconButton(
                       FluentIcons.share_16_regular,
+                      'مشاركة',
                       () async {
                         await Share.share(sharetext);
                       },
                     ),
                     const SizedBox(
                         height: 45, child: VerticalDivider(width: 1)),
-                    buildIcon(
+                    buildTextIconButton(
                       Icons.refresh_rounded,
+                      'إعادة',
                       onResetButtonPressed,
                     ),
                     const SizedBox(
                         height: 45, child: VerticalDivider(width: 1)),
                   ],
                 ),
+                // Display the count
                 Row(
                   children: [
                     const SizedBox(
@@ -105,7 +125,9 @@ class ZkrWidget extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(height: 1),
+          const Divider(height: 1, thickness: 0.8),
+
+          // Main content
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -115,29 +137,35 @@ class ZkrWidget extends StatelessWidget {
                 if (title != null)
                   Text(
                     title!,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontSize != null ? fontSize! - 2 : fontSize),
                   ),
-                SizedBox(height: note != null ? 10 : 0),
+                SizedBox(height: title != null ? 10 : 0),
                 Text(
                   description,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: fontSize, height: 2),
                 ),
                 SizedBox(height: note != null ? 10 : 0),
                 if (note != null)
                   Text(
                     '($note)',
                     textAlign: TextAlign.justify,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontSize != null ? fontSize! - 2 : fontSize),
                   ),
                 const SizedBox(height: 10),
               ],
             ),
           ),
-          const Divider(height: 1),
+          const Divider(
+            height: 1,
+            thickness: 0.8,
+          ),
+
+          // Bottom row with the counter button
           Material(
-            type: MaterialType.card,
             borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(9),
                 bottomRight: Radius.circular(9)),

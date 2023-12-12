@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:quran/quran.dart';
 import 'package:rxdart/rxdart.dart' as rx;
+import 'package:tawakkal/data/cache/quran_settings_cache.dart';
 import '../../controllers/quran_reading_controller.dart';
 import '../../data/cache/audio_settings_cache.dart';
 import '../../data/repository/segmets_repository.dart';
@@ -33,23 +36,13 @@ class QueueState {
 
 class AudioPlayerHandlerImpl extends BaseAudioHandler {
   // ignore: close_sinks
-  final rx.BehaviorSubject<List<MediaItem>> _recentSubject =
-      rx.BehaviorSubject.seeded(<MediaItem>[]);
 
   final _player = AudioPlayer();
   final _playlist = ConcatenatingAudioSource(children: []);
-
-  final rx.BehaviorSubject<double> volume = rx.BehaviorSubject.seeded(1.0);
-
-  final rx.BehaviorSubject<double> speed = rx.BehaviorSubject.seeded(1.0);
+  StreamSubscription<Duration>? positionStream;
+  StreamSubscription<int?>? indexStream;
+  bool isWordByWord = false;
   final _mediaItemExpando = Expando<MediaItem>();
-  Future<void> _loadEmptyPlaylist() async {
-    try {
-      await _player.setAudioSource(_playlist);
-    } catch (e) {
-      print("Error: $e");
-    }
-  }
 
   /// A stream of the current effective sequence from just_audio.
   Stream<List<IndexedAudioSource>> get _effectiveSequence =>
@@ -80,6 +73,7 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
 
   @override
   Future<void> onTaskRemoved() => _player.stop();
+
   Future<void> clearQueueitems() async {
     await _playlist.clear();
   }
@@ -103,73 +97,48 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
       state.queue.length == state.shuffleIndices!.length);
 
   @override
-  Future<void> setShuffleMode(AudioServiceShuffleMode shuffleMode) async {
-    final enabled = shuffleMode == AudioServiceShuffleMode.all;
-    if (enabled) {
-      await _player.shuffle();
-    }
-    playbackState.add(playbackState.value.copyWith(shuffleMode: shuffleMode));
-    await _player.setShuffleModeEnabled(enabled);
-  }
-
-  @override
-  Future<void> setRepeatMode(AudioServiceRepeatMode repeatMode) async {
-    playbackState.add(playbackState.value.copyWith(repeatMode: repeatMode));
-    await _player.setLoopMode(LoopMode.values[repeatMode.index]);
-  }
-
-  @override
   Future<void> setSpeed(double speed) async {
-    this.speed.add(speed);
     await _player.setSpeed(speed);
-  }
-
-  Future<void> setVolume(double volume) async {
-    this.volume.add(volume);
-    await _player.setVolume(volume);
   }
 
 // Highlight the current word and verse based on the player's position
   void _highlightWordAndVerse() {
     final controller = Get.find<QuranReadingController>();
-    final segmentsRepository = SegmentsRepository();
 
     // Scroll to the current playing page
     _scrollToPlayingPage(controller);
+    if (isWordByWord) {
+      // Load Quran data from the asset
+      SegmentsRepository.readSegmentData();
 
-    // Load Quran data from the asset
-    segmentsRepository.loadQuranDataFromAsset();
+      // Listen to the player's position and highlight the corresponding word
+      positionStream = _player.positionStream.listen((duration) async {
+        // Skip highlighting under certain conditions
+        if (_shouldSkipHighlightingAndScrolling()) return;
 
-    // Listen to the player's position and highlight the corresponding word
-    _player.positionStream.listen((duration) async {
-      // Skip highlighting under certain conditions
-      if (_shouldSkipHighlightingAndScrolling()) return;
+        final currentIndex = _player.currentIndex ?? 1;
+        final currentVerseID = queue.value[currentIndex].extras!['verse'];
+        final currentSurahID = queue.value[currentIndex].extras!['surah'];
 
-      final currentIndex = _player.currentIndex ?? 1;
-      final currentVerseID = queue.value[currentIndex].extras!['verse'];
-      final currentSurahID = queue.value[currentIndex].extras!['surah'];
-
-      // Get the word index based on the player's current position
-      final wordIndex = await segmentsRepository.getCurrentSegmentWord(
-        surahId: currentSurahID,
-        verseID: currentVerseID,
-        currentPosition: duration.inMilliseconds,
-      );
-
-      // Highlight the word
-      controller.highlightWordAudio(
-        surahID: currentSurahID,
-        verseId: currentVerseID,
-        wordIndex: wordIndex,
-      );
-    });
+        // Get the word index based on the player's current position
+        final wordIndex = await SegmentsRepository.getCurrentSegmentWord(
+          surahId: currentSurahID,
+          verseID: currentVerseID,
+          currentPosition: duration.inMilliseconds,
+        );
+        // Highlight the word
+        controller.highlightWordAudioHandler(
+          surahNumber: currentSurahID,
+          verseNumber: currentVerseID,
+          wordIndex: wordIndex,
+        );
+      });
+    }
   }
 
 // Scroll to the page corresponding to the currently playing verse
   void _scrollToPlayingPage(QuranReadingController controller) {
-    _player.currentIndexStream.listen((currentIndex) async {
-      // Skip scrolling under certain conditions
-      if (_shouldSkipHighlightingAndScrolling()) return;
+    indexStream = _player.currentIndexStream.listen((currentIndex) async {
       if (!_player.playing) {
         return;
       }
@@ -178,10 +147,13 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
 
       // Get the page number corresponding to the current playing verse
       final pageNumber = getPageNumber(currentSurahID, currentVerseID);
-
+      if (!isWordByWord) {
+        controller.highlightVerseAudioHandler(
+            surahNumber: currentSurahID, verseNumber: currentVerseID);
+      }
       // Scroll to the page
-      if (pageNumber != controller.currentPage.value) {
-        await controller.pageController!.animateToPage(
+      if (pageNumber != controller.pageNumber) {
+        await controller.quranPageController.animateToPage(
           pageNumber - 1,
           curve: Curves.easeOutCubic,
           duration: const Duration(milliseconds: 800),
@@ -194,27 +166,18 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
   bool _shouldSkipHighlightingAndScrolling() {
     return _player.currentIndex == null ||
         _player.currentIndex! >= queue.value.length ||
-        !Get.currentRoute.contains('quran-view');
+        !Get.currentRoute.contains('quran-reading');
   }
 
   AudioPlayerHandlerImpl() {
-    _loadEmptyPlaylist();
+    _player.setAudioSource(_playlist);
     _init();
   }
 
   Future<void> _init() async {
     final session = await AudioSession.instance;
     await session.configure(const AudioSessionConfiguration.speech());
-    // Broadcast speed changes. Debounce so that we don't flood the notification
-    // with updates.
-    speed.debounceTime(const Duration(milliseconds: 250)).listen((speed) {
-      playbackState.add(playbackState.value.copyWith(speed: speed));
-    });
 
-    // For Android 11, record the most recent item so it can be resumed.
-    mediaItem
-        .whereType<MediaItem>()
-        .listen((item) => _recentSubject.add([item]));
     // Broadcast media item changes.
     rx.Rx.combineLatest4<int?, List<MediaItem>, bool, List<int>?, MediaItem?>(
         _player.currentIndexStream,
@@ -275,7 +238,7 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
     }
     final tempPlayList = _itemsToSources(mediaItems);
     for (var element in tempPlayList) {
-      final repeatCount = await AudioSettingsCache().getRepeat();
+      final repeatCount = AudioSettingsCache.getRepeat();
 
       for (var i = 0; i < repeatCount; i++) {
         await _playlist.add(element);
@@ -328,7 +291,9 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
 
   @override
   Future<void> play() async {
+    positionStream?.cancel();
     _highlightWordAndVerse();
+
     await _player.play();
   }
 
@@ -340,10 +305,11 @@ class AudioPlayerHandlerImpl extends BaseAudioHandler {
 
   @override
   Future<void> stop() async {
+    positionStream?.cancel();
+    indexStream?.cancel();
     await _player.stop();
+    isWordByWord = QuranSettingsCache.isWordByWordListen();
     skipToQueueItem(0);
-    await playbackState.firstWhere(
-        (state) => state.processingState == AudioProcessingState.idle);
   }
 
   /// Broadcasts the current state to all clients.

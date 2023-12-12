@@ -1,13 +1,12 @@
 class QuranSettingsModel {
   bool isMarkerColored;
-  bool isDarkMode;
   double displayFontSize;
-  int pageDisplayOption;
-
+  bool isAdaptiveView;
+  bool wordByWordListen;
   QuranSettingsModel({
     this.isMarkerColored = true,
-    this.isDarkMode = false,
-    this.displayFontSize = 16.0,
-    this.pageDisplayOption = 0,
+    this.displayFontSize = 25.0,
+    this.isAdaptiveView = false,
+    this.wordByWordListen = true,
   });
 }

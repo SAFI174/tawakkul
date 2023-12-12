@@ -21,7 +21,6 @@ class SettingsSection extends StatelessWidget {
         child: ExpandablePanel(
           controller: ExpandableController(initialExpanded: true),
           header: Material(
-            type: MaterialType.card,
             color: Colors.transparent,
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(9),

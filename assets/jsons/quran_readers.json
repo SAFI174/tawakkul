@@ -3,56 +3,69 @@
         "identifier": "Abdul_Basit_Mujawwad_128kbps",
         "name": "عبدالباسط عبدالصمد (مجود)",
         "englishName": "Abdul Basit (Mujawwad)",
-        "FolderName": "Abdul_Basit_Mujawwad"
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Abdul_Basit_Mujawwad_128kbps.json"
     },
     {
         "identifier": "Abdul_Basit_Murattal_64kbps",
         "name": "عبدالباسط عبدالصمد (مرتل)",
         "englishName": "Abdul Basit (Murattal)",
-        "FolderName": "Abdul_Basit_Murattal"
-    },
-
-    {
-        "identifier": "Abu_Bakr_Ash-Shaatree_128kbps",
-        "name": "أبو بكر الشاطري",
-        "englishName": "Abu Bakr Ash-Shaatree",
-        "FolderName": "Abu_Bakr_Ash-Shaatree"
-    },
-    {
-        "identifier": "Hani_Rifai_192kbps",
-        "name": "هاني الرفاعي",
-        "englishName": "Hani Rifai",
-        "FolderName": "Hani_Rifai"
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Abdul_Basit_Murattal_64kbps.json"
     },
     {
         "identifier": "Alafasy_128kbps",
         "name": "مشاري العفاسي",
         "englishName": "Alafasy",
-        "FolderName": "Alafasy"
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Alafasy_128kbps.json"
     },
-    
+    {
+        "identifier": "Abu_Bakr_Ash-Shaatree_128kbps",
+        "name": "أبو بكر الشاطري",
+        "englishName": "Abu Bakr Ash-Shaatree",
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Abu_Bakr_Ash-Shaatree_128kbps.json"
+
+    },
+    {
+        "identifier": "Hani_Rifai_192kbps",
+        "name": "هاني الرفاعي",
+        "englishName": "Hani Rifai",
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Hani_Rifai_192kbps.json"
+    },
+   
     {
         "identifier": "Minshawy_Murattal_128kbps",
         "name": "المنشاوي (مرتل)",
         "englishName": "Minshawy (Murattal)",
-        "FolderName": "Minshawy_Murattal"
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Minshawy_Murattal_128kbps.json"
+    },
+    {
+        "identifier": "Minshawy_Mujawwad_192kbps",
+        "name": "المنشاوي (مجود)",
+        "englishName": "Minshawy (Mujawwad)",
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Minshawy_Mujawwad_192kbps.json"
+    },
+    {
+        "identifier": "Abdurrahmaan_As-Sudais_192kbps",
+        "name": "عبد الرحمن السديس",
+        "englishName": "Abdurrahmaan Al Sudais",
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Abdurrahmaan_As-Sudais_192kbps.json"
     },
     {
         "identifier": "Husary_64kbps",
         "name": "محمود خليل الحصري",
         "englishName": "Husary",
-        "FolderName": "Husary"
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Husary_64kbps.json"
     },
     {
         "identifier": "Mohammad_al_Tablaway_128kbps",
         "name": " محمد الطبلاوي",
         "englishName": "Mohammad Al Tablaway",
-        "FolderName": "Mohammad_al_Tablaway"
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Mohammad_al_Tablaway_128kbps.json"
     },
     {
         "identifier": "Saood_ash-Shuraym_128kbps",
         "name": "سعود الشريم",
         "englishName": "Saud Shuraim",
-        "FolderName": "Saood_ash-Shuraym"
+        "timingDataUrl" : "https://gitea.com/mostafamasri/quran_timing_data/raw/branch/main/Saood_ash-Shuraym_128kbps.json"
     }
+   
 ]

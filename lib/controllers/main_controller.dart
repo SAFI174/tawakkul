@@ -1,26 +1,20 @@
-import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:jhijri/jHijri.dart';
+import 'package:tawakkal/data/repository/daily_content_repository.dart';
+
+import '../data/models/daily_content_model.dart';
 
 class MainController extends GetxController {
-  late String currentDate;
-  late String currentDateHijri;
-
-  void setDate() {
-    var now = DateTime.now();
-    var formatter = DateFormat.yMMMd('ar_SA');
-    currentDate = formatter.format(now);
-    currentDateHijri = ArabicNumbers().convert(
-      HijriDate.now().toString(),
-    );
-  }
-
+  DailyContentModel? dailyContent;
   @override
   void onInit() async {
     super.onInit();
-    setDate();
+  
   }
 
-
+  @override
+  void onReady() async {
+    super.onReady();
+    dailyContent = await DailyContentRepository().getDailyContent();
+    update();
+  }
 }

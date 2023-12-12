@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tawakkal/data/models/azkar_muslim_detail_model.dart';
+import 'package:tawakkal/data/models/azkar_detail_model.dart';
 import 'package:tawakkal/data/repository/azkar_repository.dart';
 
 import '../../constants/enum.dart';
 import '../../utils/dialogs/dialogs.dart';
+import '../data/cache/azkar_settings_cache.dart';
 
 class AzkarDetailsController extends GetxController {
   // List to hold the AzkarDetailModel items
@@ -30,7 +31,7 @@ class AzkarDetailsController extends GetxController {
     // Calculate the sum of completed items based on the counter property of each dua or tasbih
     int completedItemCount = azkarData.fold<int>(
       0,
-      (previousValue, item) => previousValue + item.counter.value,
+      (previousValue, item) => previousValue + item.counter,
     );
 
     // Update the progress based on the calculated values
@@ -38,7 +39,7 @@ class AzkarDetailsController extends GetxController {
 
     // check if the user is done all azkar
     if (progress.value == 1) {
-      if (await showCongratulationsAzkarDialog()) {
+      if (await showAzkarCompletedDialog()) {
         onResetAllButtonPressed();
       }
     }
@@ -51,6 +52,7 @@ class AzkarDetailsController extends GetxController {
         AzkarRepository().resetCountersForType(zkrType: zkrType);
       }
     }
+    update();
   }
 
   // Fetch data based on the specified AzkarPageType
@@ -72,8 +74,8 @@ class AzkarDetailsController extends GetxController {
   // Function to handle the reset button press
   void onResetButtonPressed({required AzkarDetailModel zkr}) {
     // Reset the counter and mark the item as not done
-    zkr.counter.value = zkr.count;
-    zkr.isDone.value = false;
+    zkr.counter = zkr.count;
+    zkr.isDone = false;
 
     // Update the progress after the reset
     updateProgress();
@@ -84,13 +86,13 @@ class AzkarDetailsController extends GetxController {
     // Decrement the counter
     if (zkr.counter > 0) {
       zkr.counter = zkr.counter - 1;
-      if (zkr.counter.value == 0) {
+      if (zkr.counter == 0) {
         // If the counter reaches zero, mark the item as done
-        zkr.isDone.value = true;
+        zkr.isDone = true;
       }
     } else {
       // If the counter is already zero, mark the item as done
-      zkr.isDone.value = true;
+      zkr.isDone = true;
     }
 
     // Update the progress after the counter change
@@ -109,8 +111,8 @@ class AzkarDetailsController extends GetxController {
       await Future.delayed(const Duration(milliseconds: 250));
     }
     for (var element in azkarData) {
-      element.counter.value = element.count;
-      element.isDone.value = false;
+      element.counter = element.count;
+      element.isDone = false;
     }
     // Reset the progress bar
     progress.value = 0;
@@ -126,18 +128,20 @@ class AzkarDetailsController extends GetxController {
 
   // Function to check if the user is done all azkar
   bool isUserDoneAllAzkar() {
-    return azkarData.every((element) => element.isDone.value == true);
+    return azkarData.every((element) => element.isDone == true);
   }
 
   // Show confirmation dialog on exit
   Future<bool> showConfirmationDialogForExit() async {
-    if (!isUserDoneAllAzkar() && progress.value > 0) {
-      if (await showAzkarNotDoneDialog()) {
-        // Save data to cache for future use
-        if (progress.value != 0) {
-          await AzkarRepository().saveAzkarProgress(data: azkarData);
+    if (AzkarSettingsCache.getShowExitConfirmDialog()) {
+      if (!isUserDoneAllAzkar() && progress.value > 0) {
+        if (await showAzkarNotDoneDialog()) {
+          // Save data to cache for future use
+          if (progress.value != 0) {
+            await AzkarRepository().saveAzkarProgress(data: azkarData);
+          }
+          Get.back();
         }
-        Get.back();
       }
     }
     return Future.value(true);

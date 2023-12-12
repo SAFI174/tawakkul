@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
+
 import 'package:get/get.dart';
-import '../../constants/enum.dart';
-import '../data/cache/quran_settings.dart';
+import '../data/cache/quran_settings_cache.dart';
 import '../data/models/quran_settings_model.dart';
 import 'quran_reading_controller.dart';
 
 class QuranSettingsController extends GetxController {
   late final QuranSettingsModel settingsModel;
-  late final QuranSettingsCache settingsCache;
-  late final QuranReadingController quranPageViewController;
+  QuranReadingController? quranReadingController;
 
   // Method to handle the switch for marker color
   void onMarkerColorSwitched(bool value) async {
@@ -17,9 +16,8 @@ class QuranSettingsController extends GetxController {
     update(); // Manually trigger UI update
   }
 
-  // Method to handle the switch for dark mode
-  void onThemeSwitched(bool value) async {
-    settingsModel.isDarkMode = value;
+  void onWordByWordSwitched(bool value) async {
+    settingsModel.wordByWordListen = value;
     await _updateSettingsCache(); // Update settings cache
     update(); // Manually trigger UI update
   }
@@ -32,39 +30,41 @@ class QuranSettingsController extends GetxController {
   }
 
   // Method to handle the change in page display option
-  void onDisplayOptionChanged(int value) async {
-    settingsModel.pageDisplayOption = value;
+  void onDisplayOptionChanged(bool isAdaptive) async {
+    settingsModel.isAdaptiveView = isAdaptive;
     await _updateSettingsCache(); // Update settings cache
     update(); // Manually trigger UI update
   }
 
   // Method to update the settings cache
   Future<void> _updateSettingsCache() async {
-    await settingsCache.setMarkerColor(value: settingsModel.isMarkerColored);
-    await settingsCache.setThemeMode(
-        themeMode: settingsModel.isDarkMode ? ThemeMode.dark : ThemeMode.light);
-    await settingsCache.setQuranFontSize(
+    QuranSettingsCache.setMarkerColor(value: settingsModel.isMarkerColored);
+
+    QuranSettingsCache.setQuranFontSize(
         fontSize: settingsModel.displayFontSize);
-    await settingsCache.setQuranDisplayType(
-        quranDisplay: QuranDisplayEnum.values[settingsModel.pageDisplayOption]);
-    quranPageViewController.isMarkerColored.value =
-        settingsModel.isMarkerColored;
-    quranPageViewController.quranDisplayEnum.value =
-        QuranDisplayEnum.values[settingsModel.pageDisplayOption];
-    quranPageViewController.quranFontSize.value = settingsModel.displayFontSize;
+    QuranSettingsCache.setQuranAdaptiveView(
+        isAdaptiveView: settingsModel.isAdaptiveView);
+    QuranSettingsCache.setWordByWordListen(
+        isWordByWord: settingsModel.wordByWordListen);
+
+    try {
+      quranReadingController = Get.find<QuranReadingController>();
+
+      quranReadingController!.displaySettings = settingsModel;
+      quranReadingController!.update();
+    } catch (e) {
+      log(e.toString());
+    }
+    update();
   }
 
   // Method to initialize the controller
   Future<void> init() async {
     settingsModel = QuranSettingsModel();
-    settingsCache = QuranSettingsCache();
-    settingsModel.isMarkerColored = await settingsCache.getMarkerColor();
-    settingsModel.isDarkMode =
-        (await settingsCache.getThemeMode()) == ThemeMode.dark;
-    settingsModel.pageDisplayOption =
-        (await settingsCache.getQuranDisplayType()).index;
-    settingsModel.displayFontSize = await settingsCache.getQuranFontSize();
-    quranPageViewController = Get.find();
+    settingsModel.isMarkerColored = QuranSettingsCache.isQuranColored();
+    settingsModel.isAdaptiveView = QuranSettingsCache.isQuranAdaptiveView();
+    settingsModel.displayFontSize = QuranSettingsCache.getQuranFontSize();
+    settingsModel.wordByWordListen = QuranSettingsCache.isWordByWordListen();
     update(); // Manually trigger UI update after initialization
   }
 

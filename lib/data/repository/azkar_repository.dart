@@ -1,7 +1,7 @@
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:tawakkal/constants/enum.dart';
-import 'package:tawakkal/data/models/azkar_muslim_category_mode.dart';
-import 'package:tawakkal/data/models/azkar_muslim_detail_model.dart';
+import 'package:tawakkal/data/models/azkar_category_mode.dart';
+import 'package:tawakkal/data/models/azkar_detail_model.dart';
 import 'package:tawakkal/utils/dialogs/dialogs.dart';
 
 import '../../services/database_service.dart';
@@ -13,8 +13,6 @@ class AzkarRepository {
 
   // Fetch Azkar categories from the database
   Future<List<AzkarCategoryModel>> getAzkarCategories() async {
-    // Ensure the database is initialized
-    await _databaseService.initDatabase();
     // Retrieve data from the category table
     final data = await _databaseService.readData(tableName: _categoryTable);
     // Map the data to AzkarCategoryModel and return the list
@@ -23,8 +21,6 @@ class AzkarRepository {
 
   // Reset counters for a specific Azkar type
   Future<void> resetCountersForType({required AzkarPageType zkrType}) async {
-    // Ensure the database is initialized
-    await _databaseService.initDatabase();
     // Update Azkar details table to reset counters for the specified type
     await _databaseService.updateDataQuery(
       query:
@@ -33,8 +29,6 @@ class AzkarRepository {
   }
 
   Future<void> resetCountersForCategoryId({required int categoryId}) async {
-    // Ensure the database is initialized
-    await _databaseService.initDatabase();
     // Update Azkar details table to reset counters for the specified type
     await _databaseService.updateDataQuery(
       query:
@@ -45,15 +39,13 @@ class AzkarRepository {
   Future<void> saveAzkarProgress({
     required List<AzkarDetailModel> data,
   }) async {
-    // Ensure the database is initialized
-    await _databaseService.initDatabase();
     // Iterate through the list and update the database for each Azkar detail
     for (var azkarDetail in data) {
       await _databaseService.updateData(
         table: _azkarDetailsTable,
         values: {
-          'counter': azkarDetail.counter.value,
-          'isDone': azkarDetail.isDone.value
+          'counter': azkarDetail.counter,
+          'isDone': azkarDetail.isDone ? 1 : 0,
         }, // Assuming toJson returns a Map<String, dynamic>
         where: 'id = ?', // Adjust the condition based on your data structure
         whereArgs: [
@@ -67,8 +59,6 @@ class AzkarRepository {
   Future<List<AzkarDetailModel>> getAzkarByType({
     required AzkarPageType zkrType,
   }) async {
-    // Ensure the database is initialized
-    await _databaseService.initDatabase();
     // Fetch Azkar details from the database based on the specified type
     var azkarData = await _fetchAzkarDataByType(zkrType);
 
@@ -102,8 +92,8 @@ class AzkarRepository {
 
   // Check if there is previous progress for Azkar
   bool _hasPreviousProgress(List<AzkarDetailModel> azkarData) {
-    return azkarData.any((element) =>
-        element.counter.value < element.count || element.isDone.value);
+    return azkarData
+        .any((element) => element.counter < element.count || element.isDone);
   }
 
 // Fetch Azkar details by type from the database
@@ -120,8 +110,6 @@ class AzkarRepository {
   // Get Azkar details by category ID from the database
   Future<List<AzkarDetailModel>> getAzkarByCategoryId(
       {required categoryId}) async {
-    // Ensure the database is initialized
-    await _databaseService.initDatabase();
     var azkarData = await _fetchAzkarDataByCategoryId(categoryId);
     // Check if there is previous progress
     if (_hasPreviousProgress(azkarData)) {

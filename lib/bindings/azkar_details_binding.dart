@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../controllers/azkar_details_controller.dart';
 
-class DuaTasbihMultiBinding extends Bindings {
+class AzkarDetailsBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<AzkarDetailsController>(

@@ -1,37 +1,29 @@
-import 'dart:ui';
-
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:tawakkal/constants/constants.dart';
+import 'package:tawakkal/data/cache/app_settings_cache.dart';
+
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import 'constants/themes.dart';
-import 'data/cache/quran_settings.dart';
 import 'routes/app_pages.dart';
-
-// Custom scroll behavior to support multiple pointer devices
-class AppScrollBehavior extends MaterialScrollBehavior {
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-      };
-}
+import 'services/shared_preferences_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize GetStorage for different data types
-  await GetStorage.init('audio_settings');
-  await GetStorage.init('app_settings');
-  await GetStorage.init('azkar_progress');
   await GetStorage.init('bookmarks');
-
-  // Retrieve the current theme from cache
-  final currentTheme = await QuranSettingsCache().getThemeMode();
-
+  await GetStorage.init('daily_content');
+  // init SharedPreferencesService for app preference
+  await Get.putAsync(() async {
+    var service = SharedPreferencesService();
+    await service.init();
+    return service;
+  });
   runApp(
     ResponsiveSizer(
       builder: (context1, orientation, screenType) {
@@ -46,26 +38,25 @@ void main() async {
               child: child!,
             );
           },
-          // Dispose AudioService on app dispose
           onDispose: () async {
+            // ignore: deprecated_member_use
             await AudioService.stop();
           },
           supportedLocales: const [
             Locale('ar', 'SA'), // Arabic
           ],
           // Set the default locale
-          locale: const Locale('ar'),
+          locale: const Locale('ar', 'SA'),
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
           ],
-          // Use custom scroll behavior
-          scrollBehavior: AppScrollBehavior(),
           debugShowCheckedModeBanner: false,
-          title: "tawakkal",
+          title: appName,
           theme: lightTheme,
           darkTheme: darkTheme,
-          themeMode: currentTheme,
+          themeMode: AppSettingsCache.getThemeMode(),
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
         );

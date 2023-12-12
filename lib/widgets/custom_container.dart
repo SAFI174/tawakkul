@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomContainer extends StatelessWidget {
-  const CustomContainer({super.key, required this.child});
+  const CustomContainer(
+      {super.key, required this.child, this.useMaterial = false});
   final Widget child;
+  final bool useMaterial;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +15,13 @@ class CustomContainer extends StatelessWidget {
           color: Theme.of(context).disabledColor.withAlpha(40),
         ),
       ),
-      child: Material(borderRadius: BorderRadius.circular(8), child: child),
+      child: useMaterial
+          ? Material(
+
+              borderRadius: BorderRadius.circular(8),
+              child: child,
+            )
+          : child,
     );
   }
 }

@@ -20,14 +20,10 @@ class QuranAudioDownloadManagerPage
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          shadowColor: Theme.of(context).shadowColor,
-          elevation: 1,
-          titleTextStyle: Theme.of(context).textTheme.titleMedium,
+          titleTextStyle: Theme.of(context).primaryTextTheme.titleMedium,
           title: const Text(
-            'إدارات الملفات الصوتية',
-            style: TextStyle(color: Colors.white),
+            'إداراة الملفات الصوتية',
           ),
-          centerTitle: false,
         ),
         body: FutureBuilder(
           future: ReadersRepository().getQuranReaders(),
@@ -81,7 +77,6 @@ class QuranAudioDownloadManagerPage
 
   Widget _buildReaderHeader(BuildContext context, int readerIndex) {
     return Material(
-      type: MaterialType.card,
       color: Colors.transparent,
       borderRadius: const BorderRadius.only(
         topRight: Radius.circular(9),

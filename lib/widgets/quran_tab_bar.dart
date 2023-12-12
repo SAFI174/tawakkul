@@ -16,9 +16,6 @@ class QuranTabBar extends StatelessWidget {
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
-        labelPadding:
-            EdgeInsets.zero, // Auto-adjust font size based on available space
-
         tabs: const [
           Tab(
             text: "السّور",

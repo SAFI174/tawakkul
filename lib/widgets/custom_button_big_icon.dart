@@ -23,7 +23,6 @@ class CustomButtonBigIcon extends StatelessWidget {
       width: 100,
       height: 200,
       child: Material(
-        type: MaterialType.canvas,
         borderRadius: BorderRadius.circular(9),
         child: InkWell(
           borderRadius: BorderRadius.circular(9),

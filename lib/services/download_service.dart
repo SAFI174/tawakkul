@@ -13,7 +13,6 @@ class DownloadService {
       required String saveLocation,
       required String fileName,
       Function(int count, int total)? onReceiveProgress}) async {
-
     // check if file exist first
     if (await File(saveLocation + fileName).exists()) {
       // return file is downloaded before

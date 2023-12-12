@@ -14,6 +14,7 @@ class JuzListView extends GetView {
     return Scaffold(
       body: ListView.builder(
         itemCount: 30,
+        padding: EdgeInsets.zero,
         itemBuilder: (context, juzNumber) {
           juzNumber++;
           return getJuzName(juzNumber).contains(searchText) ||

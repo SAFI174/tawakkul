@@ -30,8 +30,6 @@ class TafsirDetailsPage extends GetView<TafsirDetailsController> {
       titleTextStyle: Get.isDarkMode
           ? Theme.of(context).textTheme.titleMedium
           : Theme.of(context).primaryTextTheme.titleMedium,
-      shadowColor: Theme.of(context).shadowColor,
-      elevation: 1,
       scrolledUnderElevation: 1,
       actions: [
         IconButton(
@@ -40,8 +38,7 @@ class TafsirDetailsPage extends GetView<TafsirDetailsController> {
               () => const TafsirDownloadManagerPage(),
               binding: TafsirDownloadManagerBinding(),
               transition: Transition.rightToLeftWithFade,
-            )!
-                .whenComplete(() => controller.getTafsirsUrls());
+            );
           },
           icon: const Icon(FluentIcons.document_arrow_down_20_regular),
         ),
@@ -102,7 +99,10 @@ class TafsirDetailsPage extends GetView<TafsirDetailsController> {
   Widget buildVerseText() {
     return Text(
       getVerse(controller.surahNumber.value, controller.verseNumber.value),
-      style: const TextStyle(fontFamily: 'MeQuran', fontSize: 25),
+      style: const TextStyle(
+          fontFamily: 'Uthmanic_Script',
+          fontSize: 25,
+          fontWeight: FontWeight.bold),
     );
   }
 

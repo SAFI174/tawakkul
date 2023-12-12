@@ -6,7 +6,49 @@ import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tawakkal/constants/json_path.dart';
 
-import '../../widgets/loading_error_text.dart';
+Future<bool> showAskUserForAlarmPermission() async {
+  return await Get.dialog(AlertDialog(
+    title: const Text('إذن التنبيهات'),
+    content: const Text(
+        'ليقوم التطبيق بتذكيرك باوقات الصلاة والاذكار يجب إعطاء إذن التنبيهات'),
+    actions: <Widget>[
+      TextButton(
+        onPressed: () {
+          Get.back(result: true);
+        },
+        child: const Text('السماح'),
+      ),
+      TextButton(
+        onPressed: () {
+          Get.back(result: false);
+        },
+        child: const Text('لاحقاََ'),
+      )
+    ],
+  ));
+}
+
+Future<bool> showAskUserForNotificationsPermission() async {
+  return await Get.dialog(AlertDialog(
+    title: const Text('إذن اظهار الإشعارات'),
+    content: const Text(
+        'ليقوم التطبيق بتذكيرك باوقات الصلاة والاذكار يجب إعطاء إذن اظهار الإشعارات'),
+    actions: [
+      TextButton(
+        onPressed: () {
+          Get.back(result: true);
+        },
+        child: const Text('السماح'),
+      ),
+      TextButton(
+        onPressed: () {
+          Get.back(result: false);
+        },
+        child: const Text('لاحقاََ'),
+      )
+    ],
+  ));
+}
 
 // show qibla compass calibration dialog
 void showQiblaCompassCalibrationDialog() {
@@ -141,13 +183,13 @@ Future<void> showLocationDisabledDialog() async {
 }
 
 // Show a dialog indicating no internet connection.
-void showNoInternetDialog() {
-  Get.dialog(
+Future<void> showNoInternetDialog() async {
+  await Get.dialog(
     Directionality(
       textDirection: TextDirection.rtl,
       child: AlertDialog(
         title: const Text('لا يوجد اتصال بالإنترنت'),
-        content: const LoadingErrorText(),
+        content: const Text('حدث خطأ ما. يرجى المحاولة لاحقاََ'),
         actions: [
           TextButton(
             onPressed: () {
@@ -161,9 +203,29 @@ void showNoInternetDialog() {
   );
 }
 
+Future<bool> showAskUserForDownloadTimingData() async {
+  return await Get.dialog(
+    AlertDialog(
+      title: const Text('تنبيه'),
+      content: const Text(
+          'يجب تنزيل ملفات التوقيت أولاً لتميز كلمة بكلمة. هل تريد التحميل الآن؟'),
+      actions: [
+        TextButton(
+          onPressed: () => Get.back(result: true),
+          child: const Text('تنزيل'),
+        ),
+        TextButton(
+          onPressed: () => Get.back(result: false),
+          child: const Text('إلغاء'),
+        ),
+      ],
+    ),
+  );
+}
+
 // عرض مربع حوار يشير إلى فشل التنزيل.
-void showDownloadFailedDialog() {
-  showDialog(
+Future<void> showDownloadFailedDialog() async {
+  await showDialog(
     context: Get.overlayContext!,
     builder: (context) {
       return AlertDialog(
@@ -181,8 +243,8 @@ void showDownloadFailedDialog() {
   );
 }
 
-// show celebration dialog for done azkar
-Future<dynamic> showCongratulationsAzkarDialog() {
+// show Completed dialog for  azkar
+Future<dynamic> showAzkarCompletedDialog() {
   return Get.dialog(
     AlertDialog(
       content: Column(
@@ -209,6 +271,60 @@ Future<dynamic> showCongratulationsAzkarDialog() {
             Get.back(result: true);
           },
           child: const Text('إعادة'),
+        ),
+      ],
+    ),
+  );
+}
+
+Future<bool> showResetTasbihCountersDialog() async {
+  return await Get.dialog(
+    AlertDialog(
+      title: const Text(
+        'إعادة ضبط',
+      ),
+      content: const Text(
+        'هل أنت متأكد أنك تريد تصفير العدادات؟',
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back(result: false);
+          },
+          child: const Text(
+            'إلغاء',
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.back(result: true);
+          },
+          child: const Text('تصفير'),
+        ),
+      ],
+    ),
+  );
+}
+
+Future<bool> showDeleteItemDialog() async {
+  return await Get.dialog(
+    AlertDialog(
+      title: const Text('تأكيد الحذف'),
+      content: const Text('هل أنت متأكد أنك تريد حذف هذا العنصر؟'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back(result: false); // Close the dialog
+          },
+          child: const Text('إلغاء'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.back(result: true); // Close the dialog
+          },
+          child: const Text(
+            'حذف',
+          ),
         ),
       ],
     ),

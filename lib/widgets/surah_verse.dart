@@ -7,14 +7,16 @@ class SurahVerseWidget extends StatelessWidget {
     super.key,
     required this.surah,
     required this.verse,
+    this.showSurahName = true,
   });
 
   final int surah;
   final int verse;
-
+  final bool showSurahName;
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsets.all(3),
@@ -37,12 +39,14 @@ class SurahVerseWidget extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          getSurahNameOnlyArabicSimple(surah),
-        ),
-        const SizedBox(
-          width: 3,
-        ),
+        if (showSurahName) ...{
+          Text(
+            getSurahNameOnlyArabicSimple(surah),
+          ),
+          const SizedBox(
+            width: 3,
+          ),
+        }
       ],
     );
   }
