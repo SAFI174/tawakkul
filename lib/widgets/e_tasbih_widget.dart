@@ -65,7 +65,6 @@ class TasbihWidget extends StatelessWidget {
             Material(
               borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(9), topLeft: Radius.circular(9)),
-              type: MaterialType.card,
               child: Row(
                 children: [
                   buildTextIconButton(

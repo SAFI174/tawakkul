@@ -11,17 +11,16 @@ class TafsirDownloadManagerPage
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var titleTextStyle = theme.textTheme.titleSmall;
+    var subtitleTextStyle = TextStyle(color: theme.hintColor);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          scrolledUnderElevation: 1,
-          elevation: 1,
-          shadowColor: theme.shadowColor,
           title: const Text(
             'تفسير',
-            style: TextStyle(color: Colors.white),
           ),
+            titleTextStyle: Theme.of(context).primaryTextTheme.titleMedium,
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,59 +40,62 @@ class TafsirDownloadManagerPage
                   return CustomCircularProgressIndicator();
                 } else {
                   var tafsirList = snapshot.data!;
-                  return ListView.builder(
+                  return ListView.separated(
                     itemCount: tafsirList.length,
+                    separatorBuilder: (context, index) {
+                      return Divider();
+                    },
                     itemBuilder: (BuildContext context, int index) {
                       final tafsir = tafsirList[index];
 
                       return Obx(
                         () {
-                          return Column(
-                            children: [
-                              ListTile(
-                                  title: Text(tafsir.name!),
-                                  subtitle: Text(tafsir.englishName!),
-                                  trailing: !tafsir.isDownloaded.value
-                                      ? !tafsir.isDownloading.value
-                                          ? IconButton(
-                                              style: IconButton.styleFrom(
-                                                  visualDensity:
-                                                      VisualDensity.compact),
-                                              onPressed: () async {
-                                                controller
-                                                    .onDownloadButtonPressed(
-                                                        tafsir);
-                                              },
-                                              icon: Icon(
-                                                Iconsax.arrow_down_2,
-                                                color:
-                                                    theme.colorScheme.primary,
-                                              ),
-                                            )
-                                          : Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: Text(
-                                                '% ${ArabicNumbers().convert(tafsir.downloadProgress.value)}',
-                                                style:
-                                                    theme.textTheme.titleSmall,
-                                              ),
-                                            )
-                                      : IconButton(
+                          return ListTile(
+                              onTap: () {
+                                controller.onDownloadButtonPressed(tafsir);
+                              },
+                              dense: true,
+                              title: Text(
+                                tafsir.name!,
+                                style: titleTextStyle,
+                              ),
+                              subtitle: Text(
+                                tafsir.englishName!,
+                                style: subtitleTextStyle,
+                              ),
+                              trailing: !tafsir.isDownloaded.value
+                                  ? !tafsir.isDownloading.value
+                                      ? IconButton(
                                           style: IconButton.styleFrom(
                                               visualDensity:
                                                   VisualDensity.compact),
                                           onPressed: () async {
-                                            controller.deleteTafsir(tafsir);
+                                            controller.onDownloadButtonPressed(
+                                                tafsir);
                                           },
                                           icon: Icon(
-                                            Iconsax.minus_cirlce,
-                                            color: theme.colorScheme.error,
+                                            Iconsax.arrow_down_2,
+                                            color: theme.colorScheme.primary,
                                           ),
-                                        )),
-                              const Divider(),
-                            ],
-                          );
+                                        )
+                                      : Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Text(
+                                            '% ${ArabicNumbers().convert(tafsir.downloadProgress.value)}',
+                                            style: theme.textTheme.titleSmall,
+                                          ),
+                                        )
+                                  : IconButton(
+                                      style: IconButton.styleFrom(
+                                          visualDensity: VisualDensity.compact),
+                                      onPressed: () async {
+                                        controller.deleteTafsir(tafsir);
+                                      },
+                                      icon: Icon(
+                                        Iconsax.minus_cirlce,
+                                        color: theme.colorScheme.error,
+                                      ),
+                                    ));
                         },
                       );
                     },

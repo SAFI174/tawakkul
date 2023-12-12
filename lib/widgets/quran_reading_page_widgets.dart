@@ -9,12 +9,12 @@ import '../controllers/quran_reading_controller.dart';
 import '../utils/sheets/sheet_methods.dart';
 
 // Widget for displaying the Bismillah text
-Text bismillahTextWidget() {
+Text bismillahTextWidget({double? fontsize}) {
   return Text(
     'ﰡ',
     style: TextStyle(
       fontFamily: 'QCFBSML',
-      fontSize: 23,
+      fontSize: fontsize ?? 23,
       height: 1.1,
       color: Theme.of(Get.context!).colorScheme.onBackground,
     ),

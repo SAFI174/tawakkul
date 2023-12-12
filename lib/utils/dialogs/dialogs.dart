@@ -6,6 +6,50 @@ import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tawakkal/constants/json_path.dart';
 
+Future<bool> showAskUserForAlarmPermission() async {
+  return await Get.dialog(AlertDialog(
+    title: const Text('إذن التنبيهات'),
+    content: const Text(
+        'ليقوم التطبيق بتذكيرك باوقات الصلاة والاذكار يجب إعطاء إذن التنبيهات'),
+    actions: <Widget>[
+      TextButton(
+        onPressed: () {
+          Get.back(result: true);
+        },
+        child: const Text('السماح'),
+      ),
+      TextButton(
+        onPressed: () {
+          Get.back(result: false);
+        },
+        child: const Text('لاحقاََ'),
+      )
+    ],
+  ));
+}
+
+Future<bool> showAskUserForNotificationsPermission() async {
+  return await Get.dialog(AlertDialog(
+    title: const Text('إذن اظهار الإشعارات'),
+    content: const Text(
+        'ليقوم التطبيق بتذكيرك باوقات الصلاة والاذكار يجب إعطاء إذن اظهار الإشعارات'),
+    actions: [
+      TextButton(
+        onPressed: () {
+          Get.back(result: true);
+        },
+        child: const Text('السماح'),
+      ),
+      TextButton(
+        onPressed: () {
+          Get.back(result: false);
+        },
+        child: const Text('لاحقاََ'),
+      )
+    ],
+  ));
+}
+
 // show qibla compass calibration dialog
 void showQiblaCompassCalibrationDialog() {
   Get.dialog(
@@ -163,8 +207,8 @@ Future<bool> showAskUserForDownloadTimingData() async {
   return await Get.dialog(
     AlertDialog(
       title: const Text('تنبيه'),
-      content:
-          const Text('يجب تنزيل ملفات التوقيت أولاً. هل تريد التحميل الآن؟'),
+      content: const Text(
+          'يجب تنزيل ملفات التوقيت أولاً لتميز كلمة بكلمة. هل تريد التحميل الآن؟'),
       actions: [
         TextButton(
           onPressed: () => Get.back(result: true),
@@ -180,7 +224,7 @@ Future<bool> showAskUserForDownloadTimingData() async {
 }
 
 // عرض مربع حوار يشير إلى فشل التنزيل.
-Future<void> showDownloadFailedDialog()async {
+Future<void> showDownloadFailedDialog() async {
   await showDialog(
     context: Get.overlayContext!,
     builder: (context) {
@@ -199,8 +243,8 @@ Future<void> showDownloadFailedDialog()async {
   );
 }
 
-// show celebration dialog for done azkar
-Future<dynamic> showCongratulationsAzkarDialog() {
+// show Completed dialog for  azkar
+Future<dynamic> showAzkarCompletedDialog() {
   return Get.dialog(
     AlertDialog(
       content: Column(

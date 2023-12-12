@@ -109,7 +109,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AZKAR_DETAILS,
-      page: () => const AzkarDetailsPage(),
+      page: () => AzkarDetailsPage(),
       binding: AzkarDetailsBinding(),
     ),
     GetPage(
@@ -128,7 +128,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.QURAN_SEARCH_VIEW,
-      page: () =>  const QuranSearchView(),
+      page: () => const QuranSearchView(),
       binding: QuranSearchBinding(),
     ),
   ];

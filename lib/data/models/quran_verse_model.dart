@@ -40,6 +40,12 @@ class QuranVerseModel {
             (json['words'] ?? []).map((word) => Word.fromJson(word))),
         surahNumber: int.parse((json['verse_key'] ?? '0:0').split(':')[0]));
   }
+  Map<String, dynamic> toJson(QuranVerseModel model) {
+    return {
+      'verse_number': model.verseNumber,
+      'surah_number': model.surahNumber
+    };
+  }
 }
 
 class Word {
@@ -77,5 +83,4 @@ class Word {
       textV1: json['text_v1'],
     );
   }
-  
 }

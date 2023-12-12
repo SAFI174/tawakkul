@@ -1,5 +1,4 @@
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:get/get.dart';
 import 'package:tawakkal/constants/enum.dart';
 
 class AzkarDetailModel {
@@ -8,8 +7,8 @@ class AzkarDetailModel {
   String? title;
   String text;
   String? note;
-  RxInt counter = RxInt(0);
-  RxBool isDone = RxBool(false);
+  int counter;
+  bool isDone;
   AzkarPageType azkarPageType;
 
   AzkarDetailModel({
@@ -19,6 +18,8 @@ class AzkarDetailModel {
     required this.text,
     this.note,
     required this.azkarPageType,
+    this.counter = 0,
+    this.isDone = false,
   });
 
   // Convert AzkarDetailModel to a JSON Map
@@ -28,8 +29,8 @@ class AzkarDetailModel {
       'title': title,
       'text': text,
       'note': note,
-      'counter': counter.value,
-      'isDone': isDone.value,
+      'counter': counter,
+      'isDone': isDone,
       'zkr_type': EnumToString.convertToString(azkarPageType), // Enum to string
     };
   }
@@ -45,7 +46,7 @@ class AzkarDetailModel {
       azkarPageType: EnumToString.fromString(
           AzkarPageType.values, json['zkr_type'] as String)!,
     )
-      ..counter.value = json['counter'] as int
-      ..isDone.value = json['isDone'] == 0 ? false : true;
+      ..counter = json['counter'] as int
+      ..isDone = json['isDone'] == 0 ? false : true;
   }
 }

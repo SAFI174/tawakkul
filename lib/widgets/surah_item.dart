@@ -16,7 +16,7 @@ class SurahItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 68,
+      height: 70,
       child: InkWell(
         borderRadius: BorderRadius.circular(0),
         onTap: onTap,
@@ -66,7 +66,6 @@ class SurahItem extends StatelessWidget {
             child: CustomContainer(
               child: Material(
                 borderRadius: BorderRadius.circular(10),
-                type: MaterialType.card,
                 child: const SizedBox(
                   width: 40,
                   height: 40,

@@ -1,13 +1,12 @@
-import 'package:tawakkal/constants/enum.dart';
-
 class QuranSettingsModel {
   bool isMarkerColored;
   double displayFontSize;
-  QuranDisplayOption displayOption;
-
+  bool isAdaptiveView;
+  bool wordByWordListen;
   QuranSettingsModel({
     this.isMarkerColored = true,
-    this.displayFontSize = 16.0,
-    this.displayOption = QuranDisplayOption.mushaf,
+    this.displayFontSize = 25.0,
+    this.isAdaptiveView = false,
+    this.wordByWordListen = true,
   });
 }

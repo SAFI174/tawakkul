@@ -5,7 +5,6 @@ import 'package:tawakkal/data/models/quran_reader.dart';
 import 'package:tawakkal/utils/dialogs/dialogs.dart';
 import 'package:tawakkal/utils/dialogs/timing_data_download_dialog.dart';
 import 'package:tawakkal/utils/utils.dart';
-import 'package:path/path.dart' as path;
 import '../services/download_service.dart';
 
 class ReaderTimingDataDownloadHandler {

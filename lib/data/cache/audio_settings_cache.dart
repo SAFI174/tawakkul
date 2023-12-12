@@ -1,21 +1,22 @@
-import 'package:get_storage/get_storage.dart';
+import 'dart:convert';
 import 'package:quran/quran.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../constants/cache_keys.dart';
+import '../../services/shared_preferences_service.dart';
 import '../models/quran_play_range_model.dart';
 
 class AudioSettingsCache {
-  static final GetStorage _box = GetStorage('audio_settings');
-
+  static final SharedPreferences prefs =
+      SharedPreferencesService.instance.prefs;
   // Method to save the Quran play range to cache for Range Selector
-  Future<void> setQuranPlayRange(
-      {required QuranPlayRangeModel playRange}) async {
-    setPlayRangeValidState(isValid: true);
-    await _box.write(quranPlayRangeKey, playRange.toJson());
-  }
+  // Future<void> setQuranPlayRange(
+  //     {required QuranPlayRangeModel playRange}) async {
+  //   setPlayRangeValidState(isValid: true);
+  //   prefs.setString(quranPlayRangeKey, jsonEncode(playRange.toJson()));
+  // }
 
-  Future<void> resetSettings() async {
-    await saveQuranPlayRange(
+  static Future<void> resetSettings() async {
+    saveQuranPlayRange(
       playRange: QuranPlayRangeModel(
         startSurah: 1,
         endsSurah: 1,
@@ -23,56 +24,59 @@ class AudioSettingsCache {
         endsVerse: 7,
       ),
     );
-    await saveSpeed(speed: 1.0);
-    await saveRepeat(repeatTimes: 1);
-    await setPlayRangeValidState(isValid: false);
+    saveSpeed(speed: 1.0);
+    saveRepeat(repeatTimes: 1);
+    setPlayRangeValidState(isValid: false);
   }
 
-  Future<void> saveQuranPlayRange(
-      {required QuranPlayRangeModel playRange}) async {
-    await _box.write(quranPlayRangeKey, playRange.toJson());
+  static void saveQuranPlayRange({required QuranPlayRangeModel playRange}) {
+    prefs.setString(quranPlayRangeKey, jsonEncode(playRange.toJson()));
   }
 
-  Future<void> saveSpeed({required double speed}) async {
-    await _box.write(quranSpeedKey, speed);
+  static void saveSpeed({required double speed}) {
+    prefs.setDouble(quranSpeedKey, speed);
   }
 
-  Future<void> setPlayRangeValidState({required bool isValid}) async {
-    await _box.write(playRangeValidKey, isValid);
+  static void setPlayRangeValidState({required bool isValid}) async {
+    prefs.setBool(playRangeValidKey, isValid);
   }
 
-  Future<bool> getPlayRangeValidState() async {
-    if (await _box.read(playRangeValidKey) == null) {
+  static bool getPlayRangeValidState() {
+    var validState = prefs.getBool(playRangeValidKey);
+    if (validState == null) {
+      validState = false;
       setPlayRangeValidState(isValid: false);
     }
-    return await _box.read(playRangeValidKey);
+    return validState;
   }
 
-  Future<void> saveRepeat({required int repeatTimes}) async {
-    await _box.write(quranRepeatKey, repeatTimes);
+  static void saveRepeat({required int repeatTimes}) async {
+    prefs.setInt(quranRepeatKey, repeatTimes);
   }
 
-  Future<double> getSpeed() async {
-    final speed = await _box.read(quranSpeedKey);
+  static double getSpeed() {
+    var speed = prefs.getDouble(quranSpeedKey);
     if (speed == null) {
+      speed = 1.0;
       saveSpeed(speed: 1.0);
     }
-    return await _box.read(quranSpeedKey);
+    return speed;
   }
 
-  Future<int> getRepeat() async {
-    final repeat = await _box.read(quranRepeatKey);
+  static int getRepeat() {
+    var repeat = prefs.getInt(quranRepeatKey);
     if (repeat == null) {
+      repeat = 1;
       saveRepeat(repeatTimes: 1);
     }
-    return await _box.read(quranRepeatKey);
+    return repeat;
   }
 
   // Method to retrieve the Quran play range from cache
-  Future<QuranPlayRangeModel> getQuranPlayRange() async {
-    final playRangeJson = await _box.read(quranPlayRangeKey);
-    if (playRangeJson is Map<String, dynamic>) {
-      return QuranPlayRangeModel.fromJson(playRangeJson);
+  static QuranPlayRangeModel getQuranPlayRange() {
+    final playRangeJson = prefs.getString(quranPlayRangeKey);
+    if (playRangeJson != null) {
+      return QuranPlayRangeModel.fromJson(jsonDecode(playRangeJson));
     } else {
       final playRange = QuranPlayRangeModel(
         startSurah: 1,
@@ -86,20 +90,20 @@ class AudioSettingsCache {
   }
 
   // Method to clear the Quran play range from cache
-  Future<void> clearQuranPlayRange() async {
-    await _box.remove(quranPlayRangeKey);
+  static void clearQuranPlayRange() async {
+    await prefs.remove(quranPlayRangeKey);
   }
 
   /// Sets the play range when the page changes and there is no user-selected play range.
   ///
   /// This method checks the validity of the play range stored in the cache.
   /// If the play range is not valid, it sets a default play range based on the [surahNumber].
-  void setPlayerPlayRange({required int surahNumber}) async {
+  static void setPlayerPlayRange({required int surahNumber}) async {
     // Check if the stored play range is not valid
-    if (!await AudioSettingsCache().getPlayRangeValidState()) {
+    if (!getPlayRangeValidState()) {
       // Set a default play range based on the current surahNumber
       final startSurah = surahNumber;
-      await AudioSettingsCache().saveQuranPlayRange(
+      saveQuranPlayRange(
         playRange: QuranPlayRangeModel(
           startSurah: startSurah,
           startVerse: 1,

@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart';
 import 'package:tawakkal/bindings/quran_search_binding.dart';
-import 'package:tawakkal/data/cache/quran_settings.dart';
+import 'package:tawakkal/data/cache/quran_settings_cache.dart';
 import 'package:tawakkal/data/models/quran_page.dart';
 import 'package:tawakkal/data/models/quran_settings_model.dart';
 import 'package:tawakkal/data/models/quran_verse_model.dart';
 import 'package:tawakkal/utils/quran_utils.dart';
-
 import '../bindings/quran_audio_player_settings_binding.dart';
 import '../data/cache/audio_settings_cache.dart';
 import '../data/models/quran_navigation_data_model.dart';
@@ -37,7 +36,10 @@ class QuranReadingController extends GetxController {
   // Current data for the visible Quran page
   QuranPageModel? currentPageData;
 
+  // display settings model
   late QuranSettingsModel displaySettings;
+
+  // Current words data for the visible Quran page
   List<Word>? currentPageWords;
 
   /// Fetches Quran page data for the specified page number and updates the state.
@@ -90,8 +92,8 @@ class QuranReadingController extends GetxController {
     currentPageData = quranPages[pageIndex];
 
     // Set the player play range for the audio player based on the current page data
-    AudioSettingsCache()
-        .setPlayerPlayRange(surahNumber: currentPageData!.surahNumber);
+    AudioSettingsCache.setPlayerPlayRange(
+        surahNumber: currentPageData!.surahNumber);
 
     // Notify listeners that the data has been updated.
     update();
@@ -130,6 +132,7 @@ class QuranReadingController extends GetxController {
   void onInit() async {
     super.onInit();
     initDisplaySettings();
+    await QuranSettingsCache.setQuranPageHeaderHeight();
     initPageData();
   }
 
@@ -140,16 +143,13 @@ class QuranReadingController extends GetxController {
     displaySettings = QuranSettingsModel();
 
     // Fetch Quran font size from the cache and assign it to displaySettings
-    displaySettings.displayFontSize =
-        await QuranSettingsCache().getQuranFontSize();
+    displaySettings.displayFontSize = QuranSettingsCache.getQuranFontSize();
 
     // Fetch marker color setting from the cache and assign it to displaySettings
-    displaySettings.isMarkerColored =
-        await QuranSettingsCache().getMarkerColor();
+    displaySettings.isMarkerColored = QuranSettingsCache.isQuranColored();
 
     // Fetch Quran display type from the cache and assign it to displaySettings
-    displaySettings.displayOption =
-        await QuranSettingsCache().getQuranDisplayType();
+    displaySettings.isAdaptiveView = QuranSettingsCache.isQuranAdaptiveView();
   }
 
   /// Handles the page change event when the user flips to a new page.
@@ -199,6 +199,40 @@ class QuranReadingController extends GetxController {
     }
   }
 
+  /// Handles highlighting a Verse in response to audio player events.
+  ///
+  /// The method takes the [surahNumber], [verseNumber]
+  /// as parameters to identify and highlight the corresponding Verse.
+  void highlightVerseAudioHandler({
+    required int surahNumber,
+    required int verseNumber,
+  }) {
+    // Calculate the page index based on surah and verse numbers
+    var pageIndex = getPageNumber(surahNumber, verseNumber) - 1;
+
+    // Get the current page
+    final currentPage = quranPages[pageIndex];
+
+    // Check if the current page is not null
+    if (currentPage != null) {
+      // Clear highlights for the all pages
+      QuranUtils.clearHighlightedVersesAndWords(
+          pages: quranPages.whereType<QuranPageModel>().toList());
+
+      // Set the new word to be highlighted
+      final currentVerse = currentPage.verses.firstWhere(
+        (verse) =>
+            verse.verseNumber == verseNumber &&
+            verse.surahNumber == surahNumber,
+      );
+
+      // Check if the word is not already highlighted before setting it
+      if (!currentVerse.isHighlighted.value) {
+        currentVerse.isHighlighted.value = true;
+      }
+    }
+  }
+
   /// Handles highlighting a word in response to audio player events.
   ///
   /// The method takes the [surahNumber], [verseNumber], and [wordIndex]
@@ -214,18 +248,14 @@ class QuranReadingController extends GetxController {
     }
     // Calculate the page index based on surah and verse numbers
     var pageIndex = getPageNumber(surahNumber, verseNumber) - 1;
-
     // Get the current page
     final currentPage = quranPages[pageIndex];
 
     // Check if the current page is not null
     if (currentPage != null) {
-      // Clear highlights for the entire page
-      for (final verse in currentPage.verses) {
-        for (final word in verse.words) {
-          word.isHighlighted.value = false;
-        }
-      }
+      // Clear highlights for the all pages
+      QuranUtils.clearHighlightedVersesAndWords(
+          pages: quranPages.whereType<QuranPageModel>().toList());
 
       // Set the new word to be highlighted
       final currentVerse = currentPage.verses.firstWhere(
@@ -247,14 +277,14 @@ class QuranReadingController extends GetxController {
   /// remove the user-selected player range from cache
   Future<bool> onCloseView() async {
     // Save the last viewed page index to the cache
-    await QuranSettingsCache().setLastPage(pageIndex: pageNumber);
+    QuranSettingsCache.setLastPage(pageIndex: pageNumber);
 
     // Toggle fullscreen mode using QuranUtils, forcing it to true
     await QuranUtils.toggleFullscreen(
         isFullScreen: isFullScreenMode, force: true);
 
     // clear the user-selected player range
-    await AudioSettingsCache().setPlayRangeValidState(isValid: false);
+    AudioSettingsCache.setPlayRangeValidState(isValid: false);
 
     // Return true to indicate the success of the view closure
     return true;
@@ -263,8 +293,7 @@ class QuranReadingController extends GetxController {
   void onMenuItemSelected(dynamic item) {
     if (currentPageData != null) {
       final Map<String, Function> menuActions = {
-        'search': () =>
-            Get.to(() => const QuranSearchView(), fullscreenDialog: true),
+        'search': () => handleSearchPage(),
         'fadl': () => showFadlSheet(),
         'dua': () {
           // Handle the 'دعاء ختم القرآن' item.
@@ -273,7 +302,7 @@ class QuranReadingController extends GetxController {
         'surah': () =>
             showGoToSurahSheet(currentSurah: currentPageData!.surahNumber),
         'juz': () => showGoToJuzSheet(currentJuz: currentPageData!.juzNumber),
-        'bookmark': () => Get.to(QuranBookmarksView(), fullscreenDialog: true),
+        'bookmark': () => handleBookmarkPage(),
         'audio': () => Get.to(
               () => const QuranAudioSettingsPage(),
               binding: QuranAudioPlayerSettingsBinding(),

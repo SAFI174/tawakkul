@@ -42,7 +42,7 @@ class QuranRepository {
         );
       }
       // Add the current word to the last created verse.
-      verses.last.words!.add(
+      verses.last.words.add(
         Word(
           id: word['w_id'],
           verseId: word['verse_id'],
@@ -60,9 +60,9 @@ class QuranRepository {
     // Create and return a QuranPageModel with the collected verse data.
     return QuranPageModel(
       surahNumber: verses.first.surahNumber,
-      hizbNumber: verses.first.hizbNumber!,
-      rubElHizbNumber: verses.first.rubElhizbNumber!,
-      juzNumber: verses.first.juzNumber!,
+      hizbNumber: verses.first.hizbNumber,
+      rubElHizbNumber: verses.first.rubElhizbNumber,
+      juzNumber: verses.first.juzNumber,
       pageNumber: pageNumber,
       verses: verses,
     );

@@ -6,6 +6,7 @@ import 'package:status_bar_control/status_bar_control.dart';
 import 'package:tawakkal/constants/urls.dart';
 import 'package:tawakkal/controllers/quran_reading_controller.dart';
 
+import '../data/models/quran_page.dart';
 import '../data/models/quran_verse_model.dart';
 
 class QuranUtils {
@@ -110,7 +111,9 @@ class QuranUtils {
       // Check if the word is highlighted, then set the color
       // If highlighted, set color to primary; otherwise, use the background color
       return isHighlighted.value
-          ? theme.primaryColor
+          ? Get.isDarkMode
+              ? theme.primaryColor
+              : theme.primaryColor
           : theme.colorScheme.onBackground;
     }
   }
@@ -168,9 +171,16 @@ class QuranUtils {
   }
 
   // Method to clear highlights for all words
-  void clearWordHighlights(List<Word> words) {
-    for (final word in words) {
-      word.isHighlighted.value = false;
+  static void clearHighlightedVersesAndWords({required List<QuranPageModel> pages}) async {
+    for (var page in pages) {
+      for (final verse in page.verses) {
+        verse.isHighlighted.value = false;
+
+        for (final word
+            in verse.words.where((word) => word.isHighlighted.value)) {
+          word.isHighlighted.value = false;
+        }
+      }
     }
   }
 }

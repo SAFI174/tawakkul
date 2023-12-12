@@ -11,6 +11,7 @@ class QuranReader {
     this.name = '',
     this.englishName = '',
     this.surahs,
+    this.timingDataUrl = '',
   });
 
   QuranReader.fromJson(Map<String, dynamic> json) {

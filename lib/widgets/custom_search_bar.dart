@@ -19,7 +19,7 @@ class CustomSearchBar extends StatelessWidget {
         prefixIcon: const Icon(
           FluentIcons.search_24_filled,
         ),
-        hintStyle: TextStyle(fontSize: 14),
+        hintStyle: const TextStyle(fontSize: 14),
         hintText: hintText,
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
@@ -31,7 +31,7 @@ class CustomSearchBar extends StatelessWidget {
 
         // Use a transparent background
         contentPadding:
-            const EdgeInsets.symmetric(vertical: 8.0), // Adjust padding
+            const EdgeInsets.symmetric(vertical: 10.0), // Adjust padding
       ),
     );
   }

@@ -13,8 +13,6 @@ class QuranSearchView extends GetView<QuranSearchController> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          shadowColor: Theme.of(context).shadowColor,
-          elevation: 1,
           titleTextStyle: Theme.of(context).textTheme.titleMedium,
           title: const Text(
             'بحث في القرآن',

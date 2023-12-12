@@ -1,14 +1,16 @@
 import 'package:choice/choice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:quran/quran.dart';
-import '../../../../../data/models/quran_reader.dart';
-import '../../../../../data/repository/readers_repository.dart';
+import 'package:tawakkal/data/cache/quran_settings_cache.dart';
+import 'package:tawakkal/utils/sheets/sheet_methods.dart';
 import '../../../Widgets/surah_verse.dart';
-import '../../../../../routes/app_pages.dart';
+import '../controllers/quran_audio_player_controller.dart';
 import '../controllers/quran_audio_player_settings_controller.dart';
+import '../data/cache/quran_reader_cache.dart';
 
 class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
   const QuranAudioSettingsPage({Key? key}) : super(key: key);
@@ -16,13 +18,12 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-
+    var titleTextStyle = theme.textTheme.titleSmall!;
+    var subtitleTextStyle = TextStyle(color: theme.hintColor);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 1,
-          shadowColor: theme.shadowColor,
           scrolledUnderElevation: 1,
           titleTextStyle: theme.textTheme.titleMedium,
           title: const Text(
@@ -34,390 +35,295 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
               onPressed: controller.onResetSettingsPressed,
               icon: const Icon(Icons.refresh_rounded),
             ),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                padding: EdgeInsets.zero,
+                visualDensity: VisualDensity.comfortable,
+              ),
+              onPressed: controller.onSaveAllPressed,
+              child: const Text('حفظ'),
+            ),
+            Gap(10),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: ListView(
+          children: [
+            ListTile(
+              title: Text(
+                'مجال التشغيل',
+                style: titleTextStyle.copyWith(color: theme.primaryColor),
+              ),
+              dense: true,
+            ),
+            GetBuilder<QuranAudioSettingsController>(
+              builder: (controller) {
+                return Column(
                   children: [
-                    const SurahAyahRangePickerWidget(),
-                    GetBuilder<QuranAudioSettingsController>(
-                      builder: (controller) {
-                        return SelectReaderWidget(
-                          selectedReader: controller.quranReader,
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'إعدادت التشغيل',
-                      style: theme.textTheme.titleMedium!
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'سرعة التلاوة',
-                      style: theme.textTheme.titleSmall,
-                    ),
-                    GetBuilder<QuranAudioSettingsController>(
-                      builder: (controller) {
-                        return Choice<String>.inline(
-                          value: ChoiceSingle.value(controller.selectedSpeed),
-                          onChanged: ChoiceSingle.onChanged(
-                            (value) => controller.selectedSpeed = value ?? '',
-                          ),
-                          itemCount: controller.speedChoice.length,
-                          itemBuilder: (state, i) {
-                            return ChoiceChip(
-                              visualDensity: VisualDensity.compact,
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              labelPadding: EdgeInsets.zero,
-                              selectedColor: theme.colorScheme.primary,
-                              selected: state.selected(
-                                  controller.speedChoice.values.toList()[i]),
-                              onSelected: state.onSelected(
-                                controller.speedChoice.values.toList()[i],
-                              ),
-                              label: ConstrainedBox(
-                                constraints: const BoxConstraints(minWidth: 35),
-                                child: Center(
-                                  child: FittedBox(
-                                    child: Text(
-                                      controller.speedChoice.values.toList()[i],
-                                      style: state.selected(controller
-                                              .speedChoice.values
-                                              .toList()[i])
-                                          ? const TextStyle(
-                                              color: Colors.white, fontSize: 12)
-                                          : TextStyle(fontSize: 12),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              showCheckmark: false,
+                    ListTile(
+                      onTap: () {
+                        showMaterialModalBottomSheet(
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0)),
+                          context: context,
+                          builder: (context) {
+                            return SurahAyahPicker(
+                              isBegin: true,
+                              initSurah: controller.playRange.startSurah,
+                              initVerse: controller.playRange.startVerse,
                             );
                           },
-                          listBuilder: ChoiceList.createScrollable(
-                            spacing: 5,
-                            alignment: WrapAlignment.center,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            padding: const EdgeInsets.only(
-                                top: 15, bottom: 15, left: 0),
-                          ),
                         );
                       },
+                      title: Text(
+                        'بدءاََ من',
+                        style: titleTextStyle,
+                      ),
+                      subtitle: Text(
+                        '${getSurahNameOnlyArabicSimple(controller.playRange.startSurah)}  الآية  ${controller.playRange.startVerse}',
+                        style: subtitleTextStyle,
+                      ),
+                      trailing: SurahVerseWidget(
+                          showSurahName: false,
+                          surah: controller.playRange.startSurah,
+                          verse: controller.playRange.startVerse),
+                      dense: true,
                     ),
-                    Text(
-                      'كرر كل إية',
-                      style: theme.textTheme.titleSmall,
-                    ),
-                    GetBuilder<QuranAudioSettingsController>(
-                      builder: (controller) {
-                        return Choice<String>.inline(
-                          value: ChoiceSingle.value(controller.selectedRepeat),
-                          onChanged: ChoiceSingle.onChanged(
-                            (value) => controller.selectedRepeat = value ?? '',
-                          ),
-                          itemCount: controller.repeatChoice.length,
-                          itemBuilder: (state, i) {
-                            return ChoiceChip(
-                              visualDensity: VisualDensity.compact,
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              labelPadding: EdgeInsets.zero,
-                              selectedColor: theme.colorScheme.primary,
-                              selected: state.selected(
-                                  controller.repeatChoice.values.toList()[i]),
-                              onSelected: state.onSelected(
-                                controller.repeatChoice.values.toList()[i],
-                              ),
-                              label: ConstrainedBox(
-                                constraints: const BoxConstraints(minWidth: 50),
-                                child: Center(
-                                  child: FittedBox(
-                                    child: Text(
-                                      controller.repeatChoice.values
-                                          .toList()[i],
-                                      style: state.selected(controller
-                                              .repeatChoice.values
-                                              .toList()[i])
-                                          ? const TextStyle(
-                                              color: Colors.white, fontSize: 12)
-                                          : TextStyle(fontSize: 12),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              showCheckmark: false,
+                    ListTile(
+                      onTap: () {
+                        showMaterialModalBottomSheet(
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0)),
+                          context: context,
+                          builder: (context) {
+                            return SurahAyahPicker(
+                              isBegin: false,
+                              initSurah: controller.playRange.startSurah,
+                              initVerse: controller.playRange.startVerse,
                             );
                           },
-                          listBuilder: ChoiceList.createScrollable(
-                            spacing: 5,
-                            alignment: WrapAlignment.center,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            padding: const EdgeInsets.only(
-                                top: 15, bottom: 15, left: 0),
-                          ),
                         );
                       },
+                      title: Text(
+                        'إنتهاء عند',
+                        style: titleTextStyle,
+                      ),
+                      subtitle: Text(
+                        '${getSurahNameOnlyArabicSimple(controller.playRange.endsSurah)}  الآية  ${controller.playRange.endsVerse}',
+                        style: subtitleTextStyle,
+                      ),
+                      trailing: SurahVerseWidget(
+                          surah: controller.playRange.endsSurah,
+                          verse: controller.playRange.endsVerse,
+                          showSurahName: false),
+                      dense: true,
                     ),
                   ],
-                ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text(
+                'تحديد سريع',
+                style: titleTextStyle,
               ),
-              FilledButton(
-                  onPressed: controller.onSaveAllPressed, child: Text('حفظ'))
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SelectReaderWidget extends StatelessWidget {
-  const SelectReaderWidget({
-    super.key,
-    required this.selectedReader,
-  });
-  final QuranReader selectedReader;
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          'إعدادت القارئ',
-          style: theme.textTheme.titleMedium!
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () async {
-                var readersList = await ReadersRepository().getQuranReaders();
-                var cachedReader =
-                    await ReadersRepository().getSelectedReaderFromCache();
-                var selectedReader = readersList
-                    .indexWhere((element) => element.name == cachedReader.name);
-                // ignore: use_build_context_synchronously
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: SizedBox(
-                        child: SizedBox(
-                          height: 250,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    Flexible(
-                                      flex: 3,
-                                      child: CupertinoPicker.builder(
-                                        scrollController:
-                                            FixedExtentScrollController(
-                                                initialItem: selectedReader),
-                                        childCount: readersList.length,
-                                        itemExtent: 50,
-                                        onSelectedItemChanged: (value) {
-                                          selectedReader = value;
-                                        },
-                                        itemBuilder: (context, index) {
-                                          return Center(
-                                              child: Text(
-                                            '${index + 1} - ${readersList[index].name}',
-                                            style: theme.textTheme.bodyMedium,
-                                          ));
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FilledButton(
-                                  onPressed: () async {
-                                    ReadersRepository()
-                                        .saveSelectedReaderToCache(
-                                            readersList[selectedReader]);
-
-                                    Get.back();
-                                  },
-                                  child: const Text('موافق'),
-                                ),
-                              ),
-                            ],
-                          ),
+              subtitle: GetBuilder<QuranAudioSettingsController>(
+                builder: (controller) {
+                  return Choice<String>.inline(
+                    clearable: true,
+                    value: ChoiceSingle.value(controller.selectedRange),
+                    onChanged:
+                        ChoiceSingle.onChanged(controller.onRangeChoiceChanged),
+                    itemCount: controller.rangeSpeedChoice.length,
+                    itemBuilder: (state, i) {
+                      return ChoiceChip(
+                        visualDensity: VisualDensity.compact,
+                        selectedColor: theme.colorScheme.primary,
+                        selected:
+                            state.selected(controller.rangeSpeedChoice[i]),
+                        onSelected:
+                            state.onSelected(controller.rangeSpeedChoice[i]),
+                        label: Text(
+                          controller.rangeSpeedChoice[i],
+                          style: state.selected(controller.rangeSpeedChoice[i])
+                              ? const TextStyle(
+                                  color: Colors.white, fontSize: 12)
+                              : const TextStyle(fontSize: 12),
                         ),
-                      ),
-                    );
+                        showCheckmark: false,
+                      );
+                    },
+                    listBuilder: ChoiceList.createScrollable(
+                      spacing: 5,
+                      padding:
+                          const EdgeInsets.only(top: 15, bottom: 15, left: 10),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const Divider(),
+            ListTile(
+              title: Text(
+                'التشغيل',
+                style: titleTextStyle.copyWith(color: theme.primaryColor),
+              ),
+              dense: true,
+            ),
+            ListTile(
+              onTap: () => selectReaderSheet().then((value) {
+                controller.update();
+                // update the selected reader on bottom bar of audio player
+                Get.find<QuranAudioPlayerBottomBarController>()
+                    .selectedReader
+                    .value = QuranReaderCache.getSelectedReaderFromCache();
+              }),
+              title: Text(
+                'القارئ',
+                style: titleTextStyle,
+              ),
+              subtitle: GetBuilder<QuranAudioSettingsController>(
+                builder: (controller) {
+                  return Text(
+                      QuranReaderCache.getSelectedReaderFromCache().name,
+                      style: subtitleTextStyle);
+                },
+              ),
+              dense: true,
+            ),
+            GetBuilder<QuranAudioSettingsController>(
+              builder: (controller) {
+                return SwitchListTile(
+                  dense: true,
+                  title: Text(
+                    'تمييز كلمة بكلمة',
+                    style: titleTextStyle,
+                  ),
+                  subtitle: Text(
+                    'تعزز فهم القرآن كلمة بكلمة أثناء القراءة.\n سيتم التطبيق بشكل كامل عند تشغيل التلاوة من جديد',
+                    style: subtitleTextStyle,
+                  ),
+                  value: QuranSettingsCache.isWordByWordListen(),
+                  onChanged: (value) {
+                    QuranSettingsCache.setWordByWordListen(isWordByWord: value);
+                    controller.update();
                   },
                 );
               },
-              child: Row(
-                children: [
-                  const Icon(Iconsax.edit, size: 18),
-                  const SizedBox(width: 10),
-                  Text(selectedReader.name),
-                ],
+            ),
+            ListTile(
+              title: Text(
+                'سرعة التلاوة',
+                style: titleTextStyle,
+              ),
+              subtitle: GetBuilder<QuranAudioSettingsController>(
+                builder: (controller) {
+                  return Choice<String>.inline(
+                    value: ChoiceSingle.value(controller.selectedSpeed),
+                    onChanged: ChoiceSingle.onChanged(
+                      (value) => controller.selectedSpeed = value ?? '',
+                    ),
+                    itemCount: controller.speedChoice.length,
+                    itemBuilder: (state, i) {
+                      return ChoiceChip(
+                        visualDensity: VisualDensity.compact,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        labelPadding: EdgeInsets.zero,
+                        selectedColor: theme.colorScheme.primary,
+                        selected: state.selected(
+                            controller.speedChoice.values.toList()[i]),
+                        onSelected: state.onSelected(
+                          controller.speedChoice.values.toList()[i],
+                        ),
+                        label: ConstrainedBox(
+                          constraints: const BoxConstraints(minWidth: 35),
+                          child: Center(
+                            child: FittedBox(
+                              child: Text(
+                                controller.speedChoice.values.toList()[i],
+                                style: state.selected(controller
+                                        .speedChoice.values
+                                        .toList()[i])
+                                    ? const TextStyle(
+                                        color: Colors.white, fontSize: 12)
+                                    : const TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          ),
+                        ),
+                        showCheckmark: false,
+                      );
+                    },
+                    listBuilder: ChoiceList.createScrollable(
+                      spacing: 5,
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      padding:
+                          const EdgeInsets.only(top: 15, bottom: 15, left: 0),
+                    ),
+                  );
+                },
               ),
             ),
-            FilledButton.icon(
-              icon: const Icon(Iconsax.arrow_down_2),
-              onPressed: () {
-                Get.toNamed(Routes.RECITER_DOWNLOAD_MANAGER);
-              },
-              label: const Text('إدارة التنزيلات'),
+            ListTile(
+              title: Text(
+                'كرر كل إية',
+                style: titleTextStyle,
+              ),
+              contentPadding: const EdgeInsets.only(right: 16),
+              subtitle: GetBuilder<QuranAudioSettingsController>(
+                builder: (controller) {
+                  return Choice<String>.inline(
+                    value: ChoiceSingle.value(controller.selectedRepeat),
+                    onChanged: ChoiceSingle.onChanged(
+                      (value) => controller.selectedRepeat = value ?? '',
+                    ),
+                    itemCount: controller.repeatChoice.length,
+                    itemBuilder: (state, i) {
+                      return ChoiceChip(
+                        visualDensity: VisualDensity.compact,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        labelPadding: EdgeInsets.zero,
+                        selectedColor: theme.colorScheme.primary,
+                        selected: state.selected(
+                            controller.repeatChoice.values.toList()[i]),
+                        onSelected: state.onSelected(
+                          controller.repeatChoice.values.toList()[i],
+                        ),
+                        label: ConstrainedBox(
+                          constraints: const BoxConstraints(minWidth: 50),
+                          child: Center(
+                            child: FittedBox(
+                              child: Text(
+                                controller.repeatChoice.values.toList()[i],
+                                style: state.selected(controller
+                                        .repeatChoice.values
+                                        .toList()[i])
+                                    ? const TextStyle(
+                                        color: Colors.white, fontSize: 12)
+                                    : const TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          ),
+                        ),
+                        showCheckmark: false,
+                      );
+                    },
+                    listBuilder: ChoiceList.createScrollable(
+                      spacing: 5,
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      padding:
+                          const EdgeInsets.only(top: 15, bottom: 15, left: 0),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
-        )
-      ],
-    );
-  }
-}
-
-class SurahAyahRangePickerWidget extends StatelessWidget {
-  const SurahAyahRangePickerWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    QuranAudioSettingsController controller = Get.find();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          'حدد اللآيات',
-          style: theme.textTheme.titleMedium!
-              .copyWith(fontWeight: FontWeight.bold),
         ),
-        GestureDetector(
-          onTap: () {
-            showModalBottomSheet(
-              elevation: 0,
-              context: context,
-              builder: (context) {
-                return SurahAyahPicker(
-                  isBegin: true,
-                  initSurah: controller.playRange.startSurah,
-                  initVerse: controller.playRange.startVerse,
-                );
-              },
-            );
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('بدء من اللآية'),
-              Row(
-                children: [
-                  const Icon(Iconsax.edit, size: 18),
-                  const SizedBox(width: 10),
-                  GetBuilder<QuranAudioSettingsController>(
-                    builder: (controller) {
-                      return Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: SurahVerseWidget(
-                            surah: controller.playRange.startSurah,
-                            verse: controller.playRange.startVerse),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            showModalBottomSheet(
-              elevation: 0,
-              context: context,
-              builder: (context) {
-                return SurahAyahPicker(
-                  isBegin: false,
-                  initSurah: controller.playRange.endsSurah,
-                  initVerse: controller.playRange.endsVerse,
-                );
-              },
-            );
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('إنتهاء عند اللآية'),
-              Row(
-                children: [
-                  const Icon(Iconsax.edit, size: 18),
-                  const SizedBox(width: 10),
-                  GetBuilder<QuranAudioSettingsController>(
-                    builder: (controller) {
-                      return Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: SurahVerseWidget(
-                            surah: controller.playRange.endsSurah,
-                            verse: controller.playRange.endsVerse),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        Text(
-          'تحديد سريع',
-          style: theme.textTheme.titleSmall,
-        ),
-        GetBuilder<QuranAudioSettingsController>(
-          builder: (controller) {
-            return Choice<String>.inline(
-              clearable: true,
-              value: ChoiceSingle.value(controller.selectedRange),
-              onChanged:
-                  ChoiceSingle.onChanged(controller.onRangeChoiceChanged),
-              itemCount: controller.rangeSpeedChoice.length,
-              itemBuilder: (state, i) {
-                return ChoiceChip(
-                  visualDensity: VisualDensity.compact,
-                  selectedColor: theme.colorScheme.primary,
-                  selected: state.selected(controller.rangeSpeedChoice[i]),
-                  onSelected: state.onSelected(controller.rangeSpeedChoice[i]),
-                  label: Text(
-                    controller.rangeSpeedChoice[i],
-                    style: state.selected(controller.rangeSpeedChoice[i])
-                        ? const TextStyle(color: Colors.white, fontSize: 12)
-                        : TextStyle(fontSize: 12),
-                  ),
-                  showCheckmark: false,
-                );
-              },
-              listBuilder: ChoiceList.createScrollable(
-                spacing: 5,
-                padding: const EdgeInsets.only(top: 15, bottom: 15, left: 10),
-              ),
-            );
-          },
-        ),
-      ],
+      ),
     );
   }
 }
@@ -467,7 +373,7 @@ class SurahAyahPicker extends GetView<QuranAudioSettingsController> {
                         itemBuilder: (context, index) {
                           return Center(
                               child: Text(
-                            '${index + 1} - ${getSurahNameArabic(index + 1)}',
+                            '${index + 1} - ${getSurahNameOnlyArabicSimple(index + 1)}',
                             style: theme.textTheme.bodyMedium,
                           ));
                         },

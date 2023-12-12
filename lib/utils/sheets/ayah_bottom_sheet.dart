@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:quran/quran.dart';
+import 'package:tawakkal/data/models/quran_play_range_model.dart';
 import 'package:tawakkal/data/models/quran_verse_model.dart';
 import 'package:tawakkal/utils/quran_utils.dart';
 import 'package:tawakkal/utils/utils.dart';
@@ -172,10 +173,11 @@ class AyahBottomSheet extends GetView<AyahBottomSheetController> {
                 // Play the audio from the current verse
                 QuranAudioPlayerBottomBarController controller = Get.find();
                 controller.onMainPlayPressed(
-                  startSurah: verse.surahNumber,
-                  endSurah: verse.surahNumber,
-                  startVerse: verse.verseNumber,
-                  endVerse: getVerseCount(verse.surahNumber),
+                  playRangeModel: QuranPlayRangeModel(
+                      startSurah: verse.surahNumber,
+                      endsSurah: verse.surahNumber,
+                      startVerse: verse.verseNumber,
+                      endsVerse: getVerseCount(verse.surahNumber)),
                 );
                 Get.back();
               },

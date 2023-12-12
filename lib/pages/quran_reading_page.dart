@@ -4,19 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart';
-import 'package:tawakkal/constants/enum.dart';
-import 'package:tawakkal/constants/strings.dart';
+import 'package:tawakkal/constants/constants.dart';
+import 'package:tawakkal/data/cache/quran_settings_cache.dart';
 import 'package:tawakkal/utils/quran_utils.dart';
 import 'package:tawakkal/utils/sheets/sheet_methods.dart';
 import 'package:tawakkal/widgets/custom_pop_menu_item.dart';
 import 'package:tawakkal/widgets/custom_scroll_behavior.dart';
 import '../../../../data/models/quran_page.dart';
-import '../../Views/quran_search_view.dart';
 import '../../../../routes/app_pages.dart';
 import 'package:iconsax/iconsax.dart';
 import '../controllers/quran_reading_controller.dart';
 import '../data/models/quran_verse_model.dart';
-import '../views/quran_bookmarks_view.dart';
 import '../widgets/quran_reading_page_widgets.dart';
 import 'quran_audio_player_page.dart';
 
@@ -84,9 +82,7 @@ class QuranReadingPage extends GetView<QuranReadingController> {
               duration: const Duration(milliseconds: 200),
               opacity: controller.isFullScreenMode.value ? 0 : 1,
               child: AppBar(
-                shadowColor: theme.colorScheme.shadow,
                 titleSpacing: 0,
-                elevation: 1,
                 leading: buildAppBarMenuButton(),
                 actions: buildAppBarActions(),
                 title: buildAppBarTitle(),
@@ -158,6 +154,7 @@ class QuranReadingPage extends GetView<QuranReadingController> {
   // pop up menu that contains quick actions
   PopupMenuButton<dynamic> buildAppBarMenuButton() {
     return PopupMenuButton(
+      position: PopupMenuPosition.under,
       itemBuilder: (context) {
         return [
           CustomPopupMenuItem.build(
@@ -244,46 +241,41 @@ class QuranPageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     var textStyle = Theme.of(context).textTheme.labelSmall;
 
-    return FutureBuilder(
-      future: QuranUtils.getQuranPageHeaderHeight(),
-      builder: (context, snapshot) {
-        return SizedBox(
-          height: snapshot.data ?? 79,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SizedBox(
+      height: QuranSettingsCache.getStatusBarHeight(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              // Display Surah names of the page
+              getPageData(page.pageNumber)
+                  .map((element) =>
+                      getSurahNameOnlyArabicSimple(element['surah']))
+                  .join(' | '),
+              style: textStyle,
+            ),
+            // Display Juz number and Hizb details of the page
+            Row(
               children: [
+                Text('الجزء ${ArabicNumbers().convert(page.juzNumber)}',
+                    style: textStyle),
+                const Gap(8),
                 Text(
-                  // Display Surah names of the page
-                  getPageData(page.pageNumber)
-                      .map((element) =>
-                          getSurahNameOnlyArabicSimple(element['surah']))
-                      .join(' | '),
+                  ArabicNumbers().convert(
+                    getHizbText(
+                      hizbNumber: page.hizbNumber,
+                      rubElHizbNumber: page.rubElHizbNumber,
+                    ),
+                  ),
                   style: textStyle,
                 ),
-                // Display Juz number and Hizb details of the page
-                Row(
-                  children: [
-                    Text('الجزء ${ArabicNumbers().convert(page.juzNumber)}',
-                        style: textStyle),
-                    const Gap(8),
-                    Text(
-                      ArabicNumbers().convert(
-                        getHizbText(
-                          hizbNumber: page.hizbNumber,
-                          rubElHizbNumber: page.rubElHizbNumber,
-                        ),
-                      ),
-                      style: textStyle,
-                    ),
-                  ],
-                )
               ],
-            ),
-          ),
-        );
-      },
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -300,8 +292,7 @@ class QuranPageView extends GetView<QuranReadingController> {
     controller.currentPageWords = allWords;
     return GetBuilder<QuranReadingController>(
       builder: (controller) {
-        if (controller.displaySettings.displayOption ==
-            QuranDisplayOption.adaptive) {
+        if (controller.displaySettings.isAdaptiveView) {
           return QuranAdaptiveView(
               words: allWords,
               page: page,

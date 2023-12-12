@@ -17,17 +17,15 @@ class SurahListView extends GetView {
         .where((surahNumber) =>
             quran.getSurahNameArabicSimple(surahNumber).contains(searchText))
         .toList();
-    return ListView.builder(
+    return ListView.separated(
+      padding: EdgeInsets.zero,
       itemCount: surahNumbers.length,
-      itemExtent: 70,
+      separatorBuilder: (context, index) {
+        return const Divider(height: 1);
+      },
       itemBuilder: (BuildContext context, int index) {
         final surahNumber = surahNumbers[index];
-        return Column(
-          children: [
-            buildSurahItem(context, surahNumber),
-            const Divider(height: 1)
-          ],
-        );
+        return buildSurahItem(context, surahNumber);
       },
     );
   }

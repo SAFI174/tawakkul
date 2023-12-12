@@ -1,16 +1,12 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:quran/quran.dart';
 import '../../../../../data/models/quran_page.dart';
-import '../../../../../data/models/quran_reader.dart';
-import '../../../../../data/repository/readers_repository.dart';
 import '../data/cache/audio_settings_cache.dart';
 import '../data/models/quran_play_range_model.dart';
 
 class QuranAudioSettingsController extends GetxController {
-  late final AudioSettingsCache cacheManager;
   late final QuranPageModel currentPageData;
-  late QuranReader quranReader;
+
   late QuranPlayRangeModel playRange;
 
   String selectedRange = '';
@@ -44,12 +40,8 @@ class QuranAudioSettingsController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    quranReader = QuranReader();
     playRange = QuranPlayRangeModel();
-    quranReader = await ReadersRepository().getSelectedReaderFromCache();
-    playRange = await AudioSettingsCache().getQuranPlayRange();
-
-    cacheManager = AudioSettingsCache();
+    playRange = AudioSettingsCache.getQuranPlayRange();
     initSettings();
     currentPageData = Get.arguments!;
 
@@ -59,15 +51,13 @@ class QuranAudioSettingsController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
-    // Get the selected reader from cache and listen for changes
-    listenForReaderChanges();
   }
 
   // Init settings data
   void initSettings() async {
-    playRange = await AudioSettingsCache().getQuranPlayRange();
-    selectedRepeat = repeatChoice[await cacheManager.getRepeat()].toString();
-    selectedSpeed = speedChoice[await cacheManager.getSpeed()].toString();
+    playRange = AudioSettingsCache.getQuranPlayRange();
+    selectedRepeat = repeatChoice[AudioSettingsCache.getRepeat()].toString();
+    selectedSpeed = speedChoice[AudioSettingsCache.getSpeed()].toString();
   }
 
   // save all settings and exit
@@ -79,27 +69,17 @@ class QuranAudioSettingsController extends GetxController {
         .firstWhere((element) => repeatChoice[element] == selectedRepeat);
 
     // Save the Quran play range, speed, and repeat to cache
-    // await cacheManager.setQuranPlayRange(playRange: playRange);
-    await cacheManager.saveSpeed(speed: speed);
-    await cacheManager.saveRepeat(repeatTimes: repeat);
-    await cacheManager.saveQuranPlayRange(playRange: playRange);
+    AudioSettingsCache.saveSpeed(speed: speed);
+    AudioSettingsCache.saveRepeat(repeatTimes: repeat);
+    AudioSettingsCache.saveQuranPlayRange(playRange: playRange);
+   
     // Close the settings page
     Get.back();
   }
 
-  //keep listen if the reader changed
-  void listenForReaderChanges() {
-    // Listen for changes to the selected reader
-    GetStorage('audio_settings').listenKey(ReadersRepository.readerKey,
-        (value) {
-      quranReader = value;
-      update();
-    });
-  }
-
   // Reset all settings to default
   void onResetSettingsPressed() async {
-    await cacheManager.resetSettings();
+    await AudioSettingsCache.resetSettings();
     initSettings();
     update();
   }
@@ -162,7 +142,7 @@ class QuranAudioSettingsController extends GetxController {
 
 // Set the play range for a specific juz
   void setQuranPlayRangeForJuz() {
-    final juzNumber = currentPageData.verses!.first.juzNumber;
+    final juzNumber = currentPageData.verses.first.juzNumber;
     final juzData = getSurahAndVersesFromJuz(juzNumber);
     final startSurah = juzData.keys.first;
     final startVerse = juzData.values.first[0];

@@ -5,19 +5,25 @@ import 'package:flutter/foundation.dart';
 import 'package:quran/quran.dart';
 import 'package:tawakkal/constants/save_locations.dart';
 import 'package:tawakkal/constants/urls.dart';
-import 'readers_repository.dart';
-
+import 'package:tawakkal/data/models/quran_play_range_model.dart';
+import '../cache/quran_reader_cache.dart';
 // Create a playlist of MediaItems from a specified range of verses
 Future<List<MediaItem>> createPlaylistFromRange(
-    int startSurahId, int startVerseId, int endSurahId, int endVerseId) async {
-  final reader = await ReadersRepository().getSelectedReaderFromCache();
+    QuranPlayRangeModel playRangeModel) async {
+  final reader = QuranReaderCache.getSelectedReaderFromCache();
   List<MediaItem> mediaItemList = [];
 
   // Iterate through the specified range of surahs and verses
-  for (int surahId = startSurahId; surahId <= endSurahId; surahId++) {
-    for (int verseId = (surahId == startSurahId ? startVerseId : 1);
+  for (int surahId = playRangeModel.startSurah;
+      surahId <= playRangeModel.endsSurah;
+      surahId++) {
+    for (int verseId = (surahId == playRangeModel.startSurah
+            ? playRangeModel.startVerse
+            : 1);
         verseId <=
-            (surahId == endSurahId ? endVerseId : getVerseCount(surahId));
+            (surahId == playRangeModel.endsSurah
+                ? playRangeModel.endsVerse
+                : getVerseCount(surahId));
         verseId++) {
       if (kIsWeb) {
         // Create MediaItem for web platform
@@ -85,7 +91,7 @@ Future<bool> localAudioFileExists(String filePath) async {
 
 // Get the local path for the audio file based on surah and verse IDs
 Future<String> getLocalAudioFilePath(int surahId, int verseId) async {
-  final reader = await ReadersRepository().getSelectedReaderFromCache();
+  final reader = QuranReaderCache.getSelectedReaderFromCache();
 
   final audioContent =
       '${await SaveLocationsPaths.getAudioSaveLocationUrl(surahId: surahId, readerIdentifier: reader.identifier)}${surahId.toString().padLeft(3, '0')}${verseId.toString().padLeft(3, '0')}.mp3';
@@ -94,7 +100,7 @@ Future<String> getLocalAudioFilePath(int surahId, int verseId) async {
 
 // Get the audio file URL based on surah and verse IDs
 Future<String> getAudioFileUrl(int surahId, int verseId) async {
-  final reader = await ReadersRepository().getSelectedReaderFromCache();
+  final reader = QuranReaderCache.getSelectedReaderFromCache();
 
   // Implement logic to generate the download URL based on surah and verse IDs
   return '${Urls.audioUrl}${reader.identifier}/${surahId.toString().padLeft(3, '0')}${verseId.toString().padLeft(3, '0')}.mp3';

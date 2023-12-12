@@ -17,6 +17,7 @@ class ZkrWidget extends StatelessWidget {
     required this.onCounterButtonPressed,
     required this.onResetButtonPressed,
     required this.isDone,
+    this.fontSize,
   }) : super(key: key);
 
   final String? title;
@@ -27,7 +28,7 @@ class ZkrWidget extends StatelessWidget {
   final Function() onCounterButtonPressed;
   final Function() onResetButtonPressed;
   final bool isDone;
-
+  final double? fontSize;
   // Helper method for building text with icon buttons
   Widget buildTextIconButton(IconData icon, String text, Function() onTap) {
     return InkWell(
@@ -72,7 +73,6 @@ class ZkrWidget extends StatelessWidget {
           Material(
             borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(9), topLeft: Radius.circular(9)),
-            type: MaterialType.card,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -125,7 +125,7 @@ class ZkrWidget extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(height: 1),
+          const Divider(height: 1, thickness: 0.8),
 
           // Main content
           Padding(
@@ -137,31 +137,35 @@ class ZkrWidget extends StatelessWidget {
                 if (title != null)
                   Text(
                     title!,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontSize != null ? fontSize! - 2 : fontSize),
                   ),
-                SizedBox(height: note != null ? 10 : 0),
+                SizedBox(height: title != null ? 10 : 0),
                 Text(
                   description,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: fontSize, height: 2),
                 ),
                 SizedBox(height: note != null ? 10 : 0),
                 if (note != null)
                   Text(
                     '($note)',
                     textAlign: TextAlign.justify,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontSize != null ? fontSize! - 2 : fontSize),
                   ),
                 const SizedBox(height: 10),
               ],
             ),
           ),
-          const Divider(height: 1),
+          const Divider(
+            height: 1,
+            thickness: 0.8,
+          ),
 
           // Bottom row with the counter button
           Material(
-            type: MaterialType.card,
             borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(9),
                 bottomRight: Radius.circular(9)),

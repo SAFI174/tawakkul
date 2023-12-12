@@ -21,9 +21,6 @@ class QuranBookmarksView extends GetView {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 1,
-          shadowColor: theme.shadowColor,
-          scrolledUnderElevation: 1,
           titleTextStyle: theme.textTheme.titleMedium,
           title: const Text(
             'العلامات المرجعية',
@@ -35,8 +32,6 @@ class QuranBookmarksView extends GetView {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CustomCircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
             } else {
               return Obx(() {
                 final bookmarks = _bookmarkCache.bookmarks;
@@ -65,7 +60,6 @@ class QuranBookmarksView extends GetView {
                               if (Get.previousRoute.contains('quran-reading')) {
                                 Get.back(result: navigationDetails);
                               } else {
-                                print('asd');
                                 Get.toNamed(Routes.QURAN_READING_PAGE,
                                     arguments: navigationDetails);
                               }
@@ -77,6 +71,9 @@ class QuranBookmarksView extends GetView {
                               child: Text(
                                 getVerse(bookmark.surah, bookmark.verse),
                                 maxLines: 5,
+                                style: const TextStyle(
+                                    fontFamily: 'Uthmanic_Script',
+                                    fontWeight: FontWeight.bold),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),

@@ -44,8 +44,8 @@ class AzkarRepository {
       await _databaseService.updateData(
         table: _azkarDetailsTable,
         values: {
-          'counter': azkarDetail.counter.value,
-          'isDone': azkarDetail.isDone.value ? 1 : 0,
+          'counter': azkarDetail.counter,
+          'isDone': azkarDetail.isDone ? 1 : 0,
         }, // Assuming toJson returns a Map<String, dynamic>
         where: 'id = ?', // Adjust the condition based on your data structure
         whereArgs: [
@@ -53,7 +53,6 @@ class AzkarRepository {
         ], // Pass the appropriate identifier
       );
     }
-
   }
 
   // Get Azkar details by type, considering previous progress
@@ -93,8 +92,8 @@ class AzkarRepository {
 
   // Check if there is previous progress for Azkar
   bool _hasPreviousProgress(List<AzkarDetailModel> azkarData) {
-    return azkarData.any((element) =>
-        element.counter.value < element.count || element.isDone.value);
+    return azkarData
+        .any((element) => element.counter < element.count || element.isDone);
   }
 
 // Fetch Azkar details by type from the database

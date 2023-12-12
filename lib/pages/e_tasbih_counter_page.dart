@@ -18,7 +18,6 @@ class ElectronicTashbihCounterPage extends GetView<ElectronicTasbihController> {
 
     return Scaffold(
       appBar: AppBar(
-        shadowColor: theme.colorScheme.shadow,
         title: const Text('المسبحة الإلكترونية'),
         titleTextStyle: theme.primaryTextTheme.titleMedium,
         actions: [

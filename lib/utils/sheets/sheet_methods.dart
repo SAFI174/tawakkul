@@ -1,20 +1,94 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:quran/quran.dart';
+import 'package:tawakkal/data/cache/quran_reader_cache.dart';
 import 'package:tawakkal/data/models/quran_bookmark.dart';
+import 'package:tawakkal/data/models/quran_reader.dart';
 import 'package:tawakkal/data/models/quran_verse_model.dart';
+import 'package:tawakkal/widgets/custom_progress_indicator.dart';
 import '../../controllers/quran_reading_controller.dart';
+import '../../data/repository/readers_repository.dart';
 import 'ayah_bottom_sheet.dart';
 import 'default_go_to_picker_sheet.dart';
+
+Future<void> selectReaderSheet() async {
+  await showMaterialModalBottomSheet(
+    context: Get.context!,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+    builder: (context) => Directionality(
+      textDirection: TextDirection.rtl,
+      child: SizedBox(
+        height: 250,
+        child: FutureBuilder(
+          future: Future.wait([
+            ReadersRepository().getQuranReaders(),
+          ]),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CustomCircularProgressIndicator();
+            } else {
+              var readersList = snapshot.data![0] as List<QuranReader>;
+              var selectedReader =
+                  QuranReaderCache.getSelectedReaderFromCache();
+              var selectedIndex = readersList.indexWhere(
+                  (element) => element.identifier == selectedReader.identifier);
+              int? selectedReaderIndex;
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: CupertinoPicker.builder(
+                      scrollController: FixedExtentScrollController(
+                          initialItem: selectedIndex),
+                      childCount: readersList.length,
+                      itemExtent: 50,
+                      onSelectedItemChanged: (value) {
+                        selectedReaderIndex = value;
+                      },
+                      itemBuilder: (context, index) {
+                        return Center(
+                          child: Text(
+                            '${index + 1} - ${readersList[index].name}',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: FilledButton(
+                      onPressed: () async {
+                        if (selectedReaderIndex != null) {
+                          QuranReaderCache.saveSelectedReaderToCache(
+                              readersList[selectedReaderIndex!]);
+                          Get.back();
+                        }
+                      },
+                      child: const Text('موافق'),
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
+        ),
+      ),
+    ),
+  );
+}
 
 /// Function to show a bottom sheet for navigating to a specific page in the Quran.
 ///
 /// Parameters:
 /// - currentPage: The current page number to be set as the initial value in the picker.
 void showGoToPageSheet({required currentPage}) {
-  showModalBottomSheet(
+  showMaterialModalBottomSheet(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
     context: Get.context!, // Get the current context
     builder: (context) => DefaultGoToSheet(
       initValue: currentPage, // Initial value for the picker
@@ -48,7 +122,8 @@ void showGoToPageSheet({required currentPage}) {
 /// Parameters:
 /// - currentSurah: The current surah number to be set as the initial value in the picker.
 void showGoToSurahSheet({required currentSurah}) {
-  showModalBottomSheet(
+  showMaterialModalBottomSheet(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
     context: Get.context!, // Get the current context
     builder: (context) => DefaultGoToSheet(
       initValue: currentSurah, // Initial value for the picker
@@ -82,7 +157,8 @@ void showGoToSurahSheet({required currentSurah}) {
 /// Parameters:
 /// - currentJuz: The current juz number to be set as the initial value in the picker.
 void showGoToJuzSheet({required currentJuz}) {
-  showModalBottomSheet(
+  showMaterialModalBottomSheet(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
     context: Get.context!, // Get the current context
     builder: (context) => DefaultGoToSheet(
       initValue: currentJuz, // Initial value for the picker
