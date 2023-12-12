@@ -65,8 +65,7 @@ flutter:
     - assets/svg/
     - assets/databases/
     - assets/jsons/
-    - assets/jsons/lottie/
-    - assets/images/
+    - assets/jsons/lottie/ 
   uses-material-design: true
   fonts: 
     - family: Uthmanic_Script
