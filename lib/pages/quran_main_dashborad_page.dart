@@ -40,7 +40,7 @@ class QuranMainDashboradPage extends GetView<QuranMainDashboradController> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                elevation: 20,
+                forceElevated: innerBoxIsScrolled,
                 toolbarHeight: 80,
                 pinned: true,
                 floating: true,

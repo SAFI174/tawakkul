@@ -179,10 +179,10 @@ class Activites {
       },
       'text': 'بحث في القرآن',
     },
-    {
-      'icon': FluentIcons.share_20_regular,
-      'onTap': () {},
-      'text': 'شارك التطبيق',
-    },
+    // {
+    //   'icon': FluentIcons.share_20_regular,
+    //   'onTap': () {},
+    //   'text': 'شارك التطبيق',
+    // },
   ];
 }

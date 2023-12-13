@@ -1,5 +1,4 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -7,8 +6,6 @@ import 'package:tawakkal/data/models/azkar_notification_model.dart';
 import 'package:tawakkal/utils/dialogs/dialogs.dart';
 
 import '../data/models/prayer_time_model.dart';
-import '../routes/app_pages.dart';
-
 class NotificationService extends GetxService {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();

@@ -3,10 +3,8 @@ import 'dart:developer';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:tawakkal/data/cache/prayer_time_cache.dart';
 import 'package:tawakkal/data/models/azkar_notification_model.dart';
-import 'package:tawakkal/utils/dialogs/dialogs.dart';
 import 'package:tawakkal/utils/utils.dart';
 
 import '../data/cache/azkar_settings_cache.dart';
