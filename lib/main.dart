@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:status_bar_control/status_bar_control.dart';
 import 'package:tawakkal/constants/constants.dart';
 import 'package:tawakkal/data/cache/app_settings_cache.dart';
 

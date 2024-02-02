@@ -19,7 +19,7 @@ def remove_keys_recursive(dictionary, keys_to_remove):
 
 # Loop through pages and save each page's data in a separate JSON file
 for page_number in range(1, total_pages + 1):
-    url = f"{base_url}{page_number}?words=true&word_fields=v1_page,text_uthmani,text_indopak,codeV1&fields=text_uthmani_simple,text_uthmani"
+    url = f"{base_url}{page_number}?words=true&word_fields=v1_page,text_uthmani,text_uthmani_simple,codeV1&fields=text_uthmani_simple,text_uthmani"
 
     # Send a GET request to the API
     response = requests.get(url)

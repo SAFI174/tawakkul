@@ -1,5 +1,6 @@
 import 'package:adhan/adhan.dart';
 import 'package:quran/quran.dart';
+
 const String bismillahText = '324';
 const String loadingText = 'يتم تحضير البيانات...';
 const String appName = 'تَوَكَّلَ';

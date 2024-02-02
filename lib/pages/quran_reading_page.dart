@@ -23,46 +23,49 @@ class QuranReadingPage extends GetView<QuranReadingController> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      bottomNavigationBar: buildQuranAudioPlayer(),
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      appBar: buildAppBar(theme: theme),
-      // toggle fullscreen when tap on body
-      body: WillPopScope(
-        // save the last page and exit fullscreen mode
-        onWillPop: controller.onCloseView,
-        child: GestureDetector(
-          onTap: () => QuranUtils.toggleFullscreen(
-              isFullScreen: controller.isFullScreenMode),
-          child: GetBuilder<QuranReadingController>(
-            // PageView for handling the 604 Quran Page
-            builder: (controller) => PageView.builder(
-              controller: controller.quranPageController,
-              itemCount: 604,
-              onPageChanged: controller.onPageChanged,
-              itemBuilder: (context, index) {
-                // current page data might be null
-                QuranPageModel? currentPage = controller.quranPages[index];
-                // if null return loading text
-                if (currentPage == null) {
-                  return const Center(child: Text(loadingText));
-                }
-                // return the page data of requseted page
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // if page is odd view page strokes
-                    if (currentPage.pageNumber.isOdd) buildPageStrokes(false),
-                    // the page view handler
-                    Expanded(child: QuranPageView(currentPage)),
-                    // if page is even view page strokes
-                    if (currentPage.pageNumber.isEven) buildPageStrokes(true),
-                  ],
-                );
-              },
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        bottomNavigationBar: buildQuranAudioPlayer(),
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        appBar: buildAppBar(theme: theme),
+        // toggle fullscreen when tap on body
+        body: WillPopScope(
+          // save the last page and exit fullscreen mode
+          onWillPop: controller.onCloseView,
+          child: GestureDetector(
+            onTap: () => QuranUtils.toggleFullscreen(
+                isFullScreen: controller.isFullScreenMode),
+            child: GetBuilder<QuranReadingController>(
+              // PageView for handling the 604 Quran Page
+              builder: (controller) => PageView.builder(
+                controller: controller.quranPageController,
+                itemCount: 604,
+                onPageChanged: controller.onPageChanged,
+                itemBuilder: (context, index) {
+                  // current page data might be null
+                  QuranPageModel? currentPage = controller.quranPages[index];
+                  // if null return loading text
+                  if (currentPage == null) {
+                    return const Center(child: Text(loadingText));
+                  }
+                  // return the page data of requseted page
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // if page is odd view page strokes
+                      if (currentPage.pageNumber.isOdd) buildPageStrokes(false),
+                      // the page view handler
+                      Expanded(child: QuranPageView(currentPage)),
+                      // if page is even view page strokes
+                      if (currentPage.pageNumber.isEven) buildPageStrokes(true),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),

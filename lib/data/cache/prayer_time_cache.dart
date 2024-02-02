@@ -49,7 +49,7 @@ class PrayerTimeCache {
 
   /// Save the current coordinates to cache.
   static void saveCoordinatesToCache(Coordinates coordinates) {
-    prefs.setString(coordinatesKey, jsonEncode(coordinates.toJson()));
+    prefs.setString(coordinatesKey, jsonEncode(toJson(coordinates)));
   }
 
   /// Get the coordinates from cache or fetch from location if not available.
@@ -58,7 +58,7 @@ class PrayerTimeCache {
     if (coordinates == null) {
       return null;
     }
-    return Coordinates.fromJson(jsonDecode(coordinates));
+    return fromJson(jsonDecode(coordinates));
   }
 
   static void savePrayerNotificationMode(
@@ -75,5 +75,19 @@ class PrayerTimeCache {
       savePrayerNotificationMode(prayer: prayer, notificationMode: notifyMode);
     }
     return notifyMode.obs;
+  }
+
+  static Map<String, dynamic> toJson(Coordinates coordinates) {
+    return {
+      'latitude': coordinates.latitude,
+      'longitude': coordinates.longitude,
+    };
+  }
+
+  static Coordinates fromJson(Map<String, dynamic> json) {
+    return Coordinates(
+      json['latitude']?.toDouble() ?? 0.0,
+      json['longitude']?.toDouble() ?? 0.0,
+    );
   }
 }

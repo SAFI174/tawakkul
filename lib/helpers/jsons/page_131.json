@@ -1,0 +1,2612 @@
+{
+    "verses": [
+        {
+            "id": 817,
+            "verse_number": 28,
+            "verse_key": "6:28",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 104,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "بل بدا لهم ما كانوا۟ يخفون من قبل ولو ردوا۟ لعادوا۟ لما نهوا۟ عنه وانهم لكذبون",
+            "text_uthmani": "بَلْ بَدَا لَهُم مَّا كَانُوا۟ يُخْفُونَ مِن قَبْلُ ۖ وَلَوْ رُدُّوا۟ لَعَادُوا۟ لِمَا نُهُوا۟ عَنْهُ وَإِنَّهُمْ لَكَـٰذِبُونَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 31185,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بَلْ",
+                    "text_uthmani_simple": "بل",
+                    "code_v1": "ﭑ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "بَلْ",
+                    "translation": {
+                        "text": "Nay",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31186,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بَدَا",
+                    "text_uthmani_simple": "بدا",
+                    "code_v1": "ﭒ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "بَدَا",
+                    "translation": {
+                        "text": "became manifest",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31187,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لَهُم",
+                    "text_uthmani_simple": "لهم",
+                    "code_v1": "ﭓ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "لَهُم",
+                    "translation": {
+                        "text": "for them",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31188,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مَّا",
+                    "text_uthmani_simple": "ما",
+                    "code_v1": "ﭔ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "مَّا",
+                    "translation": {
+                        "text": "what",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31189,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "كَانُوا۟",
+                    "text_uthmani_simple": "كانوا۟",
+                    "code_v1": "ﭕ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "كَانُوا۟",
+                    "translation": {
+                        "text": "they used to",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31190,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يُخْفُونَ",
+                    "text_uthmani_simple": "يخفون",
+                    "code_v1": "ﭖ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "يُخْفُونَ",
+                    "translation": {
+                        "text": "conceal",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31191,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مِن",
+                    "text_uthmani_simple": "من",
+                    "code_v1": "ﭗ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "مِن",
+                    "translation": {
+                        "text": "from",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31192,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَبْلُ ۖ",
+                    "text_uthmani_simple": "قبل",
+                    "code_v1": "ﭘﭙ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "قَبْلُ ۖ",
+                    "translation": {
+                        "text": "before",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31194,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَوْ",
+                    "text_uthmani_simple": "ولو",
+                    "code_v1": "ﭚ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "وَلَوْ",
+                    "translation": {
+                        "text": "And if",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31195,
+                    "position": 10,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "رُدُّوا۟",
+                    "text_uthmani_simple": "ردوا۟",
+                    "code_v1": "ﭛ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "رُدُّوا۟",
+                    "translation": {
+                        "text": "they were sent back",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31196,
+                    "position": 11,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لَعَادُوا۟",
+                    "text_uthmani_simple": "لعادوا۟",
+                    "code_v1": "ﭜ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "لَعَادُوا۟",
+                    "translation": {
+                        "text": "certainly they (would) return",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31197,
+                    "position": 12,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لِمَا",
+                    "text_uthmani_simple": "لما",
+                    "code_v1": "ﭝ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "لِمَا",
+                    "translation": {
+                        "text": "to what",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31198,
+                    "position": 13,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "نُهُوا۟",
+                    "text_uthmani_simple": "نهوا۟",
+                    "code_v1": "ﭞ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "نُهُوا۟",
+                    "translation": {
+                        "text": "they were forbidden",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31199,
+                    "position": 14,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "عَنْهُ",
+                    "text_uthmani_simple": "عنه",
+                    "code_v1": "ﭟ",
+                    "page_number": 131,
+                    "line_number": 1,
+                    "text": "عَنْهُ",
+                    "translation": {
+                        "text": "from it",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31200,
+                    "position": 15,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَإِنَّهُمْ",
+                    "text_uthmani_simple": "وانهم",
+                    "code_v1": "ﭠ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "وَإِنَّهُمْ",
+                    "translation": {
+                        "text": "and indeed they",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31201,
+                    "position": 16,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لَكَـٰذِبُونَ",
+                    "text_uthmani_simple": "لكـذبون",
+                    "code_v1": "ﭡ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "لَكَـٰذِبُونَ",
+                    "translation": {
+                        "text": "certainly are liars",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 31202,
+                    "position": 17,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٢٨",
+                    "text_uthmani_simple": "٢٨",
+                    "code_v1": "ﭢ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "٢٨",
+                    "translation": {
+                        "text": "(28)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 818,
+            "verse_number": 29,
+            "verse_key": "6:29",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 104,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "وقالوا۟ ان هى الا حياتنا الدنيا وما نحن بمبعوثين",
+            "text_uthmani": "وَقَالُوٓا۟ إِنْ هِىَ إِلَّا حَيَاتُنَا ٱلدُّنْيَا وَمَا نَحْنُ بِمَبْعُوثِينَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 32170,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَقَالُوٓا۟",
+                    "text_uthmani_simple": "وقالوا۟",
+                    "code_v1": "ﭣ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "وَقَالُوٓا۟",
+                    "translation": {
+                        "text": "And they said",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32171,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "إِنْ",
+                    "text_uthmani_simple": "ان",
+                    "code_v1": "ﭤ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "إِنْ",
+                    "translation": {
+                        "text": "Not",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32172,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "هِىَ",
+                    "text_uthmani_simple": "هى",
+                    "code_v1": "ﭥ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "هِىَ",
+                    "translation": {
+                        "text": "it (is)",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32173,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "إِلَّا",
+                    "text_uthmani_simple": "الا",
+                    "code_v1": "ﭦ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "إِلَّا",
+                    "translation": {
+                        "text": "except",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32174,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "حَيَاتُنَا",
+                    "text_uthmani_simple": "حياتنا",
+                    "code_v1": "ﭧ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "حَيَاتُنَا",
+                    "translation": {
+                        "text": "our life",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32175,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلدُّنْيَا",
+                    "text_uthmani_simple": "الدنيا",
+                    "code_v1": "ﭨ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "ٱلدُّنْيَا",
+                    "translation": {
+                        "text": "(of) the world",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32176,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَمَا",
+                    "text_uthmani_simple": "وما",
+                    "code_v1": "ﭩ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "وَمَا",
+                    "translation": {
+                        "text": "and not",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32177,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "نَحْنُ",
+                    "text_uthmani_simple": "نحن",
+                    "code_v1": "ﭪ",
+                    "page_number": 131,
+                    "line_number": 2,
+                    "text": "نَحْنُ",
+                    "translation": {
+                        "text": "we",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32178,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بِمَبْعُوثِينَ",
+                    "text_uthmani_simple": "بمبعوثين",
+                    "code_v1": "ﭫ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "بِمَبْعُوثِينَ",
+                    "translation": {
+                        "text": "(will be) resurrected",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 32179,
+                    "position": 10,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٢٩",
+                    "text_uthmani_simple": "٢٩",
+                    "code_v1": "ﭬ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "٢٩",
+                    "translation": {
+                        "text": "(29)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 819,
+            "verse_number": 30,
+            "verse_key": "6:30",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 104,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "ولو ترى اذ وقفوا۟ على ربهم قال اليس هذا بالحق قالوا۟ بلى وربنا قال فذوقوا۟ العذاب بما كنتم تكفرون",
+            "text_uthmani": "وَلَوْ تَرَىٰٓ إِذْ وُقِفُوا۟ عَلَىٰ رَبِّهِمْ ۚ قَالَ أَلَيْسَ هَـٰذَا بِٱلْحَقِّ ۚ قَالُوا۟ بَلَىٰ وَرَبِّنَا ۚ قَالَ فَذُوقُوا۟ ٱلْعَذَابَ بِمَا كُنتُمْ تَكْفُرُونَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 33005,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَوْ",
+                    "text_uthmani_simple": "ولو",
+                    "code_v1": "ﭭ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "وَلَوْ",
+                    "translation": {
+                        "text": "And if",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33006,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "تَرَىٰٓ",
+                    "text_uthmani_simple": "ترى",
+                    "code_v1": "ﭮ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "تَرَىٰٓ",
+                    "translation": {
+                        "text": "you (could) see",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33007,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "إِذْ",
+                    "text_uthmani_simple": "اذ",
+                    "code_v1": "ﭯ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "إِذْ",
+                    "translation": {
+                        "text": "when",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33008,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وُقِفُوا۟",
+                    "text_uthmani_simple": "وقفوا۟",
+                    "code_v1": "ﭰ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "وُقِفُوا۟",
+                    "translation": {
+                        "text": "they will be made to stand",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33009,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "عَلَىٰ",
+                    "text_uthmani_simple": "على",
+                    "code_v1": "ﭱ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "عَلَىٰ",
+                    "translation": {
+                        "text": "before",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33010,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "رَبِّهِمْ ۚ",
+                    "text_uthmani_simple": "ربهم",
+                    "code_v1": "ﭲﭳ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "رَبِّهِمْ ۚ",
+                    "translation": {
+                        "text": "their Lord",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33012,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَالَ",
+                    "text_uthmani_simple": "قال",
+                    "code_v1": "ﭴ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "قَالَ",
+                    "translation": {
+                        "text": "He (will) say",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33013,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "أَلَيْسَ",
+                    "text_uthmani_simple": "اليس",
+                    "code_v1": "ﭵ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "أَلَيْسَ",
+                    "translation": {
+                        "text": "Is not",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33014,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "هَـٰذَا",
+                    "text_uthmani_simple": "هـذا",
+                    "code_v1": "ﭶ",
+                    "page_number": 131,
+                    "line_number": 3,
+                    "text": "هَـٰذَا",
+                    "translation": {
+                        "text": "this",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33015,
+                    "position": 10,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بِٱلْحَقِّ ۚ",
+                    "text_uthmani_simple": "بالحق",
+                    "code_v1": "ﭷﭸ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "بِٱلْحَقِّ ۚ",
+                    "translation": {
+                        "text": "the truth",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33017,
+                    "position": 11,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَالُوا۟",
+                    "text_uthmani_simple": "قالوا۟",
+                    "code_v1": "ﭹ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "قَالُوا۟",
+                    "translation": {
+                        "text": "They will say",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33018,
+                    "position": 12,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بَلَىٰ",
+                    "text_uthmani_simple": "بلى",
+                    "code_v1": "ﭺ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "بَلَىٰ",
+                    "translation": {
+                        "text": "Yes",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33019,
+                    "position": 13,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَرَبِّنَا ۚ",
+                    "text_uthmani_simple": "وربنا",
+                    "code_v1": "ﭻﭼ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "وَرَبِّنَا ۚ",
+                    "translation": {
+                        "text": "by our Lord",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33021,
+                    "position": 14,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَالَ",
+                    "text_uthmani_simple": "قال",
+                    "code_v1": "ﭽ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "قَالَ",
+                    "translation": {
+                        "text": "He (will) say",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33022,
+                    "position": 15,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فَذُوقُوا۟",
+                    "text_uthmani_simple": "فذوقوا۟",
+                    "code_v1": "ﭾ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "فَذُوقُوا۟",
+                    "translation": {
+                        "text": "So taste",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33023,
+                    "position": 16,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلْعَذَابَ",
+                    "text_uthmani_simple": "العذاب",
+                    "code_v1": "ﭿ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "ٱلْعَذَابَ",
+                    "translation": {
+                        "text": "the punishment",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33024,
+                    "position": 17,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بِمَا",
+                    "text_uthmani_simple": "بما",
+                    "code_v1": "ﮀ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "بِمَا",
+                    "translation": {
+                        "text": "because",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33025,
+                    "position": 18,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "كُنتُمْ",
+                    "text_uthmani_simple": "كنتم",
+                    "code_v1": "ﮁ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "كُنتُمْ",
+                    "translation": {
+                        "text": "you used to",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33026,
+                    "position": 19,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "تَكْفُرُونَ",
+                    "text_uthmani_simple": "تكفرون",
+                    "code_v1": "ﮂ",
+                    "page_number": 131,
+                    "line_number": 4,
+                    "text": "تَكْفُرُونَ",
+                    "translation": {
+                        "text": "disbelieve",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33027,
+                    "position": 20,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٣٠",
+                    "text_uthmani_simple": "٣٠",
+                    "code_v1": "ﮃ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "٣٠",
+                    "translation": {
+                        "text": "(30)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 820,
+            "verse_number": 31,
+            "verse_key": "6:31",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 105,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "قد خسر الذين كذبوا۟ بلقاء الله حتى اذا جاءتهم الساعة بغتة قالوا۟ يحسرتنا على ما فرطنا فيها وهم يحملون اوزارهم على ظهورهم الا ساء ما يزرون",
+            "text_uthmani": "قَدْ خَسِرَ ٱلَّذِينَ كَذَّبُوا۟ بِلِقَآءِ ٱللَّهِ ۖ حَتَّىٰٓ إِذَا جَآءَتْهُمُ ٱلسَّاعَةُ بَغْتَةً قَالُوا۟ يَـٰحَسْرَتَنَا عَلَىٰ مَا فَرَّطْنَا فِيهَا وَهُمْ يَحْمِلُونَ أَوْزَارَهُمْ عَلَىٰ ظُهُورِهِمْ ۚ أَلَا سَآءَ مَا يَزِرُونَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 33929,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَدْ",
+                    "text_uthmani_simple": "قد",
+                    "code_v1": "ﮄ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "قَدْ",
+                    "translation": {
+                        "text": "Indeed",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33930,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "خَسِرَ",
+                    "text_uthmani_simple": "خسر",
+                    "code_v1": "ﮅ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "خَسِرَ",
+                    "translation": {
+                        "text": "incurred loss",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33931,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلَّذِينَ",
+                    "text_uthmani_simple": "الذين",
+                    "code_v1": "ﮆ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "ٱلَّذِينَ",
+                    "translation": {
+                        "text": "those who",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33932,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "كَذَّبُوا۟",
+                    "text_uthmani_simple": "كذبوا۟",
+                    "code_v1": "ﮇ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "كَذَّبُوا۟",
+                    "translation": {
+                        "text": "denied",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33933,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بِلِقَآءِ",
+                    "text_uthmani_simple": "بلقا",
+                    "code_v1": "ﮈ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "بِلِقَآءِ",
+                    "translation": {
+                        "text": "in (the) meeting",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33934,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱللَّهِ ۖ",
+                    "text_uthmani_simple": "الله",
+                    "code_v1": "ﮉﮊ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "ٱللَّهِ ۖ",
+                    "translation": {
+                        "text": "(with) Allah",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33936,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "حَتَّىٰٓ",
+                    "text_uthmani_simple": "حتى",
+                    "code_v1": "ﮋ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "حَتَّىٰٓ",
+                    "translation": {
+                        "text": "until",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33937,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "إِذَا",
+                    "text_uthmani_simple": "اذا",
+                    "code_v1": "ﮌ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "إِذَا",
+                    "translation": {
+                        "text": "when",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33938,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "جَآءَتْهُمُ",
+                    "text_uthmani_simple": "جاتهم",
+                    "code_v1": "ﮍ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "جَآءَتْهُمُ",
+                    "translation": {
+                        "text": "came to them",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33939,
+                    "position": 10,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلسَّاعَةُ",
+                    "text_uthmani_simple": "الساعة",
+                    "code_v1": "ﮎ",
+                    "page_number": 131,
+                    "line_number": 5,
+                    "text": "ٱلسَّاعَةُ",
+                    "translation": {
+                        "text": "the Hour",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33940,
+                    "position": 11,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بَغْتَةًۭ",
+                    "text_uthmani_simple": "بغتةۭ",
+                    "code_v1": "ﮏ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "بَغْتَةًۭ",
+                    "translation": {
+                        "text": "suddenly",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33941,
+                    "position": 12,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَالُوا۟",
+                    "text_uthmani_simple": "قالوا۟",
+                    "code_v1": "ﮐ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "قَالُوا۟",
+                    "translation": {
+                        "text": "they said",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33942,
+                    "position": 13,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يَـٰحَسْرَتَنَا",
+                    "text_uthmani_simple": "يـحسرتنا",
+                    "code_v1": "ﮑ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "يَـٰحَسْرَتَنَا",
+                    "translation": {
+                        "text": "Oh! Our regret",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33943,
+                    "position": 14,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "عَلَىٰ",
+                    "text_uthmani_simple": "على",
+                    "code_v1": "ﮒ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "عَلَىٰ",
+                    "translation": {
+                        "text": "over",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33944,
+                    "position": 15,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مَا",
+                    "text_uthmani_simple": "ما",
+                    "code_v1": "ﮓ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "مَا",
+                    "translation": {
+                        "text": "what",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33945,
+                    "position": 16,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فَرَّطْنَا",
+                    "text_uthmani_simple": "فرطنا",
+                    "code_v1": "ﮔ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "فَرَّطْنَا",
+                    "translation": {
+                        "text": "we neglected",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33946,
+                    "position": 17,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فِيهَا",
+                    "text_uthmani_simple": "فيها",
+                    "code_v1": "ﮕ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "فِيهَا",
+                    "translation": {
+                        "text": "concerning it",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33947,
+                    "position": 18,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَهُمْ",
+                    "text_uthmani_simple": "وهم",
+                    "code_v1": "ﮖ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "وَهُمْ",
+                    "translation": {
+                        "text": "while they",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33948,
+                    "position": 19,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يَحْمِلُونَ",
+                    "text_uthmani_simple": "يحملون",
+                    "code_v1": "ﮗ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "يَحْمِلُونَ",
+                    "translation": {
+                        "text": "will bear",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33949,
+                    "position": 20,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "أَوْزَارَهُمْ",
+                    "text_uthmani_simple": "اوزارهم",
+                    "code_v1": "ﮘ",
+                    "page_number": 131,
+                    "line_number": 6,
+                    "text": "أَوْزَارَهُمْ",
+                    "translation": {
+                        "text": "their burdens",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33950,
+                    "position": 21,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "عَلَىٰ",
+                    "text_uthmani_simple": "على",
+                    "code_v1": "ﮙ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "عَلَىٰ",
+                    "translation": {
+                        "text": "on",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33951,
+                    "position": 22,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ظُهُورِهِمْ ۚ",
+                    "text_uthmani_simple": "ظهورهم",
+                    "code_v1": "ﮚﮛ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "ظُهُورِهِمْ ۚ",
+                    "translation": {
+                        "text": "their backs",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33953,
+                    "position": 23,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "أَلَا",
+                    "text_uthmani_simple": "الا",
+                    "code_v1": "ﮜ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "أَلَا",
+                    "translation": {
+                        "text": "Unquestionably",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33954,
+                    "position": 24,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "سَآءَ",
+                    "text_uthmani_simple": "سا",
+                    "code_v1": "ﮝ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "سَآءَ",
+                    "translation": {
+                        "text": "Evil",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33955,
+                    "position": 25,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مَا",
+                    "text_uthmani_simple": "ما",
+                    "code_v1": "ﮞ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "مَا",
+                    "translation": {
+                        "text": "(is) what",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33956,
+                    "position": 26,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يَزِرُونَ",
+                    "text_uthmani_simple": "يزرون",
+                    "code_v1": "ﮟ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "يَزِرُونَ",
+                    "translation": {
+                        "text": "they bear",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 33957,
+                    "position": 27,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٣١",
+                    "text_uthmani_simple": "٣١",
+                    "code_v1": "ﮠ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "٣١",
+                    "translation": {
+                        "text": "(31)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 821,
+            "verse_number": 32,
+            "verse_key": "6:32",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 105,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "وما الحيوة الدنيا الا لعب ولهو وللدار الءاخرة خير للذين يتقون افلا تعقلون",
+            "text_uthmani": "وَمَا ٱلْحَيَوٰةُ ٱلدُّنْيَآ إِلَّا لَعِبٌ وَلَهْوٌ ۖ وَلَلدَّارُ ٱلْـَٔاخِرَةُ خَيْرٌ لِّلَّذِينَ يَتَّقُونَ ۗ أَفَلَا تَعْقِلُونَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 34872,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَمَا",
+                    "text_uthmani_simple": "وما",
+                    "code_v1": "ﮡ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "وَمَا",
+                    "translation": {
+                        "text": "And not",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34873,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلْحَيَوٰةُ",
+                    "text_uthmani_simple": "الحيوة",
+                    "code_v1": "ﮢ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "ٱلْحَيَوٰةُ",
+                    "translation": {
+                        "text": "(is) the life",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34874,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلدُّنْيَآ",
+                    "text_uthmani_simple": "الدنيا",
+                    "code_v1": "ﮣ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "ٱلدُّنْيَآ",
+                    "translation": {
+                        "text": "(of) the world",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34875,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "إِلَّا",
+                    "text_uthmani_simple": "الا",
+                    "code_v1": "ﮤ",
+                    "page_number": 131,
+                    "line_number": 7,
+                    "text": "إِلَّا",
+                    "translation": {
+                        "text": "except",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34876,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لَعِبٌۭ",
+                    "text_uthmani_simple": "لعبۭ",
+                    "code_v1": "ﮥ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "لَعِبٌۭ",
+                    "translation": {
+                        "text": "a play",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34877,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَهْوٌۭ ۖ",
+                    "text_uthmani_simple": "ولهوۭ",
+                    "code_v1": "ﮦﮧ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "وَلَهْوٌۭ ۖ",
+                    "translation": {
+                        "text": "and amusement",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34879,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَلدَّارُ",
+                    "text_uthmani_simple": "وللدار",
+                    "code_v1": "ﮨ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "وَلَلدَّارُ",
+                    "translation": {
+                        "text": "but the home",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34880,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلْـَٔاخِرَةُ",
+                    "text_uthmani_simple": "الـاخرة",
+                    "code_v1": "ﮩ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "ٱلْـَٔاخِرَةُ",
+                    "translation": {
+                        "text": "(of) the Hereafter",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34881,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "خَيْرٌۭ",
+                    "text_uthmani_simple": "خيرۭ",
+                    "code_v1": "ﮪ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "خَيْرٌۭ",
+                    "translation": {
+                        "text": "(is) best",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34882,
+                    "position": 10,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لِّلَّذِينَ",
+                    "text_uthmani_simple": "للذين",
+                    "code_v1": "ﮫ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "لِّلَّذِينَ",
+                    "translation": {
+                        "text": "for those who",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34883,
+                    "position": 11,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يَتَّقُونَ ۗ",
+                    "text_uthmani_simple": "يتقون ۗ",
+                    "code_v1": "ﮬﮭ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "يَتَّقُونَ ۗ",
+                    "translation": {
+                        "text": "(are) God conscious",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34885,
+                    "position": 12,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "أَفَلَا",
+                    "text_uthmani_simple": "افلا",
+                    "code_v1": "ﮮ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "أَفَلَا",
+                    "translation": {
+                        "text": "Then not",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34886,
+                    "position": 13,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "تَعْقِلُونَ",
+                    "text_uthmani_simple": "تعقلون",
+                    "code_v1": "ﮯ",
+                    "page_number": 131,
+                    "line_number": 8,
+                    "text": "تَعْقِلُونَ",
+                    "translation": {
+                        "text": "(will) you reason",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 34887,
+                    "position": 14,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٣٢",
+                    "text_uthmani_simple": "٣٢",
+                    "code_v1": "ﮰ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "٣٢",
+                    "translation": {
+                        "text": "(32)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 822,
+            "verse_number": 33,
+            "verse_key": "6:33",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 105,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "قد نعلم انه ليحزنك الذى يقولون فانهم لا يكذبونك ولكن الظلمين بـايت الله يجحدون",
+            "text_uthmani": "قَدْ نَعْلَمُ إِنَّهُۥ لَيَحْزُنُكَ ٱلَّذِى يَقُولُونَ ۖ فَإِنَّهُمْ لَا يُكَذِّبُونَكَ وَلَـٰكِنَّ ٱلظَّـٰلِمِينَ بِـَٔايَـٰتِ ٱللَّهِ يَجْحَدُونَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 35668,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَدْ",
+                    "text_uthmani_simple": "قد",
+                    "code_v1": "ﮱ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "قَدْ",
+                    "translation": {
+                        "text": "Indeed",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35669,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "نَعْلَمُ",
+                    "text_uthmani_simple": "نعلم",
+                    "code_v1": "ﯓ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "نَعْلَمُ",
+                    "translation": {
+                        "text": "We know",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35670,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "إِنَّهُۥ",
+                    "text_uthmani_simple": "انه",
+                    "code_v1": "ﯔ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "إِنَّهُۥ",
+                    "translation": {
+                        "text": "that it",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35671,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لَيَحْزُنُكَ",
+                    "text_uthmani_simple": "ليحزنك",
+                    "code_v1": "ﯕ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "لَيَحْزُنُكَ",
+                    "translation": {
+                        "text": "grieves you",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35672,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلَّذِى",
+                    "text_uthmani_simple": "الذى",
+                    "code_v1": "ﯖ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "ٱلَّذِى",
+                    "translation": {
+                        "text": "what",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35673,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يَقُولُونَ ۖ",
+                    "text_uthmani_simple": "يقولون",
+                    "code_v1": "ﯗﯘ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "يَقُولُونَ ۖ",
+                    "translation": {
+                        "text": "they say",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35675,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فَإِنَّهُمْ",
+                    "text_uthmani_simple": "فانهم",
+                    "code_v1": "ﯙ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "فَإِنَّهُمْ",
+                    "translation": {
+                        "text": "And indeed, they",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35676,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لَا",
+                    "text_uthmani_simple": "لا",
+                    "code_v1": "ﯚ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "لَا",
+                    "translation": {
+                        "text": "(do) not",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35677,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يُكَذِّبُونَكَ",
+                    "text_uthmani_simple": "يكذبونك",
+                    "code_v1": "ﯛ",
+                    "page_number": 131,
+                    "line_number": 9,
+                    "text": "يُكَذِّبُونَكَ",
+                    "translation": {
+                        "text": "deny you",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35678,
+                    "position": 10,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَـٰكِنَّ",
+                    "text_uthmani_simple": "ولـكن",
+                    "code_v1": "ﯜ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "وَلَـٰكِنَّ",
+                    "translation": {
+                        "text": "but",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35679,
+                    "position": 11,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلظَّـٰلِمِينَ",
+                    "text_uthmani_simple": "الظـلمين",
+                    "code_v1": "ﯝ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "ٱلظَّـٰلِمِينَ",
+                    "translation": {
+                        "text": "the wrongdoers ",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35680,
+                    "position": 12,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بِـَٔايَـٰتِ",
+                    "text_uthmani_simple": "بـايـت",
+                    "code_v1": "ﯞ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "بِـَٔايَـٰتِ",
+                    "translation": {
+                        "text": "the Verses",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35681,
+                    "position": 13,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱللَّهِ",
+                    "text_uthmani_simple": "الله",
+                    "code_v1": "ﯟ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "ٱللَّهِ",
+                    "translation": {
+                        "text": "(of) Allah",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35682,
+                    "position": 14,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "يَجْحَدُونَ",
+                    "text_uthmani_simple": "يجحدون",
+                    "code_v1": "ﯠ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "يَجْحَدُونَ",
+                    "translation": {
+                        "text": "they reject",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 35683,
+                    "position": 15,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٣٣",
+                    "text_uthmani_simple": "٣٣",
+                    "code_v1": "ﯡ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "٣٣",
+                    "translation": {
+                        "text": "(33)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 823,
+            "verse_number": 34,
+            "verse_key": "6:34",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 105,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "ولقد كذبت رسل من قبلك فصبروا۟ على ما كذبوا۟ واوذوا۟ حتى اتىهم نصرنا ولا مبدل لكلمت الله ولقد جاءك من نباى۟ المرسلين",
+            "text_uthmani": "وَلَقَدْ كُذِّبَتْ رُسُلٌ مِّن قَبْلِكَ فَصَبَرُوا۟ عَلَىٰ مَا كُذِّبُوا۟ وَأُوذُوا۟ حَتَّىٰٓ أَتَىٰهُمْ نَصْرُنَا ۚ وَلَا مُبَدِّلَ لِكَلِمَـٰتِ ٱللَّهِ ۚ وَلَقَدْ جَآءَكَ مِن نَّبَإِى۟ ٱلْمُرْسَلِينَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 36617,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَقَدْ",
+                    "text_uthmani_simple": "ولقد",
+                    "code_v1": "ﯢ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "وَلَقَدْ",
+                    "translation": {
+                        "text": "And surely",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36618,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "كُذِّبَتْ",
+                    "text_uthmani_simple": "كذبت",
+                    "code_v1": "ﯣ",
+                    "page_number": 131,
+                    "line_number": 10,
+                    "text": "كُذِّبَتْ",
+                    "translation": {
+                        "text": "were rejected",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36619,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "رُسُلٌۭ",
+                    "text_uthmani_simple": "رسلۭ",
+                    "code_v1": "ﯤ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "رُسُلٌۭ",
+                    "translation": {
+                        "text": "Messengers",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36620,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مِّن",
+                    "text_uthmani_simple": "من",
+                    "code_v1": "ﯥ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "مِّن",
+                    "translation": {
+                        "text": "from",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36621,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "قَبْلِكَ",
+                    "text_uthmani_simple": "قبلك",
+                    "code_v1": "ﯦ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "قَبْلِكَ",
+                    "translation": {
+                        "text": "before you",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36622,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فَصَبَرُوا۟",
+                    "text_uthmani_simple": "فصبروا۟",
+                    "code_v1": "ﯧ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "فَصَبَرُوا۟",
+                    "translation": {
+                        "text": "but they were patient",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36623,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "عَلَىٰ",
+                    "text_uthmani_simple": "على",
+                    "code_v1": "ﯨ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "عَلَىٰ",
+                    "translation": {
+                        "text": "over",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36624,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مَا",
+                    "text_uthmani_simple": "ما",
+                    "code_v1": "ﯩ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "مَا",
+                    "translation": {
+                        "text": "what",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36625,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "كُذِّبُوا۟",
+                    "text_uthmani_simple": "كذبوا۟",
+                    "code_v1": "ﯪ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "كُذِّبُوا۟",
+                    "translation": {
+                        "text": "they were rejected",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36626,
+                    "position": 10,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَأُوذُوا۟",
+                    "text_uthmani_simple": "واوذوا۟",
+                    "code_v1": "ﯫ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "وَأُوذُوا۟",
+                    "translation": {
+                        "text": "and they were harmed",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36627,
+                    "position": 11,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "حَتَّىٰٓ",
+                    "text_uthmani_simple": "حتى",
+                    "code_v1": "ﯬ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "حَتَّىٰٓ",
+                    "translation": {
+                        "text": "until",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36628,
+                    "position": 12,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "أَتَىٰهُمْ",
+                    "text_uthmani_simple": "اتىهم",
+                    "code_v1": "ﯭ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "أَتَىٰهُمْ",
+                    "translation": {
+                        "text": "came to them",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36629,
+                    "position": 13,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "نَصْرُنَا ۚ",
+                    "text_uthmani_simple": "نصرنا",
+                    "code_v1": "ﯮﯯ",
+                    "page_number": 131,
+                    "line_number": 11,
+                    "text": "نَصْرُنَا ۚ",
+                    "translation": {
+                        "text": "Our help",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36631,
+                    "position": 14,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَا",
+                    "text_uthmani_simple": "ولا",
+                    "code_v1": "ﯰ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "وَلَا",
+                    "translation": {
+                        "text": "And no",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36632,
+                    "position": 15,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مُبَدِّلَ",
+                    "text_uthmani_simple": "مبدل",
+                    "code_v1": "ﯱ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "مُبَدِّلَ",
+                    "translation": {
+                        "text": "one (can) alter",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36633,
+                    "position": 16,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لِكَلِمَـٰتِ",
+                    "text_uthmani_simple": "لكلمـت",
+                    "code_v1": "ﯲ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "لِكَلِمَـٰتِ",
+                    "translation": {
+                        "text": "(the) words",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36634,
+                    "position": 17,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱللَّهِ ۚ",
+                    "text_uthmani_simple": "الله",
+                    "code_v1": "ﯳﯴ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "ٱللَّهِ ۚ",
+                    "translation": {
+                        "text": "(of) Allah",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36636,
+                    "position": 18,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَقَدْ",
+                    "text_uthmani_simple": "ولقد",
+                    "code_v1": "ﯵ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "وَلَقَدْ",
+                    "translation": {
+                        "text": "and surely",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36637,
+                    "position": 19,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "جَآءَكَ",
+                    "text_uthmani_simple": "جاك",
+                    "code_v1": "ﯶ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "جَآءَكَ",
+                    "translation": {
+                        "text": "has come to you",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36638,
+                    "position": 20,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مِن",
+                    "text_uthmani_simple": "من",
+                    "code_v1": "ﯷ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "مِن",
+                    "translation": {
+                        "text": "of",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36639,
+                    "position": 21,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "نَّبَإِى۟",
+                    "text_uthmani_simple": "نباى۟",
+                    "code_v1": "ﯸ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "نَّبَإِى۟",
+                    "translation": {
+                        "text": "(the) news",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36640,
+                    "position": 22,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلْمُرْسَلِينَ",
+                    "text_uthmani_simple": "المرسلين",
+                    "code_v1": "ﯹ",
+                    "page_number": 131,
+                    "line_number": 12,
+                    "text": "ٱلْمُرْسَلِينَ",
+                    "translation": {
+                        "text": "(of) the Messengers",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 36641,
+                    "position": 23,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٣٤",
+                    "text_uthmani_simple": "٣٤",
+                    "code_v1": "ﯺ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "٣٤",
+                    "translation": {
+                        "text": "(34)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 824,
+            "verse_number": 35,
+            "verse_key": "6:35",
+            "hizb_number": 13,
+            "rub_el_hizb_number": 52,
+            "ruku_number": 105,
+            "manzil_number": 2,
+            "sajdah_number": null,
+            "text_uthmani_simple": "وان كان كبر عليك اعراضهم فان استطعت ان تبتغى نفقا فى الارض او سلما فى السماء فتاتيهم بـاية ولو شاء الله لجمعهم على الهدى فلا تكونن من الجهلين",
+            "text_uthmani": "وَإِن كَانَ كَبُرَ عَلَيْكَ إِعْرَاضُهُمْ فَإِنِ ٱسْتَطَعْتَ أَن تَبْتَغِىَ نَفَقًا فِى ٱلْأَرْضِ أَوْ سُلَّمًا فِى ٱلسَّمَآءِ فَتَأْتِيَهُم بِـَٔايَةٍ ۚ وَلَوْ شَآءَ ٱللَّهُ لَجَمَعَهُمْ عَلَى ٱلْهُدَىٰ ۚ فَلَا تَكُونَنَّ مِنَ ٱلْجَـٰهِلِينَ",
+            "page_number": 131,
+            "juz_number": 7,
+            "words": [
+                {
+                    "id": 37477,
+                    "position": 1,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَإِن",
+                    "text_uthmani_simple": "وان",
+                    "code_v1": "ﯻ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "وَإِن",
+                    "translation": {
+                        "text": "And if",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37478,
+                    "position": 2,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "كَانَ",
+                    "text_uthmani_simple": "كان",
+                    "code_v1": "ﯼ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "كَانَ",
+                    "translation": {
+                        "text": "is",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37479,
+                    "position": 3,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "كَبُرَ",
+                    "text_uthmani_simple": "كبر",
+                    "code_v1": "ﯽ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "كَبُرَ",
+                    "translation": {
+                        "text": "difficult",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37480,
+                    "position": 4,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "عَلَيْكَ",
+                    "text_uthmani_simple": "عليك",
+                    "code_v1": "ﯾ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "عَلَيْكَ",
+                    "translation": {
+                        "text": "for you",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37481,
+                    "position": 5,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "إِعْرَاضُهُمْ",
+                    "text_uthmani_simple": "اعراضهم",
+                    "code_v1": "ﯿ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "إِعْرَاضُهُمْ",
+                    "translation": {
+                        "text": "their aversion",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37482,
+                    "position": 6,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فَإِنِ",
+                    "text_uthmani_simple": "فان",
+                    "code_v1": "ﰀ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "فَإِنِ",
+                    "translation": {
+                        "text": "then if",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37483,
+                    "position": 7,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱسْتَطَعْتَ",
+                    "text_uthmani_simple": "استطعت",
+                    "code_v1": "ﰁ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "ٱسْتَطَعْتَ",
+                    "translation": {
+                        "text": "you are able",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37484,
+                    "position": 8,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "أَن",
+                    "text_uthmani_simple": "ان",
+                    "code_v1": "ﰂ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "أَن",
+                    "translation": {
+                        "text": "to",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37485,
+                    "position": 9,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "تَبْتَغِىَ",
+                    "text_uthmani_simple": "تبتغى",
+                    "code_v1": "ﰃ",
+                    "page_number": 131,
+                    "line_number": 13,
+                    "text": "تَبْتَغِىَ",
+                    "translation": {
+                        "text": "seek",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37486,
+                    "position": 10,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "نَفَقًۭا",
+                    "text_uthmani_simple": "نفقۭا",
+                    "code_v1": "ﰄ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "نَفَقًۭا",
+                    "translation": {
+                        "text": "a tunnel",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37487,
+                    "position": 11,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فِى",
+                    "text_uthmani_simple": "فى",
+                    "code_v1": "ﰅ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "فِى",
+                    "translation": {
+                        "text": "in",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37488,
+                    "position": 12,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلْأَرْضِ",
+                    "text_uthmani_simple": "الارض",
+                    "code_v1": "ﰆ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "ٱلْأَرْضِ",
+                    "translation": {
+                        "text": "the earth",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37489,
+                    "position": 13,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "أَوْ",
+                    "text_uthmani_simple": "او",
+                    "code_v1": "ﰇ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "أَوْ",
+                    "translation": {
+                        "text": "or",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37490,
+                    "position": 14,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "سُلَّمًۭا",
+                    "text_uthmani_simple": "سلمۭا",
+                    "code_v1": "ﰈ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "سُلَّمًۭا",
+                    "translation": {
+                        "text": "a ladder",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37491,
+                    "position": 15,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فِى",
+                    "text_uthmani_simple": "فى",
+                    "code_v1": "ﰉ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "فِى",
+                    "translation": {
+                        "text": "into",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37492,
+                    "position": 16,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلسَّمَآءِ",
+                    "text_uthmani_simple": "السما",
+                    "code_v1": "ﰊ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "ٱلسَّمَآءِ",
+                    "translation": {
+                        "text": "the sky",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37493,
+                    "position": 17,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فَتَأْتِيَهُم",
+                    "text_uthmani_simple": "فتاتيهم",
+                    "code_v1": "ﰋ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "فَتَأْتِيَهُم",
+                    "translation": {
+                        "text": "so that you bring to them",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37494,
+                    "position": 18,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "بِـَٔايَةٍۢ ۚ",
+                    "text_uthmani_simple": "بـاية",
+                    "code_v1": "ﰌﰍ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "بِـَٔايَةٍۢ ۚ",
+                    "translation": {
+                        "text": "a Sign",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37496,
+                    "position": 19,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "وَلَوْ",
+                    "text_uthmani_simple": "ولو",
+                    "code_v1": "ﰎ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "وَلَوْ",
+                    "translation": {
+                        "text": "But if",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37497,
+                    "position": 20,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "شَآءَ",
+                    "text_uthmani_simple": "شا",
+                    "code_v1": "ﰏ",
+                    "page_number": 131,
+                    "line_number": 14,
+                    "text": "شَآءَ",
+                    "translation": {
+                        "text": "(had) willed",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37498,
+                    "position": 21,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱللَّهُ",
+                    "text_uthmani_simple": "الله",
+                    "code_v1": "ﰐ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "ٱللَّهُ",
+                    "translation": {
+                        "text": "Allah",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37499,
+                    "position": 22,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "لَجَمَعَهُمْ",
+                    "text_uthmani_simple": "لجمعهم",
+                    "code_v1": "ﰑ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "لَجَمَعَهُمْ",
+                    "translation": {
+                        "text": "surely He (would) have gathered them",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37500,
+                    "position": 23,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "عَلَى",
+                    "text_uthmani_simple": "على",
+                    "code_v1": "ﰒ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "عَلَى",
+                    "translation": {
+                        "text": "on",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37501,
+                    "position": 24,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلْهُدَىٰ ۚ",
+                    "text_uthmani_simple": "الهدى",
+                    "code_v1": "ﰓﰔ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "ٱلْهُدَىٰ ۚ",
+                    "translation": {
+                        "text": "the guidance",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37503,
+                    "position": 25,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "فَلَا",
+                    "text_uthmani_simple": "فلا",
+                    "code_v1": "ﰕ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "فَلَا",
+                    "translation": {
+                        "text": "So (do) not",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37504,
+                    "position": 26,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "تَكُونَنَّ",
+                    "text_uthmani_simple": "تكونن",
+                    "code_v1": "ﰖ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "تَكُونَنَّ",
+                    "translation": {
+                        "text": "be",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37505,
+                    "position": 27,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "مِنَ",
+                    "text_uthmani_simple": "من",
+                    "code_v1": "ﰗ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "مِنَ",
+                    "translation": {
+                        "text": "of",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37506,
+                    "position": 28,
+                    "char_type_name": "word",
+                    "v1_page": 131,
+                    "text_uthmani": "ٱلْجَـٰهِلِينَ",
+                    "text_uthmani_simple": "الجـهلين",
+                    "code_v1": "ﰘ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "ٱلْجَـٰهِلِينَ",
+                    "translation": {
+                        "text": "the ignorant",
+                        "language_name": "english"
+                    }
+                },
+                {
+                    "id": 37507,
+                    "position": 29,
+                    "char_type_name": "end",
+                    "v1_page": 131,
+                    "text_uthmani": "٣٥",
+                    "text_uthmani_simple": "٣٥",
+                    "code_v1": "ﰙ",
+                    "page_number": 131,
+                    "line_number": 15,
+                    "text": "٣٥",
+                    "translation": {
+                        "text": "(35)",
+                        "language_name": "english"
+                    }
+                }
+            ]
+        }
+    ]
+}

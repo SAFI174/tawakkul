@@ -157,6 +157,7 @@ class QuranUtils {
     }
     isFullScreen.value = !isFullScreen.value;
     await StatusBarControl.setHidden(isFullScreen.value);
+    // await StatusBarControl.setTranslucent(isFullScreen.value);
   }
 
   // Highlight a Quran verse for a short duration
@@ -171,7 +172,8 @@ class QuranUtils {
   }
 
   // Method to clear highlights for all words
-  static void clearHighlightedVersesAndWords({required List<QuranPageModel> pages}) async {
+  static void clearHighlightedVersesAndWords(
+      {required List<QuranPageModel> pages}) async {
     for (var page in pages) {
       for (final verse in page.verses) {
         verse.isHighlighted.value = false;

@@ -6,6 +6,7 @@ import 'package:tawakkal/data/models/azkar_notification_model.dart';
 import 'package:tawakkal/utils/dialogs/dialogs.dart';
 
 import '../data/models/prayer_time_model.dart';
+
 class NotificationService extends GetxService {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -18,7 +19,7 @@ class NotificationService extends GetxService {
 
   Future<void> initializeNotifications() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('ic_stat_icon_04');
     const InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
@@ -74,7 +75,7 @@ class NotificationService extends GetxService {
     await flutterLocalNotificationsPlugin.show(
         0,
         '${prayer.name} ${ArabicNumbers().convert(prayer.time)}${prayer.amPmAr}',
-        'حان الآن وقت ${prayer.name}',
+        'حان الآن موعد آذان ${prayer.name}',
         platformChannelSpecifics,
         payload: prayer.name);
   }

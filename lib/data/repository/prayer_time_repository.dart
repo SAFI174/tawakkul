@@ -10,7 +10,7 @@ import 'package:tawakkal/utils/utils.dart';
 import '../models/prayer_time_model.dart';
 
 class PrayerTimeRepository extends GetxService {
-PrayerTimes? prayerTimes;
+  PrayerTimes? prayerTimes;
   Coordinates? coordinates;
   late CalculationParameters parameters;
   late Madhab madhab;
@@ -45,7 +45,7 @@ PrayerTimes? prayerTimes;
       case Prayer.sunrise:
         return 'الشروق';
       case Prayer.dhuhr:
-        return 'الضهر';
+        return 'الظهر';
       case Prayer.asr:
         return 'العصر';
       case Prayer.maghrib:

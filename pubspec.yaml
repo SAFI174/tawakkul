@@ -13,8 +13,8 @@ dependencies:
   flutter_svg: ^2.0.7
   fluentui_system_icons: ^1.1.210
   flutter_islamic_icons: ^1.0.2
-
-  quran: ^1.2.2
+  quran:
+    path: custom_packages/quran-1.2.2
   intl: ^0.18.0
   jhijri: ^1.0.0
   arabic_numbers: ^1.0.0
@@ -42,7 +42,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   geolocator: ^9.0.1
-  flutter_qiblah_update: ^2.0.3
+  flutter_qiblah_update:
+    path: custom_packages/flutter_qiblah_update-2.0.3
   lottie: ^2.7.0
   internet_connection_checker_plus: ^2.1.0
   permission_handler: ^11.0.1
@@ -60,6 +61,12 @@ dependencies:
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
+  flutter_launcher_icons: "^0.13.1"
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icon-09.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21    
 flutter: 
   assets: 
     - assets/svg/
