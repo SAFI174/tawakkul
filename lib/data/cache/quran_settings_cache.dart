@@ -27,7 +27,7 @@ class QuranSettingsCache {
   }
 
   // Get the last page index from the cache, default to 1 if not set.
-  static Future<int> getLastPage() async {
+  static int getLastPage() {
     var lastPage = prefs.getInt(lastPageKey);
     if (lastPage == null) {
       lastPage = 1;

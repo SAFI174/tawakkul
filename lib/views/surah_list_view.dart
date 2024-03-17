@@ -10,7 +10,7 @@ class SurahListView extends GetView {
   const SurahListView({Key? key, this.searchText = ''}) : super(key: key);
 
   final String searchText;
-
+  
   @override
   Widget build(BuildContext context) {
     final surahNumbers = List.generate(114, (index) => index + 1)

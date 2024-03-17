@@ -31,7 +31,7 @@ class QuranMainDashboradController extends GetxController
       Routes.QURAN_READING_PAGE,
       arguments: QuranNavigationArgumentModel(
         surahNumber: 0,
-        pageNumber: await QuranSettingsCache.getLastPage(),
+        pageNumber:  QuranSettingsCache.getLastPage(),
         verseNumber: 0,
         highlightVerse: false,
       ),
