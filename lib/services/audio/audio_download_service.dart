@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -85,8 +86,8 @@ class AudioDownloadService {
       }
       // surah downloaded sucessfully
       return true;
-    } catch (e) {
-      print(e);
+    } catch (e, stackTrace) {
+      log(e.toString(), stackTrace: stackTrace);
       return false;
     }
   }

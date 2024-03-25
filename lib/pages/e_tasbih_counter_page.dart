@@ -1,6 +1,5 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';

@@ -33,7 +33,7 @@ class QuranSearchView extends GetView<QuranSearchController> {
               // Obx for reacting to changes in the search results
               Obx(() {
                 final searchResults = controller.searchResults;
-                if (searchResults.isEmpty && controller.searchText != '') {
+                if (searchResults.isEmpty && controller.searchText.value.isNotEmpty) {
                   return const Center(child: Text('No results found.'));
                 } else {
                   return Expanded(

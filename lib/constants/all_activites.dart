@@ -133,7 +133,7 @@ class Activites {
           Routes.AZKAR_DETAILS,
           arguments: {
             'pageTitle': 'ادعية الانبياء',
-            'type': AzkarPageType.prophet_dua
+            'type': AzkarPageType.prophetDua
           },
         );
       },
@@ -146,7 +146,7 @@ class Activites {
           Routes.AZKAR_DETAILS,
           arguments: {
             'pageTitle': 'ادعية نبوية',
-            'type': AzkarPageType.p_dua,
+            'type': AzkarPageType.pDua,
           },
         );
       },
@@ -159,7 +159,7 @@ class Activites {
           Routes.AZKAR_DETAILS,
           arguments: {
             'pageTitle': 'ادعية قرآنية',
-            'type': AzkarPageType.quran_dua
+            'type': AzkarPageType.quranDua
           },
         );
       },

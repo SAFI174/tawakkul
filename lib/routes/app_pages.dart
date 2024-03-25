@@ -1,3 +1,4 @@
+// ignore_for_file: constant_identifier_names
 import 'package:get/get.dart';
 import 'package:tawakkal/bindings/e_tasbih_binding.dart';
 import 'package:tawakkal/bindings/quran_search_binding.dart';

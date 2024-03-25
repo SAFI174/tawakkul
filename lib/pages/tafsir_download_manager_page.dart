@@ -43,7 +43,7 @@ class TafsirDownloadManagerPage
                   return ListView.separated(
                     itemCount: tafsirList.length,
                     separatorBuilder: (context, index) {
-                      return Divider();
+                      return const Divider();
                     },
                     itemBuilder: (BuildContext context, int index) {
                       final tafsir = tafsirList[index];

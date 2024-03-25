@@ -6,7 +6,6 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:quran/quran.dart';
 import 'package:tawakkal/data/cache/quran_reader_cache.dart';
 import 'package:tawakkal/data/models/quran_bookmark.dart';
-import 'package:tawakkal/data/models/quran_reader.dart';
 import 'package:tawakkal/data/models/quran_verse_model.dart';
 import 'package:tawakkal/widgets/custom_progress_indicator.dart';
 import '../../controllers/quran_reading_controller.dart';
@@ -30,7 +29,7 @@ Future<void> selectReaderSheet() async {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CustomCircularProgressIndicator();
             } else {
-              var readersList = snapshot.data![0] as List<QuranReader>;
+              var readersList = snapshot.data![0];
               var selectedReader =
                   QuranReaderCache.getSelectedReaderFromCache();
               var selectedIndex = readersList.indexWhere(

@@ -11,14 +11,4 @@ class AzkarCategoriesController extends GetxController {
     azkarRepository = AzkarRepository();
     futureAzkarCategories = azkarRepository.getAzkarCategories();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

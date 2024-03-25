@@ -31,7 +31,7 @@ class Hadith40DetailsPage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Divider(height: 0),
+                const Divider(height: 0),
                 const Material(
                   child: Padding(
                     padding: EdgeInsets.all(15.0),

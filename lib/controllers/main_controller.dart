@@ -5,11 +5,6 @@ import '../data/models/daily_content_model.dart';
 
 class MainController extends GetxController {
   DailyContentModel? dailyContent;
-  @override
-  void onInit() async {
-    super.onInit();
-  
-  }
 
   @override
   void onReady() async {

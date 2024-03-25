@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart';
@@ -30,7 +31,7 @@ class TafsirDetailsController extends GetxController {
       await Future.wait(
           tafsirsUrls.map((element) => loadTafsirDataFromFile(element)));
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
@@ -41,7 +42,7 @@ class TafsirDetailsController extends GetxController {
       final jsonString = await file.readAsString();
       tafsirsData.add(TafsirData.fromJson(json.decode(jsonString)));
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
@@ -89,15 +90,5 @@ class TafsirDetailsController extends GetxController {
   void onInit() async {
     await loadTafsirDate();
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }

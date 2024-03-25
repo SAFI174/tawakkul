@@ -54,10 +54,10 @@ class SettingsSection extends StatelessWidget {
               ],
             ),
           ),
-          collapsed: SizedBox(),
+          collapsed: const SizedBox(),
           theme: ExpandableThemeData.combine(
               ExpandableThemeData(
-                animationDuration: Duration(milliseconds: 1),
+                animationDuration: const Duration(milliseconds: 1),
                 hasIcon: false,
                 useInkWell: false,
                 headerAlignment: ExpandablePanelHeaderAlignment.center,
@@ -67,7 +67,7 @@ class SettingsSection extends StatelessWidget {
           expanded: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Divider(
+              const Divider(
                 thickness: 1.2,
                 height: 1.2,
               ),
