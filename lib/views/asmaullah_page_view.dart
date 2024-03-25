@@ -58,7 +58,7 @@ class AsmaullahPageView extends GetView {
                               onPressed: () {
                                 Get.back();
                               },
-                              child: Text("حسناََ"),
+                              child: const Text("حسناََ"),
                             ),
                           ],
                         ),

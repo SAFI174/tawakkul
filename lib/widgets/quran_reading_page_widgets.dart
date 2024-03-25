@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +55,9 @@ Stack surahTitleWidget(
   try {
     QuranReadingController controller = Get.find();
     isMarkerColored = controller.displaySettings.isMarkerColored;
-  } catch (e) {}
+  } catch (e) {
+    log(e.toString());
+  }
   return Stack(
     children: [
       SvgPicture.asset(

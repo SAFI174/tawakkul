@@ -85,11 +85,11 @@ class DailyContentContainer extends StatelessWidget {
                   ),
                   const Gap(10),
                   subtitle == null
-                      ? SizedBox()
+                      ? const SizedBox()
                       : Text(
                           subtitle!,
                           style: subtitleTextStyle ??
-                              TextStyle(fontWeight: FontWeight.bold),
+                              const TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         )
                 ],

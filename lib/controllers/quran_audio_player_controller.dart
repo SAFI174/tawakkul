@@ -90,14 +90,4 @@ class QuranAudioPlayerBottomBarController extends GetxController {
     super.onInit();
     selectedReader.value = QuranReaderCache.getSelectedReaderFromCache();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

@@ -188,9 +188,9 @@ class PrayerTimeRepository extends GetxService {
   /// Get the decoded location text using reverse geocoding.
   Future<String> getLocationTextDecoded() async {
     try {
+      await setLocaleIdentifier('ar-SA');
       List<Placemark> placemarks = await placemarkFromCoordinates(
-          coordinates!.latitude, coordinates!.longitude,
-          localeIdentifier: 'ar-SA');
+          coordinates!.latitude, coordinates!.longitude);
       if (placemarks.isNotEmpty) {
         if (placemarks.length > 2) {
           return placemarks[3].street!;

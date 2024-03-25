@@ -43,7 +43,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
               onPressed: controller.onSaveAllPressed,
               child: const Text('حفظ'),
             ),
-            Gap(10),
+            const Gap(10),
           ],
         ),
         body: ListView(

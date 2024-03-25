@@ -48,11 +48,6 @@ class QuranAudioSettingsController extends GetxController {
     update();
   }
 
-  @override
-  void onReady() async {
-    super.onReady();
-  }
-
   // Init settings data
   void initSettings() async {
     playRange = AudioSettingsCache.getQuranPlayRange();

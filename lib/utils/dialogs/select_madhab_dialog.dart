@@ -8,11 +8,13 @@ import '../../constants/constants.dart';
 import '../../handlers/notification_alarm_handler.dart';
 
 class MadhabSelectionDialog extends StatefulWidget {
+  const MadhabSelectionDialog({super.key});
+
   @override
-  _MadhabSelectionDialogState createState() => _MadhabSelectionDialogState();
+  MadhabSelectionDialogState createState() => MadhabSelectionDialogState();
 }
 
-class _MadhabSelectionDialogState extends State<MadhabSelectionDialog> {
+class MadhabSelectionDialogState extends State<MadhabSelectionDialog> {
   Madhab? selectedMadhab = PrayerTimeCache.getMadhabFromCache();
   var repository = Get.find<PrayerTimeRepository>();
   @override

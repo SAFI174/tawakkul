@@ -23,7 +23,7 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
       tween: Tween<double>(begin: 0, end: percentage),
-      duration: animationDuration ?? Duration(milliseconds: 500),
+      duration: animationDuration ?? const Duration(milliseconds: 500),
       builder: (context, double value, child) => Column(
         children: [
           LinearProgressIndicator(

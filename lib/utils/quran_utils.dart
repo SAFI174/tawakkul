@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -104,7 +106,9 @@ class QuranUtils {
     try {
       QuranReadingController controller = Get.find();
       isMarkerColored = controller.displaySettings.isMarkerColored;
-    } catch (e) {}
+    } catch (e, stackTrace) {
+      log(e.toString(), stackTrace: stackTrace);
+    }
     if (isMarker && isMarkerColored) {
       return theme.primaryColor;
     } else {

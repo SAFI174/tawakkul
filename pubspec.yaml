@@ -9,7 +9,7 @@ dependencies:
   get: 4.6.6
   auto_size_text: ^3.0.0
   flex_color_scheme: ^7.2.0
-  google_fonts: ^5.1.0
+  google_fonts: ^6.2.1
   flutter_svg: ^2.0.7
   fluentui_system_icons: ^1.1.210
   flutter_islamic_icons: ^1.0.2
@@ -23,8 +23,8 @@ dependencies:
   just_audio: ^0.9.35
   status_bar_control: ^3.2.1
   search_highlight_text: ^1.0.0+2
-  modal_bottom_sheet: ^2.1.2
-  share_plus: ^6.0.1
+  modal_bottom_sheet: ^3.0.0
+  share_plus: ^8.0.2
   connectivity: ^3.0.6
   expandable: ^5.0.1
   iconsax: ^0.0.8
@@ -44,19 +44,20 @@ dependencies:
   geolocator: ^9.0.1
   flutter_qiblah_update:
     path: custom_packages/flutter_qiblah_update-2.0.3
-  lottie: ^2.7.0
+  lottie: ^3.1.0
   internet_connection_checker_plus: ^2.1.0
   permission_handler: ^11.0.1
-  device_info_plus: ^8.2.2
+  device_info_plus: ^10.0.1
   vibration: ^1.7.7
-  sqflite_common_ffi: ^2.3.0+4
+  path_provider: ^2.1.2
+  sqflite: ^2.3.2
   gap: ^3.0.1
   adhan: ^2.0.0+1
-  flutter_local_notifications: ^16.2.0
+  flutter_local_notifications: ^17.0.0
   timezone: ^0.9.2
   timeago: ^3.6.0
-  geocoding: ^2.1.1
-  android_alarm_manager_plus: ^3.0.4
+  geocoding: ^3.0.0
+  android_alarm_manager_plus: ^4.0.1
   shared_preferences: ^2.2.2
 dev_dependencies: 
   flutter_test: 

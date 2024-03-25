@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -198,8 +200,9 @@ class AyahBottomSheet extends GetView<AyahBottomSheetController> {
                   controller.verseNumber.value = verse.verseNumber;
                   Get.to(() => const TafsirDetailsPage(),
                       fullscreenDialog: true);
-                } catch (e) {}
-
+                } catch (e, stackTrace) {
+                  log(e.toString(), stackTrace: stackTrace);
+                }
                 // Navigate to TafsirDetailsPage
                 Get.to(
                   () => const TafsirDetailsPage(),

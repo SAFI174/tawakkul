@@ -31,9 +31,9 @@ class _TimingDataDownloadDialogState extends State<TimingDataDownloadDialog> {
         });
       },
     ).then((value) async {
-      if (value)
+      if (value) {
         Get.back(result: value);
-      else {
+      } else {
         await showDownloadFailedDialog();
         Get.back(result: value);
       }

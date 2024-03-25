@@ -67,7 +67,7 @@ class JuzItem extends StatelessWidget {
                       onPressed: () async {
                         goToPage(currentPage, null, null);
                       },
-                      child: Text('اقرأ الجزء'),
+                      child: const Text('اقرأ الجزء'),
                     ),
                   ],
                 ),

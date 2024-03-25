@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:tawakkal/controllers/tafsir_details_controller.dart';
 import 'package:tawakkal/data/repository/tafsir_repository.dart';
@@ -35,7 +37,9 @@ class TafsirDownloadManagerController extends GetxController {
     try {
       var tafsirDetailsController = Get.find<TafsirDetailsController>();
       tafsirDetailsController.loadTafsirDate();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
     // Reset flags and progress after download completion
     tafsir.isDownloading.value = false;
     tafsir.downloadProgress.value = 0;

@@ -49,14 +49,4 @@ class QuranMainDashboradController extends GetxController
       hizbSearchText.value = '';
     });
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

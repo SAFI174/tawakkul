@@ -61,9 +61,4 @@ class QuranAudioDownloadManagerController extends GetxController {
     surah.isDownloading.value = false;
     surah.downloadProgress.value = 0;
   }
-
-  @override
-  void onInit() async {
-    super.onInit();
-  }
 }

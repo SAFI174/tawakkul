@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -29,7 +30,7 @@ class Utils {
 
     if (scheduledDateTime.isBefore(now)) {
       // If the scheduled time is in the past, add one day
-      scheduledDateTime = scheduledDateTime.add(Duration(days: 1));
+      scheduledDateTime = scheduledDateTime.add(const Duration(days: 1));
     }
 
     return scheduledDateTime;
@@ -138,7 +139,7 @@ class Utils {
       try {
         return await Geolocator.getCurrentPosition();
       } catch (e) {
-        print('Error getting location: $e');
+        log('Error getting location: $e{.toString()}');
         return null;
       }
     } else {

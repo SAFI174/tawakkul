@@ -35,7 +35,7 @@ class JuzListView extends GetView {
                         )
                       : JuzItem(juzNumber: juzNumber),
                 )
-              : SizedBox();
+              : const SizedBox();
         },
       ),
     );

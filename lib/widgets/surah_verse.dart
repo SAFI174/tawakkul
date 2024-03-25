@@ -33,7 +33,7 @@ class SurahVerseWidget extends StatelessWidget {
               padding: const EdgeInsets.all(5.0),
               child: Text(
                 ArabicNumbers().convert(
-                  "${surah}:${verse}",
+                  "$surah:$verse",
                 ),
               ),
             ),

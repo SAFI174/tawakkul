@@ -95,14 +95,14 @@ class TasbihWidget extends StatelessWidget {
               ),
             ),
             const Divider(height: 1),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 name,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             const Divider(height: 1),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

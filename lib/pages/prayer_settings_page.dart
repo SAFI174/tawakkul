@@ -51,7 +51,7 @@ class PrayerSettingsPage extends GetView {
           ),
           ListTile(
             onTap: () {
-              Get.dialog(MadhabSelectionDialog());
+              Get.dialog(const MadhabSelectionDialog());
             },
             dense: true,
             title: Text(
