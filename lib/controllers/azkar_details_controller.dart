@@ -132,19 +132,23 @@ class AzkarDetailsController extends GetxController {
   }
 
   // Show confirmation dialog on exit
-  Future<bool> showConfirmationDialogForExit() async {
+  Future<void> showConfirmationDialogForExit() async {
     if (AzkarSettingsCache.getShowExitConfirmDialog()) {
       if (!isUserDoneAllAzkar() && progress.value > 0) {
-        if (await showAzkarNotDoneDialog()) {
-          // Save data to cache for future use
+        final shouldSave = await showAzkarNotDoneDialog();
+        if (shouldSave == null) {
+          return;
+        }
+        if (shouldSave) {
           if (progress.value != 0) {
             await AzkarRepository().saveAzkarProgress(data: azkarData);
           }
           Get.back();
+        } else {
+          Get.close(2);
         }
       }
     }
-    return Future.value(true);
   }
 
   @override

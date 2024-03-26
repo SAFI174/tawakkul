@@ -8,9 +8,9 @@ class TimeAgoWidget extends StatefulWidget {
   final DateTime targetDate;
 
   const TimeAgoWidget({
-    Key? key,
+    super.key,
     required this.targetDate,
-  }) : super(key: key);
+  });
 
   @override
   TimeAgoWidgetState createState() => TimeAgoWidgetState();

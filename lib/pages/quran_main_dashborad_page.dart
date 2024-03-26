@@ -10,9 +10,7 @@ import '../../Widgets/quran_tab_bar.dart';
 import '../controllers/quran_main_dashborad_controller.dart';
 
 class QuranMainDashboradPage extends GetView<QuranMainDashboradController> {
-  const QuranMainDashboradPage({
-    Key? key,
-  }) : super(key: key);
+  const QuranMainDashboradPage({super.key});
 
   @override
   Widget build(BuildContext context) {

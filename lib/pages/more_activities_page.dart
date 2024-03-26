@@ -9,7 +9,7 @@ import '../../../widgets/custom_button_big_icon.dart';
 import '../controllers/more_activities_controller.dart';
 
 class MoreActivitiesPage extends GetView<MoreActivitiesController> {
-  const MoreActivitiesPage({Key? key}) : super(key: key);
+  const MoreActivitiesPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Directionality(

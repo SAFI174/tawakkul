@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart' as quran;
+import 'package:tawakkal/utils/extension.dart';
 
 import '../../../routes/app_pages.dart';
 import '../data/models/quran_navigation_data_model.dart';
@@ -10,7 +11,7 @@ import 'surah_item.dart';
 class JuzItem extends StatelessWidget {
   final int juzNumber;
 
-  const JuzItem({Key? key, required this.juzNumber}) : super(key: key);
+  const JuzItem({super.key, required this.juzNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class JuzItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 5),
                       child: AutoSizeText(
-                        quran.getJuzNameQCF(juzNumber),
+                        juzNumber.getJuzNameQCF,
                         style: const TextStyle(
                           fontFamily: 'QCFBSML',
                           fontSize: 30,

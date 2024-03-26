@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class AnimatedLinearProgressIndicator extends StatelessWidget {
   const AnimatedLinearProgressIndicator({
-    Key? key,
+    super.key,
     required this.percentage,
     this.percentageTextStyle,
     this.labelStyle,
     this.animationDuration,
     this.indicatorColor,
     this.indicatorBackgroundColor,
-  }) : super(key: key);
+  });
 
   final double percentage;
 

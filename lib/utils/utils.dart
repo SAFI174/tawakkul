@@ -4,7 +4,7 @@ import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_qiblah_update/flutter_qiblah.dart';
+import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:jhijri/jHijri.dart';
@@ -139,7 +139,7 @@ class Utils {
       try {
         return await Geolocator.getCurrentPosition();
       } catch (e) {
-        log('Error getting location: $e{.toString()}');
+        log(e.toString());
         return null;
       }
     } else {

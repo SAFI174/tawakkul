@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart';
+import 'package:tawakkal/utils/extension.dart';
 
 import '../../../routes/app_pages.dart';
 import '../Widgets/hizb_item.dart';
 import '../data/models/quran_navigation_data_model.dart';
 
 class HizbListView extends GetView {
-  const HizbListView({Key? key, this.searchText = ''}) : super(key: key);
+  const HizbListView({super.key, this.searchText = ''});
   final String searchText;
   @override
   Widget build(BuildContext context) {
@@ -28,9 +29,9 @@ class HizbListView extends GetView {
   }
 
   Widget buildHizbItem(BuildContext context, int hizbNumber) {
-    final hizbData = getHizbData(hizbNumber);
+    final hizbData = hizbNumber.getHizbData;
     final pageNumber =
-        getPageNumber(hizbData['surah']!.toInt(), hizbData['verse']!.toInt());
+    getPageNumber(hizbData['surah']!.toInt(), hizbData['verse']!.toInt());
     return HizbItem(
       hizbNumber: hizbNumber,
       onTap: () async {

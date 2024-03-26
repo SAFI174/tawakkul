@@ -95,7 +95,7 @@ class AyahBottomSheetController extends GetxController {
 }
 
 class AyahBottomSheet extends GetView<AyahBottomSheetController> {
-  const AyahBottomSheet(this.verse, this.word, {Key? key}) : super(key: key);
+  const AyahBottomSheet(this.verse, this.word, {super.key});
 
   final QuranVerseModel verse;
   final Word word;

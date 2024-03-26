@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:tawakkal/data/models/quran_navigation_data_model.dart';
+import 'package:tawakkal/utils/extension.dart';
 
 import '../../../routes/app_pages.dart';
 import '../Widgets/surah_item.dart';
 
 class SurahListView extends GetView {
-  const SurahListView({Key? key, this.searchText = ''}) : super(key: key);
+  const SurahListView({super.key, this.searchText = ''});
 
   final String searchText;
-  
+
   @override
   Widget build(BuildContext context) {
     final surahNumbers = List.generate(114, (index) => index + 1)
         .where((surahNumber) =>
-            quran.getSurahNameArabicSimple(surahNumber).contains(searchText))
+        surahNumber.getSurahNameArabicSimple.contains(searchText))
         .toList();
     return ListView.separated(
       padding: EdgeInsets.zero,

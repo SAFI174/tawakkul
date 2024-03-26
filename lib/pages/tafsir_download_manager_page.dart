@@ -7,7 +7,7 @@ import 'package:tawakkal/widgets/custom_progress_indicator.dart';
 
 class TafsirDownloadManagerPage
     extends GetView<TafsirDownloadManagerController> {
-  const TafsirDownloadManagerPage({Key? key}) : super(key: key);
+  const TafsirDownloadManagerPage({super.key});
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);

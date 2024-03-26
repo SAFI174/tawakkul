@@ -82,13 +82,12 @@ class QuranSearchView extends GetView<QuranSearchController> {
 class SearchHighlightText extends StatelessWidget {
   const SearchHighlightText(
     this.text, {
-    Key? key,
+    super.key,
     this.searchText,
     this.searchRegExp,
     this.style,
     this.highlightStyle,
-  })  : assert(searchText == null || searchRegExp == null),
-        super(key: key);
+  })  : assert(searchText == null || searchRegExp == null);
 
   final String text;
   final String? searchText;

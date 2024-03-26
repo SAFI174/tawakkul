@@ -65,7 +65,7 @@ class AzkarRepository {
     // Check if there is previous progress
     if (_hasPreviousProgress(azkarData)) {
       // Show dialog to ask if the user wants to continue from previous progress
-      var continueFromProgress = await showZkrProgressFoundForContinue();
+      bool continueFromProgress = await showZkrProgressFoundForContinue() ?? false;
       if (continueFromProgress) {
         return azkarData; // Return the existing data
       } else {
@@ -114,7 +114,7 @@ class AzkarRepository {
     // Check if there is previous progress
     if (_hasPreviousProgress(azkarData)) {
       // Show dialog to ask if the user wants to continue from previous progress
-      var continueFromProgress = await showZkrProgressFoundForContinue();
+      bool continueFromProgress = await showZkrProgressFoundForContinue() ?? false;
       if (continueFromProgress) {
         return azkarData; // Return the existing data
       } else {

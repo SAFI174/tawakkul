@@ -6,10 +6,10 @@ class ElectronicMasbhaButton extends StatefulWidget {
   final VoidCallback onPressed;
 
   const ElectronicMasbhaButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   // ignore: library_private_types_in_public_api

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class AnimatedCircularProgressIndicator extends StatelessWidget {
   const AnimatedCircularProgressIndicator({
-    Key? key,
+    super.key,
     required this.percentage,
     required this.animationDuration,
-  }) : super(key: key);
+  });
 
   final double percentage;
   final Duration animationDuration;

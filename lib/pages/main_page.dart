@@ -12,7 +12,7 @@ import 'package:tawakkal/utils/utils.dart';
 import '../widgets/daily_content_widget.dart';
 
 class MainPage extends GetView<MainController> {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);

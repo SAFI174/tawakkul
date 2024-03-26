@@ -12,7 +12,7 @@ import '../../../widgets/custom_progress_indicator.dart';
 import '../widgets/surah_verse.dart';
 
 class QuranBookmarksView extends GetView {
-  QuranBookmarksView({Key? key}) : super(key: key);
+  QuranBookmarksView({super.key});
   final BookmarkCache _bookmarkCache = BookmarkCache();
   @override
   Widget build(BuildContext context) {

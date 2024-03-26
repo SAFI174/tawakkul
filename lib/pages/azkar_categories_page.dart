@@ -9,7 +9,7 @@ import '../controllers/azkar_categories_controller.dart';
 import '../widgets/custom_container.dart';
 
 class AzkarCategoriesPage extends GetView<AzkarCategoriesController> {
-  const AzkarCategoriesPage({Key? key}) : super(key: key);
+  const AzkarCategoriesPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

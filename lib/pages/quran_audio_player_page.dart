@@ -13,7 +13,7 @@ import '../routes/app_pages.dart';
 
 class QuranAudioPlayerBottomBar
     extends GetView<QuranAudioPlayerBottomBarController> {
-  const QuranAudioPlayerBottomBar({Key? key}) : super(key: key);
+  const QuranAudioPlayerBottomBar({super.key});
 
   @override
   Widget build(BuildContext context) {

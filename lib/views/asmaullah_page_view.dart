@@ -8,7 +8,7 @@ import '../widgets/custom_progress_indicator.dart';
 import '../widgets/loading_error_text.dart';
 
 class AsmaullahPageView extends GetView {
-  const AsmaullahPageView({Key? key}) : super(key: key);
+  const AsmaullahPageView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
