@@ -32,9 +32,9 @@ class QuranReadingPage extends GetView<QuranReadingController> {
         extendBodyBehindAppBar: true,
         appBar: buildAppBar(theme: theme),
         // toggle fullscreen when tap on body
-        body: WillPopScope(
+        body: PopScope(
           // save the last page and exit fullscreen mode
-          onWillPop: controller.onCloseView,
+          onPopInvoked: (_) async => await controller.onCloseView(),
           child: GestureDetector(
             onTap: () => QuranUtils.toggleFullscreen(
                 isFullScreen: controller.isFullScreenMode),

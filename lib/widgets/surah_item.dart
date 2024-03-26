@@ -49,7 +49,7 @@ class SurahItem extends StatelessWidget {
               fontFamily: 'SURAHNAMES',
               fontSize: 35,
             ),
-            textScaleFactor: 1,
+            textScaler: TextScaler.noScaling,
           ),
         ],
       ),

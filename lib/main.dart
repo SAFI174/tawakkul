@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:status_bar_control/status_bar_control.dart';
 import 'package:tawakkal/constants/constants.dart';
 import 'package:tawakkal/data/cache/app_settings_cache.dart';
 
@@ -28,16 +27,6 @@ void main() async {
     ResponsiveSizer(
       builder: (context1, orientation, screenType) {
         return GetMaterialApp(
-          // Builder to modify the default MediaQuery's textScaleFactor
-          builder: (context, child) {
-            final MediaQueryData data = MediaQuery.of(context);
-            return MediaQuery(
-              data: data.copyWith(
-                  textScaleFactor:
-                      data.textScaleFactor > 1.2 ? 1.2 : data.textScaleFactor),
-              child: child!,
-            );
-          },
           onDispose: () async {
             // ignore: deprecated_member_use
             await AudioService.stop();
