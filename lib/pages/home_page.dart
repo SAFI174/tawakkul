@@ -8,7 +8,7 @@ import 'more_activities_page.dart';
 import 'quran_main_dashborad_page.dart';
 
 class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Obx(() {

@@ -8,7 +8,7 @@ import 'package:share_plus/share_plus.dart';
 
 class ZkrWidget extends StatelessWidget {
   const ZkrWidget({
-    Key? key,
+    super.key,
     this.title,
     required this.description,
     required this.count,
@@ -18,7 +18,7 @@ class ZkrWidget extends StatelessWidget {
     required this.onResetButtonPressed,
     required this.isDone,
     this.fontSize,
-  }) : super(key: key);
+  });
 
   final String? title;
   final String description;

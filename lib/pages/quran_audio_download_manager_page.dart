@@ -3,15 +3,15 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:quran/quran.dart';
 import 'package:tawakkal/data/models/download_surah_model.dart';
+import 'package:tawakkal/utils/extension.dart';
 import '../../../../../data/repository/readers_repository.dart';
 import '../../../../../widgets/custom_progress_indicator.dart';
 import '../controllers/quran_audio_download_manager_controller.dart';
 
 class QuranAudioDownloadManagerPage
     extends GetView<QuranAudioDownloadManagerController> {
-  const QuranAudioDownloadManagerPage({Key? key}) : super(key: key);
+  const QuranAudioDownloadManagerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -143,37 +143,37 @@ class QuranAudioDownloadManagerPage
       var controllers = ExpandableController.of(context, required: true)!;
       return controllers.expanded
           ? FutureBuilder(
-              future: ReadersRepository().getSurahDownloadData(
-                  reader: controller.readers[readerIndex]),
-              builder: (context, surahData) {
-                if (surahData.connectionState == ConnectionState.waiting) {
-                  // Show a loading indicator while data is being fetched
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomCircularProgressIndicator(),
-                  );
-                } else {
-                  if (controller.readers[readerIndex].surahs == null) {
-                    controller.readers[readerIndex].surahs = surahData.data!;
-                  }
-                  return CustomScrollView(
-                    primary: false,
-                    shrinkWrap: true,
-                    slivers: [
-                      SliverList.builder(
-                        itemCount: 114,
-                        itemBuilder: (context, chapterId) {
-                          var surah = controller
-                              .readers[readerIndex].surahs![chapterId];
-                          return _buildChapterContent(
-                              context, surah, readerIndex);
-                        },
-                      ),
-                    ],
-                  );
-                }
-              },
-            )
+        future: ReadersRepository().getSurahDownloadData(
+            reader: controller.readers[readerIndex]),
+        builder: (context, surahData) {
+          if (surahData.connectionState == ConnectionState.waiting) {
+            // Show a loading indicator while data is being fetched
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomCircularProgressIndicator(),
+            );
+          } else {
+            if (controller.readers[readerIndex].surahs == null) {
+              controller.readers[readerIndex].surahs = surahData.data!;
+            }
+            return CustomScrollView(
+              primary: false,
+              shrinkWrap: true,
+              slivers: [
+                SliverList.builder(
+                  itemCount: 114,
+                  itemBuilder: (context, chapterId) {
+                    var surah = controller
+                        .readers[readerIndex].surahs![chapterId];
+                    return _buildChapterContent(
+                        context, surah, readerIndex);
+                  },
+                ),
+              ],
+            );
+          }
+        },
+      )
           : const SizedBox();
     });
   }
@@ -200,49 +200,49 @@ class QuranAudioDownloadManagerPage
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Text(
-                    '${surah.id} - ${getSurahNameOnlyArabicSimple(surah.id)}',
+                    '${surah.id} - ${surah.id.getSurahNameOnlyArabicSimple}',
                   ),
                 ),
                 Obx(() {
                   return !surah.isDownloaded.value
                       ? !surah.isDownloading.value
-                          ? surah.isPending.value
-                              ? const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text('قيد الانتظار'),
-                                )
-                              : IconButton(
-                                  style: IconButton.styleFrom(
-                                      visualDensity: VisualDensity.compact),
-                                  onPressed: () async {
-                                    controller.onSurahDownloadPressed(
-                                        readerIndex: readerIndex, surah: surah);
-                                  },
-                                  icon: Icon(
-                                    Iconsax.arrow_down_2,
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
-                                )
-                          : Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(
-                                '% ${ArabicNumbers().convert(surah.downloadProgress.value)}',
-                              ),
-                            )
+                      ? surah.isPending.value
+                      ? const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text('قيد الانتظار'),
+                  )
                       : IconButton(
-                          style: IconButton.styleFrom(
-                              visualDensity: VisualDensity.compact),
-                          onPressed: () async {
-                            controller.onDeleteSurah(
-                                surah: surah,
-                                reader: controller.readers[readerIndex]);
-                          },
-                          icon: Icon(
-                            Iconsax.minus_cirlce,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        );
+                    style: IconButton.styleFrom(
+                        visualDensity: VisualDensity.compact),
+                    onPressed: () async {
+                      controller.onSurahDownloadPressed(
+                          readerIndex: readerIndex, surah: surah);
+                    },
+                    icon: Icon(
+                      Iconsax.arrow_down_2,
+                      color:
+                      Theme.of(context).colorScheme.primary,
+                    ),
+                  )
+                      : Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      '% ${ArabicNumbers().convert(surah.downloadProgress.value)}',
+                    ),
+                  )
+                      : IconButton(
+                    style: IconButton.styleFrom(
+                        visualDensity: VisualDensity.compact),
+                    onPressed: () async {
+                      controller.onDeleteSurah(
+                          surah: surah,
+                          reader: controller.readers[readerIndex]);
+                    },
+                    icon: Icon(
+                      Iconsax.minus_cirlce,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  );
                 }),
               ],
             ),

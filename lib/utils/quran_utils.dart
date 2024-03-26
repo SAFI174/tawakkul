@@ -106,8 +106,8 @@ class QuranUtils {
     try {
       QuranReadingController controller = Get.find();
       isMarkerColored = controller.displaySettings.isMarkerColored;
-    } catch (e, stackTrace) {
-      log(e.toString(), stackTrace: stackTrace);
+    } catch (e) {
+      log(e.toString());
     }
     if (isMarker && isMarkerColored) {
       return theme.primaryColor;

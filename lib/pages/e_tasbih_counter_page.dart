@@ -8,8 +8,7 @@ import 'package:tawakkal/data/models/e_tasbih.dart';
 import '../widgets/e_tasbih_counter_button.dart';
 
 class ElectronicTashbihCounterPage extends GetView<ElectronicTasbihController> {
-  const ElectronicTashbihCounterPage({Key? key, required this.eTasbihModel})
-      : super(key: key);
+  const ElectronicTashbihCounterPage({super.key, required this.eTasbihModel});
   final ElectronicTasbihModel eTasbihModel;
   @override
   Widget build(BuildContext context) {

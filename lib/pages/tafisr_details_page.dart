@@ -11,7 +11,7 @@ import '../controllers/tafsir_details_controller.dart';
 import 'tafsir_download_manager_page.dart';
 
 class TafsirDetailsPage extends GetView<TafsirDetailsController> {
-  const TafsirDetailsPage({Key? key}) : super(key: key);
+  const TafsirDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,10 +8,10 @@ class SurahItem extends StatelessWidget {
   final Function()? onTap;
 
   const SurahItem({
-    Key? key,
+    super.key,
     required this.surahNumber,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -10,8 +10,8 @@ import '../data/cache/azkar_settings_cache.dart';
 
 class AzkarDetailsPage extends GetView<AzkarDetailsController> {
   AzkarDetailsPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final appBarTitle = Get.arguments['pageTitle'];
   @override
   Widget build(BuildContext context) {

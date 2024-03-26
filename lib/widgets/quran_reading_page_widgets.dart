@@ -124,10 +124,10 @@ Row buildPageStrokes(bool isEven) {
 // Widget for a button that displays the page number and allows quick navigation
 class PageNumberButtonWidget extends StatelessWidget {
   const PageNumberButtonWidget({
-    Key? key,
+    super.key,
     required this.pageNumber,
     required this.height,
-  }) : super(key: key);
+  });
 
   final int pageNumber;
   final double height;
