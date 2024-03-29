@@ -111,8 +111,8 @@ void showQiblaCompassCalibrationDialog() {
 }
 
 // show azkar not done alert dialog
-Future<dynamic> showAzkarNotDoneDialog() {
-  return Get.dialog(
+Future<bool?> showAzkarNotDoneDialog() async {
+  return await Get.dialog<bool>(
     AlertDialog(
       title: const Text('تنبيه'),
       content: SizedBox(
@@ -131,15 +131,11 @@ Future<dynamic> showAzkarNotDoneDialog() {
             Row(
               children: [
                 TextButton(
-                  onPressed: () {
-                    Get.back();
-                  },
+                  onPressed: () => Get.back(),
                   child: const Text('تابع القراءة'),
                 ),
                 TextButton(
-                  onPressed: () {
-                    Get.close(2);
-                  },
+                  onPressed: () => Get.back(result: false),
                   child: const Text('مغادرة'),
                 ),
               ],
@@ -332,31 +328,25 @@ Future<bool> showDeleteItemDialog() async {
 }
 
 // show Zkr Progress is found
-Future<dynamic> showZkrProgressFoundForContinue() async {
-  return Get.dialog(
-    WillPopScope(
-      onWillPop: () {
-        Get.close(2);
-        return Future.value(false);
-      },
-      child: AlertDialog(
-        title: const Text('تنبيه'),
-        content: const Text('هناك تقدم سابق\n هل تريد المتابعة من حيث توقفت؟'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.back(result: true);
-            },
-            child: const Text('متابعة'),
-          ),
-          TextButton(
-            onPressed: () {
-              Get.back(result: false);
-            },
-            child: const Text('بدء من جديد'),
-          ),
-        ],
-      ),
+Future<bool?> showZkrProgressFoundForContinue() async {
+  return await Get.dialog<bool>(
+    AlertDialog(
+      title: const Text('تنبيه'),
+      content: const Text('هناك تقدم سابق\n هل تريد المتابعة من حيث توقفت؟'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back(result: true);
+          },
+          child: const Text('متابعة'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.back(result: false);
+          },
+          child: const Text('بدء من جديد'),
+        ),
+      ],
     ),
     barrierDismissible: false,
   );

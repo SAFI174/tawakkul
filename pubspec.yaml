@@ -13,8 +13,6 @@ dependencies:
   flutter_svg: ^2.0.7
   fluentui_system_icons: ^1.1.210
   flutter_islamic_icons: ^1.0.2
-  quran:
-    path: custom_packages/quran-1.2.2
   intl: ^0.18.0
   jhijri: ^1.0.0
   arabic_numbers: ^1.0.0
@@ -41,9 +39,7 @@ dependencies:
   scroll_to_index: ^3.0.1
   flutter_localizations:
     sdk: flutter
-  geolocator: ^9.0.1
-  flutter_qiblah_update:
-    path: custom_packages/flutter_qiblah_update-2.0.3
+  geolocator: ^10.1.1
   lottie: ^3.1.0
   internet_connection_checker_plus: ^2.1.0
   permission_handler: ^11.0.1
@@ -59,6 +55,10 @@ dependencies:
   geocoding: ^3.0.0
   android_alarm_manager_plus: ^4.0.1
   shared_preferences: ^2.2.2
+  path: ^1.9.0
+  rxdart: ^0.27.7
+  flutter_qiblah: ^2.2.0
+  quran: ^1.2.5
 dev_dependencies: 
   flutter_test: 
     sdk: flutter

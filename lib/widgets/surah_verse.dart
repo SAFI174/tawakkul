@@ -1,6 +1,6 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
-import 'package:quran/quran.dart';
+import 'package:tawakkal/utils/extension.dart';
 
 class SurahVerseWidget extends StatelessWidget {
   const SurahVerseWidget({
@@ -25,7 +25,7 @@ class SurahVerseWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(5), // if you need this
               border: Border.all(
                 color:
-                    Theme.of(context).colorScheme.onBackground.withAlpha(100),
+                Theme.of(context).colorScheme.onBackground.withAlpha(100),
                 width: 1,
               ),
             ),
@@ -40,12 +40,8 @@ class SurahVerseWidget extends StatelessWidget {
           ),
         ),
         if (showSurahName) ...{
-          Text(
-            getSurahNameOnlyArabicSimple(surah),
-          ),
-          const SizedBox(
-            width: 3,
-          ),
+          Text(surah.getSurahNameOnlyArabicSimple),
+          const SizedBox(width: 3),
         }
       ],
     );

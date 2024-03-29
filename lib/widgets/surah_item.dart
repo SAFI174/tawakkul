@@ -8,10 +8,10 @@ class SurahItem extends StatelessWidget {
   final Function()? onTap;
 
   const SurahItem({
-    Key? key,
+    super.key,
     required this.surahNumber,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class SurahItem extends StatelessWidget {
               fontFamily: 'SURAHNAMES',
               fontSize: 35,
             ),
-            textScaleFactor: 1,
+            textScaler: TextScaler.noScaling,
           ),
         ],
       ),

@@ -63,9 +63,11 @@ Stack surahTitleWidget(
       SvgPicture.asset(
         'assets/svg/surah_title.svg',
         height: 26.5,
-        color: isMarkerColored
-            ? theme.primaryColor
-            : theme.colorScheme.onBackground,
+        theme: SvgTheme(
+          currentColor: isMarkerColored
+              ? theme.primaryColor
+              : theme.colorScheme.onBackground,
+        ),
       ),
       Positioned(
         bottom: 0,
@@ -88,7 +90,7 @@ Text surahNameInQcf(
     {required int surahNumber, double? fontSize, Color? textColor}) {
   return Text(
     '${surahNumber.toString().padLeft(3, '0')}surah',
-    textScaleFactor: 1,
+    textScaler: TextScaler.noScaling,
     style: TextStyle(
       height: 1,
       color: textColor,
@@ -122,10 +124,10 @@ Row buildPageStrokes(bool isEven) {
 // Widget for a button that displays the page number and allows quick navigation
 class PageNumberButtonWidget extends StatelessWidget {
   const PageNumberButtonWidget({
-    Key? key,
+    super.key,
     required this.pageNumber,
     required this.height,
-  }) : super(key: key);
+  });
 
   final int pageNumber;
   final double height;

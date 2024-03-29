@@ -7,6 +7,7 @@ import 'package:quran/quran.dart';
 import 'package:tawakkal/data/cache/quran_reader_cache.dart';
 import 'package:tawakkal/data/models/quran_bookmark.dart';
 import 'package:tawakkal/data/models/quran_verse_model.dart';
+import 'package:tawakkal/utils/extension.dart';
 import 'package:tawakkal/widgets/custom_progress_indicator.dart';
 import '../../controllers/quran_reading_controller.dart';
 import '../../data/repository/readers_repository.dart';
@@ -31,9 +32,9 @@ Future<void> selectReaderSheet() async {
             } else {
               var readersList = snapshot.data![0];
               var selectedReader =
-                  QuranReaderCache.getSelectedReaderFromCache();
+              QuranReaderCache.getSelectedReaderFromCache();
               var selectedIndex = readersList.indexWhere(
-                  (element) => element.identifier == selectedReader.identifier);
+                      (element) => element.identifier == selectedReader.identifier);
               int? selectedReaderIndex;
 
               return Column(
@@ -131,7 +132,7 @@ void showGoToSurahSheet({required currentSurah}) {
       itemBuilder: (context, index) {
         return Center(
           child: Text(
-            '${ArabicNumbers().convert(index + 1)} - ${getSurahNameArabicSimple(index + 1)}',
+            '${ArabicNumbers().convert(index + 1)} - ${(index + 1).getSurahNameArabicSimple}',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         );

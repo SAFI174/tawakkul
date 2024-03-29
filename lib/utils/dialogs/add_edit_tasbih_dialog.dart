@@ -11,8 +11,7 @@ class AddEditTasbihDialog extends StatelessWidget {
   final bool isEditing;
   final ElectronicTasbihModel? editItem;
 
-  AddEditTasbihDialog({required this.isEditing, this.editItem, Key? key})
-      : super(key: key) {
+  AddEditTasbihDialog({required this.isEditing, this.editItem, super.key}) {
     if (isEditing) {
       nameController.text = editItem?.name ?? '';
       countController.text = editItem?.count.toString() ?? '';

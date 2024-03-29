@@ -13,7 +13,7 @@ import '../controllers/quran_audio_player_controller.dart';
 import '../controllers/quran_settings_controller.dart';
 
 class QuranSettingsPage extends GetView<QuranSettingsController> {
-  const QuranSettingsPage({Key? key}) : super(key: key);
+  const QuranSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

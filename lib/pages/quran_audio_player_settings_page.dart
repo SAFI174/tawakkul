@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:quran/quran.dart';
 import 'package:tawakkal/data/cache/quran_settings_cache.dart';
+import 'package:tawakkal/utils/extension.dart';
 import 'package:tawakkal/utils/sheets/sheet_methods.dart';
 import '../../../Widgets/surah_verse.dart';
 import '../controllers/quran_audio_player_controller.dart';
@@ -13,7 +14,7 @@ import '../controllers/quran_audio_player_settings_controller.dart';
 import '../data/cache/quran_reader_cache.dart';
 
 class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
-  const QuranAudioSettingsPage({Key? key}) : super(key: key);
+  const QuranAudioSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                         style: titleTextStyle,
                       ),
                       subtitle: Text(
-                        '${getSurahNameOnlyArabicSimple(controller.playRange.startSurah)}  الآية  ${controller.playRange.startVerse}',
+                        '${controller.playRange.startSurah.getSurahNameOnlyArabicSimple}  الآية  ${controller.playRange.startVerse}',
                         style: subtitleTextStyle,
                       ),
                       trailing: SurahVerseWidget(
@@ -110,7 +111,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                         style: titleTextStyle,
                       ),
                       subtitle: Text(
-                        '${getSurahNameOnlyArabicSimple(controller.playRange.endsSurah)}  الآية  ${controller.playRange.endsVerse}',
+                        '${controller.playRange.endsSurah.getSurahNameOnlyArabicSimple}  الآية  ${controller.playRange.endsVerse}',
                         style: subtitleTextStyle,
                       ),
                       trailing: SurahVerseWidget(
@@ -134,21 +135,21 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                     clearable: true,
                     value: ChoiceSingle.value(controller.selectedRange),
                     onChanged:
-                        ChoiceSingle.onChanged(controller.onRangeChoiceChanged),
+                    ChoiceSingle.onChanged(controller.onRangeChoiceChanged),
                     itemCount: controller.rangeSpeedChoice.length,
                     itemBuilder: (state, i) {
                       return ChoiceChip(
                         visualDensity: VisualDensity.compact,
                         selectedColor: theme.colorScheme.primary,
                         selected:
-                            state.selected(controller.rangeSpeedChoice[i]),
+                        state.selected(controller.rangeSpeedChoice[i]),
                         onSelected:
-                            state.onSelected(controller.rangeSpeedChoice[i]),
+                        state.onSelected(controller.rangeSpeedChoice[i]),
                         label: Text(
                           controller.rangeSpeedChoice[i],
                           style: state.selected(controller.rangeSpeedChoice[i])
                               ? const TextStyle(
-                                  color: Colors.white, fontSize: 12)
+                              color: Colors.white, fontSize: 12)
                               : const TextStyle(fontSize: 12),
                         ),
                         showCheckmark: false,
@@ -157,7 +158,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                     listBuilder: ChoiceList.createScrollable(
                       spacing: 5,
                       padding:
-                          const EdgeInsets.only(top: 15, bottom: 15, left: 10),
+                      const EdgeInsets.only(top: 15, bottom: 15, left: 10),
                     ),
                   );
                 },
@@ -222,7 +223,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                   return Choice<String>.inline(
                     value: ChoiceSingle.value(controller.selectedSpeed),
                     onChanged: ChoiceSingle.onChanged(
-                      (value) => controller.selectedSpeed = value ?? '',
+                          (value) => controller.selectedSpeed = value ?? '',
                     ),
                     itemCount: controller.speedChoice.length,
                     itemBuilder: (state, i) {
@@ -243,10 +244,10 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                               child: Text(
                                 controller.speedChoice.values.toList()[i],
                                 style: state.selected(controller
-                                        .speedChoice.values
-                                        .toList()[i])
+                                    .speedChoice.values
+                                    .toList()[i])
                                     ? const TextStyle(
-                                        color: Colors.white, fontSize: 12)
+                                    color: Colors.white, fontSize: 12)
                                     : const TextStyle(fontSize: 12),
                               ),
                             ),
@@ -260,7 +261,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                       alignment: WrapAlignment.center,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       padding:
-                          const EdgeInsets.only(top: 15, bottom: 15, left: 0),
+                      const EdgeInsets.only(top: 15, bottom: 15, left: 0),
                     ),
                   );
                 },
@@ -277,7 +278,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                   return Choice<String>.inline(
                     value: ChoiceSingle.value(controller.selectedRepeat),
                     onChanged: ChoiceSingle.onChanged(
-                      (value) => controller.selectedRepeat = value ?? '',
+                          (value) => controller.selectedRepeat = value ?? '',
                     ),
                     itemCount: controller.repeatChoice.length,
                     itemBuilder: (state, i) {
@@ -298,10 +299,10 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                               child: Text(
                                 controller.repeatChoice.values.toList()[i],
                                 style: state.selected(controller
-                                        .repeatChoice.values
-                                        .toList()[i])
+                                    .repeatChoice.values
+                                    .toList()[i])
                                     ? const TextStyle(
-                                        color: Colors.white, fontSize: 12)
+                                    color: Colors.white, fontSize: 12)
                                     : const TextStyle(fontSize: 12),
                               ),
                             ),
@@ -315,7 +316,7 @@ class QuranAudioSettingsPage extends GetView<QuranAudioSettingsController> {
                       alignment: WrapAlignment.center,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       padding:
-                          const EdgeInsets.only(top: 15, bottom: 15, left: 0),
+                      const EdgeInsets.only(top: 15, bottom: 15, left: 0),
                     ),
                   );
                 },
@@ -373,9 +374,9 @@ class SurahAyahPicker extends GetView<QuranAudioSettingsController> {
                         itemBuilder: (context, index) {
                           return Center(
                               child: Text(
-                            '${index + 1} - ${getSurahNameOnlyArabicSimple(index + 1)}',
-                            style: theme.textTheme.bodyMedium,
-                          ));
+                                '${index + 1} - ${(index + 1).getSurahNameOnlyArabicSimple}',
+                                style: theme.textTheme.bodyMedium,
+                              ));
                         },
                       ),
                     ),
@@ -392,9 +393,9 @@ class SurahAyahPicker extends GetView<QuranAudioSettingsController> {
                           itemBuilder: (context, index) {
                             return Center(
                                 child: Text(
-                              '${index + 1}',
-                              style: theme.textTheme.bodyMedium,
-                            ));
+                                  '${index + 1}',
+                                  style: theme.textTheme.bodyMedium,
+                                ));
                           },
                         );
                       }),
