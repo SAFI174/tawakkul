@@ -1,5 +1,5 @@
 <div dir="rtl">
-<img src="https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-04.png" alt='Quran for Android logo'/>
+<img src="[D](https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png)"/>
 
 #  تطبيق توَّكل TAWAKKAL
 
