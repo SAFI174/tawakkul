@@ -1,5 +1,5 @@
 <div dir="rtl">
-<img src="[D](https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png)"/>
+<img scr="https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png"/>
 
 #  تطبيق توَّكل TAWAKKAL
 
