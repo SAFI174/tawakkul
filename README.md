@@ -1,38 +1,43 @@
+```markdown
 <div dir="rtl">
-<img scr="https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png"/>
+<img src="https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png"/>
 
-#  تطبيق توَّكل TAWAKKAL
+# Tawakkul App
 
-توَّكل هو تطبيق إسلامي شامل يوفر مجموعة من الميزات لدعم نمط حياتك الإسلامي.
+Tawakkul is a comprehensive Islamic application that provides a range of features to support your Islamic lifestyle.
 
-## الميزات
+## Features
 
-### 📖 القرآن
-- **عرض المصحف**: التخطيط التقليدي لمصحف المدينة 15 سطر.
-- **عرض ديناميكي**: قم بتخصيص حجم الخط للقرآن لتجربة قراءة شخصية.
-- **مشغل الصوت**: استمع إلى تلاوات القرآن مع ميزة (كلمة ب كلمة عند الإستماع)
-- **مدير التنزيلات**: إدارة تنزيلات ملفات الصوت بسهولة.
-- **الإشارات المرجعية**: حفظ وتنظيم الآيات المفضلة لديك لسرعة الوصول.
-- **تفسير**: استكشاف معاني وشروح الآيات القرآنية.
-- **مدير تنزيلات التفسير**: إدارة بسهولة محتوى التفسير المحمل.
-- **البحث**: العثور بسهولة على آيات معينة أو مواضيع في القرآن.
+### 📖 Quran
+- **Mushaf Display**: Traditional layout of the Medina Quran with 15 lines.
+- **Dynamic View**: Customize font size for a personalized reading experience.
+- **Audio Player**: Listen to Quran recitations with word-by-word feature.
+- **Download Manager**: Easily manage audio file downloads.
+- **Bookmarks**: Save and organize your favorite verses for quick access.
+- **Tafsir**: Explore meanings and explanations of Quranic verses.
+- **Tafsir Downloads Manager**: Easily manage downloaded Tafsir content.
+- **Search**: Easily find specific verses or topics in the Quran.
 
-### 🕋 أوقات الصلاة
-- **أوقات دقيقة**: استلم أوقات الصلاة بدقة استنادًا إلى موقعك.
-- **اتجاه القبلة**: اعثر على اتجاه القبلة باستخدام البوصلة المدمجة.
+### 🕋 Prayer Times
+- **Accurate Times**: Receive prayer times accurately based on your location.
+- **Qibla Direction**: Find Qibla direction using the built-in compass.
 
-### 🤲 أذكار وتسابيح
-- **تفاصيل الأذكار**: عرض وتتبع مختلف الأذكار.
-- **عداد التسبيح الإلكتروني**: استخدم المسبحة الإلكترونية لتسجيل تسابيحك.
+### 🤲 Adhkar and Tasbeeh
+- **Adhkar Details**: View and track various adhkar.
+- **Tasbeeh Counter**: Use the electronic tasbeeh to record your tasbeehs.
 
-### 💖 أسماء الله الحسنى
-- **قائمة شاملة**: اكتشف وتأمل في الأسماء الجميلة لله.
+### 💖 Asmaul Husna
+- **Comprehensive List**: Discover and contemplate the beautiful names of Allah.
 
-## 📸 صور للتطبيق
+## Screenshots
 
-| مصحف المدينة مع تميز كلمة بكلمة عند الاستماع                           | كافة الأنشطة المتاحة حالياََ                                     |
+| Medina Mushaf with Word-by-Word Highlighting | All Currently Available Features |
 | -------------------------------------------- | -------------------------------------------- |
 | ![Description 1](screenshots/5.png)         | ![Description 2](screenshots/4.png)         |
+
 <p align="center">
-  صنع بشغف ❤️ بواسطة مصطفى مصري ( Mostafa Masri )
+  Made with passion ❤️ by Mustafa Masri
 </p>
+```
+
+This Markdown text should be displayed in English now.
