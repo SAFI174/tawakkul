@@ -1,7 +1,7 @@
 
 <div dir="rtl">
 <div align="center">
-  <img src="https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png" width="100" height="100"/>
+  <img src="https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png" width="200" height="200"/>
 </div>
 
 # Tawakkul App
