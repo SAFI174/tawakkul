@@ -1,4 +1,4 @@
-```markdown
+
 <div dir="rtl">
 <img src="https://raw.githubusercontent.com/SAFI174/tawakkul/main/logos/icon-07-modified%20(Small).png"/>
 
@@ -38,6 +38,3 @@ Tawakkul is a comprehensive Islamic application that provides a range of feature
 <p align="center">
   Made with passion ❤️ by Mustafa Masri
 </p>
-```
-
-This Markdown text should be displayed in English now.
