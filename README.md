@@ -28,7 +28,7 @@ Tawakkul is a comprehensive Islamic application that provides a range of feature
 - **Adhkar Details**: View and track various adhkar.
 - **Tasbeeh Counter**: Use the electronic tasbeeh to record your tasbeehs.
 
-### 💖 Asmaul Husna
+### 💖 Name of Allah 99
 - **Comprehensive List**: Discover and contemplate the beautiful names of Allah.
 
 ## Screenshots
