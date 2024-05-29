@@ -24,8 +24,8 @@ Tawakkul is a comprehensive Islamic application that provides a range of feature
 - **Accurate Times**: Receive prayer times accurately based on your location.
 - **Qibla Direction**: Find Qibla direction using the built-in compass.
 
-### 🤲 Adhkar and Tasbeeh
-- **Adhkar Details**: View and track various adhkar.
+### 🤲 Azkar and Tasbeeh
+- **Azkar Details**: View and track various azkar.
 - **Tasbeeh Counter**: Use the electronic tasbeeh to record your tasbeehs.
 
 ### 💖 Name of Allah 99
